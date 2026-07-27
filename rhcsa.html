@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Red Hat RHCSA Prep Engine - Command Console</title>
+  <link rel="stylesheet" href="rhcsa.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐧</text></svg>">
+</head>
+<body class="cyber-theme">
+  <!-- Scanline Overlay for Cyber Retro Look -->
+  <div class="cyber-scanlines"></div>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="outages-header">
+    <div class="header-left">
+      <a href="index.html" class="logo-link">
+        <span class="pulse-dot" style="background-color: #cc0000; box-shadow: 0 0 12px rgba(204,0,0,0.4);"></span>
+        <span class="logo-text" style="font-family: 'Space Grotesk', sans-serif;">REDHAT<span style="color: #cc0000;">_RHCSA</span></span>
+      </a>
+      <span class="cyber-badge-header font-mono">RHEL_9_PREP_ENGINE</span>
+    </div>
+
+    <!-- Search bar connected back to Choogle search -->
+    <div class="choogle-search-bar">
+      <input type="text" id="choogle-search-input" placeholder="Search Choogle...">
+      <button id="choogle-search-btn">Search</button>
+    </div>
+
+    <div class="header-right">
+      <a href="index.html" class="back-link font-mono">◀ BACK_TO_CHOOGLE</a>
+      <button id="sfx-toggle-btn" class="icon-toggle" title="Toggle audio feedback">🔊</button>
+      <button id="theme-toggle-btn" class="icon-toggle" title="Toggle visual profile">🌓</button>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+  <main class="dashboard-wrapper">
+    
+    <!-- Title banner -->
+    <section class="card glass cyber-border" style="border-color: rgba(204, 0, 0, 0.2);">
+      <h2 class="font-mono" style="color: #cc0000;">// EX200_QUESTS_TERMINAL_INTERFACE</h2>
+      <p class="font-mono text-muted" style="margin-top: 6px; font-size: 13px;">Execute configuration tasks. Type terminal commands inside the interactive shell and click 'RUN EVALUATOR' to evaluate compliance parameters.</p>
+    </section>
+
+    <!-- Split Screen: Left Terminal, Right Quests -->
+    <section class="grid-two-cols">
+      <!-- Interactive Bash Terminal Console -->
+      <div class="card terminal-card glass cyber-border" style="display: flex; flex-direction: column; height: 500px; padding: 0; min-height: 0;">
+        <div class="card-header border-bottom" style="padding: 10px 16px; background-color: rgba(204, 0, 0, 0.05); display: flex; justify-content: space-between; align-items: center;">
+          <span class="font-mono" style="font-size: 12px; font-weight: bold; color: #cc0000;">root@rhel9-practice-node:~</span>
+          <span class="font-mono text-muted" style="font-size: 10px;">BASH 5.1 // ACTIVE</span>
+        </div>
+        
+        <!-- Scrolling terminal console logs -->
+        <div id="terminal-logs" class="cyber-console" style="flex: 1; padding: 16px; overflow-y: auto; font-family: monospace; font-size: 12px; line-height: 1.4; display: flex; flex-direction: column; gap: 6px;">
+          <div>Red Hat Enterprise Linux 9.2 (Ootpa) - Practice Sandbox initialized.</div>
+          <div>All virtual loops active. Quest status is logged under system variables.</div>
+          <div>Type <strong style="color: #cc0000;">'help'</strong> to see the list of command actions.</div>
+          <div style="border-bottom: 1px dashed rgba(204, 0, 0, 0.1); margin-top: 6px; padding-bottom: 6px;"></div>
+        </div>
+
+        <!-- Terminal input line -->
+        <div style="display: flex; align-items: center; padding: 10px 16px; border-top: 1px solid var(--border-color); background-color: rgba(0,0,0,0.02);">
+          <span class="font-mono" style="color: #cc0000; font-weight: bold; margin-right: 8px;">[root@rhel9 ~]#</span>
+          <input type="text" id="terminal-input" autocomplete="off" placeholder="Type commands..." style="flex: 1; background: transparent; border: none; outline: none; font-family: monospace; font-size: 13px; color: var(--text-primary);">
+        </div>
+      </div>
+
+      <!-- Red Hat Quests Checklist -->
+      <div class="card quests-card glass cyber-border" style="display: flex; flex-direction: column; justify-content: space-between; height: 500px;">
+        <div>
+          <div class="card-header border-bottom" style="padding-bottom: 10px;">
+            <h3 class="font-mono" style="color: #cc0000;">// ACTIVE_RHCSA_QUESTS</h3>
+            <span class="font-mono text-muted" style="font-size: 11px;">COMPLETE ALL THREE TASKS</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 18px;">
+            <!-- Quest 1 -->
+            <div class="quest-item" id="q1-box" style="padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; background-color: rgba(0,0,0,0.01);">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <strong class="font-mono" style="font-size: 13px;">1. Systemd User Service</strong>
+                <span class="badge" id="q1-badge" style="background-color: var(--text-muted); color: white; padding: 2px 8px; border-radius: 4px; font-size: 9px; font-weight: bold;">PENDING</span>
+              </div>
+              <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px; line-height: 1.4;">
+                Create a systemd user service named <strong style="color: var(--text-primary);">logger-agent</strong> that runs the backup script `/usr/local/bin/logger.sh` every minute. Ensure the service file is placed in `~/.config/systemd/user/` and is enabled.
+              </p>
+            </div>
+
+            <!-- Quest 2 -->
+            <div class="quest-item" id="q2-box" style="padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; background-color: rgba(0,0,0,0.01);">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <strong class="font-mono" style="font-size: 13px;">2. AutoFS NFS Auto-mount</strong>
+                <span class="badge" id="q2-badge" style="background-color: var(--text-muted); color: white; padding: 2px 8px; border-radius: 4px; font-size: 9px; font-weight: bold;">PENDING</span>
+              </div>
+              <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px; line-height: 1.4;">
+                Configure AutoFS to auto-mount export shares from NFS Server `10.0.5.50:/share` to dynamic target local path `/shares/remote`. Map file entries must reside inside `/etc/auto.master.d/` and `/etc/auto.shares`.
+              </p>
+            </div>
+
+            <!-- Quest 3 -->
+            <div class="quest-item" id="q3-box" style="padding: 12px; border: 1px solid var(--border-color); border-radius: 6px; background-color: rgba(0,0,0,0.01);">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <strong class="font-mono" style="font-size: 13px;">3. Podman Container Deployment</strong>
+                <span class="badge" id="q3-badge" style="background-color: var(--text-muted); color: white; padding: 2px 8px; border-radius: 4px; font-size: 9px; font-weight: bold;">PENDING</span>
+              </div>
+              <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px; line-height: 1.4;">
+                Deploy a container using podman named <strong style="color: var(--text-primary);">http-server</strong> from registry image `nginx:alpine`. Bind host port `80` to container port `80`, and mount host directory `/var/www/html` to container.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 20px; display: flex; gap: 12px;">
+          <button id="eval-btn" class="pulse-btn primary font-mono" style="flex: 1; background-color: #cc0000; box-shadow: 0 4px 12px rgba(204,0,0,0.25);">RUN EVALUATOR</button>
+          <button id="reset-quest-btn" class="pulse-btn secondary font-mono">RESET_ENV</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bash Cheat Sheet and Reference Notes -->
+    <section class="card glass cyber-border" style="border-color: rgba(204, 0, 0, 0.2);">
+      <h3 class="font-mono" style="color: #cc0000; font-size: 14px; margin-bottom: 8px;">// BASH_COMMAND_CHEAT_SHEET</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+        <div>
+          <strong style="color: var(--text-primary);">Systemd User:</strong><br>
+          • mkdir -p ~/.config/systemd/user<br>
+          • systemctl --user enable logger-agent.service
+        </div>
+        <div>
+          <strong style="color: var(--text-primary);">AutoFS Setup:</strong><br>
+          • echo "/shares /etc/auto.shares" >> /etc/auto.master.d/shares.autofs<br>
+          • echo "remote -fstype=nfs 10.0.5.50:/share" >> /etc/auto.shares
+        </div>
+        <div>
+          <strong style="color: var(--text-primary);">Podman Container:</strong><br>
+          • podman run -d --name http-server -p 80:80 -v /var/www/html:/usr/share/nginx/html:Z nginx:alpine
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="outages-footer">
+    <div>// REDHAT // RHEL 9 LAB PREP ENGINE</div>
+    <div>
+      <a href="index.html">CHOOGLE_HOME</a>
+      <a href="vmware.html">VMWARE_STUDIO</a>
+      <a href="ccna.html">CCNA_NETWORKING</a>
+    </div>
+  </footer>
+
+  <script src="rhcsa.js"></script>
+</body>
+</html>

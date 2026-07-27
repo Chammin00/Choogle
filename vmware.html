@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VMware vSphere Cluster Studio - Control Center</title>
+  <link rel="stylesheet" href="vmware.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖥️</text></svg>">
+</head>
+<body class="cyber-theme">
+  <!-- Scanline Overlay for Cyber Retro Look -->
+  <div class="cyber-scanlines"></div>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="outages-header">
+    <div class="header-left">
+      <a href="index.html" class="logo-link">
+        <span class="pulse-dot" style="background-color: #005691; box-shadow: 0 0 12px rgba(0,86,145,0.4);"></span>
+        <span class="logo-text" style="font-family: 'Space Grotesk', sans-serif;">VMWARE<span style="color: #005691;">_STUDIO</span></span>
+      </a>
+      <span class="cyber-badge-header font-mono">VS登记ERE_V8.0</span>
+    </div>
+
+    <!-- Search bar connected back to Choogle search -->
+    <div class="choogle-search-bar">
+      <input type="text" id="choogle-search-input" placeholder="Search Choogle...">
+      <button id="choogle-search-btn">Search</button>
+    </div>
+
+    <div class="header-right">
+      <a href="index.html" class="back-link font-mono">◀ BACK_TO_CHOOGLE</a>
+      <button id="sfx-toggle-btn" class="icon-toggle" title="Toggle audio feedback">🔊</button>
+      <button id="theme-toggle-btn" class="icon-toggle" title="Toggle visual profile">🌓</button>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+  <main class="dashboard-wrapper">
+    
+    <!-- Title banner -->
+    <section class="card glass cyber-border" style="border-color: rgba(0, 86, 145, 0.2);">
+      <h2 class="font-mono" style="color: #005691;">// VIRTUAL_CLUSTER_INTELLIGENCE_CENTER</h2>
+      <p class="font-mono text-muted" style="margin-top: 6px; font-size: 13px;">Monitor cluster allocations, distribute virtual datastores, and trigger vMotion host migrations across active ESXi server pools.</p>
+    </section>
+
+    <!-- VMware Layout: Sidebar, Middle, Right Column -->
+    <div class="vmware-layout-grid">
+      <!-- Left Column: ESXi Inventory Tree -->
+      <div class="card tree-card glass cyber-border" style="padding: 16px;">
+        <h3 class="font-mono" style="color: #005691; font-size: 13px; border-bottom: 1px solid var(--border-color); padding-bottom: 6px; margin-bottom: 12px;">// INVENTORY_TREE</h3>
+        <div class="tree-container font-mono" style="font-size: 12px; display: flex; flex-direction: column; gap: 8px;">
+          <div>🏢 Datacenter-Dallas</div>
+          <div style="margin-left: 16px;">🎛️ Cluster-Gold</div>
+          <!-- Hosts -->
+          <div style="margin-left: 32px; cursor: pointer; color: #005691; font-weight: bold;" id="tree-host1" class="tree-item active">🖥️ esxi-01.local (10.0.1.10)</div>
+          <div style="margin-left: 32px; cursor: pointer;" id="tree-host2" class="tree-item">🖥️ esxi-02.local (10.0.1.11)</div>
+          <!-- Storage -->
+          <div style="margin-left: 16px; margin-top: 10px;">💾 Datastores</div>
+          <div style="margin-left: 32px;">💿 datastore-ssd-01 (2.5 TB)</div>
+          <div style="margin-left: 32px;">💿 datastore-hdd-01 (10 TB)</div>
+        </div>
+      </div>
+
+      <!-- Middle Column: VM Inventory & Switches -->
+      <div class="card vm-inventory-card glass cyber-border" style="padding: 16px;">
+        <h3 class="font-mono" style="color: #005691; font-size: 13px; border-bottom: 1px solid var(--border-color); padding-bottom: 6px; margin-bottom: 12px;">// VM_VIRTUAL_INVENTORY</h3>
+        
+        <!-- VM Table -->
+        <table class="vm-table font-mono" style="width: 100%; border-collapse: collapse; font-size: 11px; text-align: left;">
+          <thead>
+            <tr style="border-bottom: 1px solid var(--border-color); color: var(--text-muted);">
+              <th style="padding: 8px 4px;">VM NAME</th>
+              <th style="padding: 8px 4px;">ACTIVE HOST</th>
+              <th style="padding: 8px 4px;">CPU LOAD</th>
+              <th style="padding: 8px 4px;">RAM</th>
+              <th style="padding: 8px 4px;">STATUS</th>
+            </tr>
+          </thead>
+          <tbody id="vm-inventory-list">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+        
+        <!-- Network distributed switch SVG map -->
+        <div style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 16px;">
+          <h4 class="font-mono" style="color: #005691; font-size: 12px; margin-bottom: 10px;">// DISTRIBUTED_SWITCH_VDS_01</h4>
+          <div style="background-color: rgba(0,0,0,0.02); padding: 10px; border: 1px dashed var(--border-color); border-radius: 6px;">
+            <svg viewBox="0 0 450 120" style="width: 100%; height: auto;">
+              <!-- Host Boxes -->
+              <rect x="10" y="10" width="130" height="35" rx="4" fill="rgba(0, 86, 145, 0.05)" stroke="var(--border-color)" />
+              <text x="75" y="32" font-size="10" font-family="monospace" text-anchor="middle" fill="var(--text-primary)">ESXi-01 (vSwitch0)</text>
+
+              <rect x="310" y="10" width="130" height="35" rx="4" fill="rgba(0, 86, 145, 0.05)" stroke="var(--border-color)" />
+              <text x="375" y="32" font-size="10" font-family="monospace" text-anchor="middle" fill="var(--text-primary)">ESXi-02 (vSwitch0)</text>
+
+              <!-- Connection Trunk Trunk -->
+              <line x1="140" y1="28" x2="310" y2="28" stroke="var(--border-color)" stroke-width="2" stroke-dasharray="4 2" />
+              <text x="225" y="20" font-size="9" font-family="monospace" text-anchor="middle" fill="#005691">vMotion Link (10Gbps)</text>
+
+              <!-- VM connections links -->
+              <line x1="75" y1="45" x2="75" y2="90" stroke="var(--border-color)" stroke-dasharray="2 2" />
+              <line x1="375" y1="45" x2="375" y2="90" stroke="var(--border-color)" stroke-dasharray="2 2" />
+
+              <circle cx="75" cy="90" r="5" fill="var(--color-green)" />
+              <text x="75" y="110" font-size="8" font-family="monospace" text-anchor="middle" fill="var(--text-muted)">PortGroup-PROD</text>
+
+              <circle cx="375" cy="90" r="5" fill="var(--color-green)" />
+              <text x="375" y="110" font-size="8" font-family="monospace" text-anchor="middle" fill="var(--text-muted)">PortGroup-MGMT</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: vMotion Console -->
+      <div class="card vmotion-console-card glass cyber-border" style="padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <h3 class="font-mono" style="color: #005691; font-size: 13px; border-bottom: 1px solid var(--border-color); padding-bottom: 6px; margin-bottom: 12px;">// VMOTION_MIGRATION_CONSOLE</h3>
+          
+          <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 14px;">
+            <div class="form-group">
+              <label class="font-mono" style="font-size: 11px; font-weight: bold; color: var(--text-muted);">SELECT TARGET VM</label>
+              <select id="vm-select" class="custom-select" style="width: 100%; margin-top: 4px;">
+                <option value="vm-web">VM-Webserver-01</option>
+                <option value="vm-db">VM-Database-01</option>
+                <option value="vm-k8s">VM-K8s-Worker-01</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="font-mono" style="font-size: 11px; font-weight: bold; color: var(--text-muted);">TARGET ESXI HOST DESTINATION</label>
+              <select id="host-destination" class="custom-select" style="width: 100%; margin-top: 4px;">
+                <option value="esxi-02">esxi-02.local (IP: 10.0.1.11)</option>
+                <option value="esxi-01">esxi-01.local (IP: 10.0.1.10)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="font-mono" style="font-size: 11px; font-weight: bold; color: var(--text-muted);">MIGRATION PRIORITY</label>
+              <div style="display: flex; gap: 10px; margin-top: 4px;">
+                <label class="font-mono" style="font-size: 11px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+                  <input type="radio" name="vmotion-priority" value="high" checked> High Priority (Live)
+                </label>
+                <label class="font-mono" style="font-size: 11px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+                  <input type="radio" name="vmotion-priority" value="standard"> Standard (Scheduled)
+                </label>
+              </div>
+            </div>
+
+            <!-- Real-time vMotion console telemetry log -->
+            <div class="cyber-console font-mono" id="vmotion-log-feed" style="margin-top: 10px; padding: 10px; border: 1px dashed var(--border-color); border-radius: 4px; font-size: 10px; min-height: 90px; max-height: 120px; overflow-y: auto;">
+              [SYSTEM] Ready to initiate vMotion telemetry sweeps...
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 20px;">
+          <button id="vmotion-btn" class="pulse-btn primary font-mono" style="width: 100%; background-color: #005691; box-shadow: 0 4px 12px rgba(0,86,145,0.25);">INITIATE VMOTION MIGRATION</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cluster Analytics line graph chart -->
+    <section class="card glass cyber-border" style="border-color: rgba(0, 86, 145, 0.2);">
+      <div class="card-header border-bottom" style="padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+        <h3 class="font-mono" style="color: #005691; font-size: 13px;">// CLUSTER_RESOURCE_UTILIZATION</h3>
+        <span class="font-mono text-muted" style="font-size: 11px;">AVERAGE HOST LOAD: 32.5%</span>
+      </div>
+      <div class="chart-container" style="min-height: 160px; margin-top: 14px;">
+        <canvas id="vm-utilization-chart" width="1000" height="150" style="width: 100%; height: auto; display: block;"></canvas>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="outages-footer">
+    <div>// VMWARE // VSphere 8.0 CLUSTER DASHBOARD</div>
+    <div>
+      <a href="index.html">CHOOGLE_HOME</a>
+      <a href="rhcsa.html">REDHAT_RHCSA</a>
+      <a href="ccna.html">CCNA_NETWORKING</a>
+    </div>
+  </footer>
+
+  <script src="vmware.js"></script>
+</body>
+</html>

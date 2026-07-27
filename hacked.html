@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HackedOut - Threat Intelligence Operations Center</title>
+  <link rel="stylesheet" href="hacked.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👾</text></svg>">
+</head>
+<body class="cyber-theme">
+  <!-- Scanline Overlay for Cyber Retro Look -->
+  <div class="cyber-scanlines"></div>
+
+  <!-- ==================== TACTICAL ALERT TICKER ==================== -->
+  <div class="ticker-container">
+    <div class="ticker-label font-mono">LIVE_BREACH_STREAM</div>
+    <div class="ticker-wrapper">
+      <div class="ticker-content font-mono" id="ticker-alerts">
+        [INITIALIZING] Connecting to global honeypot routers... • Telemetry feed secure.
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="outages-header">
+    <div class="header-left">
+      <a href="index.html" class="logo-link">
+        <span class="pulse-dot" style="background-color: var(--color-red); box-shadow: var(--glow-red);"></span>
+        <span class="logo-text">HACKED<span class="logo-accent">OUT</span></span>
+      </a>
+      <span class="cyber-badge-header font-mono">THREAT_INTEL_V2.8</span>
+    </div>
+
+    <!-- Search bar connected back to Choogle search -->
+    <div class="choogle-search-bar">
+      <input type="text" id="choogle-search-input" placeholder="Search Choogle...">
+      <button id="choogle-search-btn">Search</button>
+    </div>
+
+    <div class="header-right">
+      <a href="index.html" class="back-link font-mono">◀ BACK_TO_CHOOGLE</a>
+      <button id="sfx-toggle-btn" class="icon-toggle" title="Toggle audio feedback">🔊</button>
+      <button id="theme-toggle-btn" class="icon-toggle" title="Toggle visual profile">🌓</button>
+      <a href="outages.html" class="pulse-btn secondary font-mono" style="padding: 6px 12px; font-size: 11px;">OUTAGE_PULSE 📡</a>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+  <main class="dashboard-wrapper">
+    
+    <!-- Filters row -->
+    <section class="card filter-panel glass cyber-border">
+      <div class="filters-row">
+        <!-- Scope Filters -->
+        <div class="filter-group">
+          <span class="filter-label">BREACH_SCOPE</span>
+          <div class="tab-filters" id="scope-filters">
+            <button class="tab-btn active" data-scope="world">WORLD</button>
+            <button class="tab-btn" data-scope="region">REGIONAL</button>
+            <button class="tab-btn" data-scope="us">US_STATES</button>
+            <button class="tab-btn" data-scope="city">CITY_NODE</button>
+          </div>
+        </div>
+
+        <!-- US State filter dropdown (hidden by default) -->
+        <div class="filter-group hidden" id="state-select-group">
+          <label for="state-select" class="filter-label">TARGET_STATE</label>
+          <select id="state-select" class="custom-select">
+            <option value="ALL">ALL STATES</option>
+            <option value="CA">CALIFORNIA</option>
+            <option value="TX">TEXAS</option>
+            <option value="NY">NEW YORK</option>
+            <option value="FL">FLORIDA</option>
+            <option value="IL">ILLINOIS</option>
+            <option value="WA">WASHINGTON</option>
+          </select>
+        </div>
+
+        <!-- Threat Vector Category Filters -->
+        <div class="filter-group">
+          <span class="filter-label">THREAT_SECTOR</span>
+          <div class="tag-filters" id="category-filters">
+            <button class="tag-btn active" data-cat="all">ALL_SECTORS</button>
+            <button class="tag-btn" data-cat="finance">🏦_FINANCIAL</button>
+            <button class="tag-btn" data-cat="defense">🛡️_DEFENSE</button>
+            <button class="tag-btn" data-cat="infra">⚡_INFRASTRUCTURE</button>
+            <button class="tag-btn" data-cat="tech">💻_TECH_CORPS</button>
+          </div>
+        </div>
+
+        <!-- Search Node filter -->
+        <div class="filter-group search-filter">
+          <label for="service-search" class="filter-label">FILTER_BY_TARGET</label>
+          <div class="search-box">
+            <input type="text" id="service-search" placeholder="e.g. JPMorgan, ERCOT, Lockheed...">
+            <button id="clear-search-btn" class="hidden">✕</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Map & Health Metrics Section -->
+    <section class="grid-two-cols">
+      <!-- Tactical Map Viewport -->
+      <div class="card map-card glass cyber-border">
+        <!-- Map Header with Interactive Breadcrumbs -->
+        <div class="card-header border-bottom">
+          <div class="map-breadcrumb-container" id="map-breadcrumbs">
+            <span class="crumb active" id="crumb-world" data-target="world">WORLD_GRID</span>
+            <span class="crumb-separator" id="sep-us">❯</span>
+            <span class="crumb" id="crumb-us" data-target="us">UNITED_STATES</span>
+            <span class="crumb-separator" id="sep-city">❯</span>
+            <span class="crumb" id="crumb-city" data-target="city">CITY_NODE</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <button id="map-mode-toggle-btn" class="pulse-btn secondary font-mono" style="padding: 4px 10px; font-size: 11px; margin-right: 6px;">MAP_MODE: FLAT</button>
+            <span class="status-indicator-tag" id="map-status-summary">SYS_STATUS // ACTIVE</span>
+          </div>
+        </div>
+        
+        <!-- Interactive Map Wrapper -->
+        <div class="map-viewport" id="map-viewport-container">
+          
+          <!-- Layer 1: World Map -->
+          <div class="map-layer active" id="world-map-view">
+            <svg viewBox="0 0 1000 500" class="world-svg" id="world-map">
+              <g class="grid-mesh-lines"></g> <!-- Populated with grids via JS -->
+              <!-- Continent Paths -->
+              <path d="M100,50 L200,80 L250,150 L200,200 L150,220 L100,200 L50,150 Z" class="continent-path" id="map-na" />
+              <path d="M220,250 L260,280 L280,350 L250,450 L220,400 L200,320 Z" class="continent-path" id="map-sa" />
+              <path d="M420,70 L520,70 L550,130 L480,180 L440,150 Z" class="continent-path" id="map-eu" />
+              <path d="M450,200 L520,200 L580,250 L560,350 L500,380 L450,280 Z" class="continent-path" id="map-af" />
+              <path d="M550,60 L800,80 L850,200 L750,280 L620,280 L580,150 Z" class="continent-path" id="map-as" />
+              <path d="M780,320 L860,340 L880,400 L800,420 L760,380 Z" class="continent-path" id="map-au" />
+
+              <!-- Continent Nodes -->
+              <g class="map-marker-group" id="node-na" data-region="na">
+                <circle cx="160" cy="130" r="22" class="marker-pulse-ring"></circle>
+                <circle cx="160" cy="130" r="8" class="marker-core" style="fill: var(--color-red);"></circle>
+                <text x="160" y="100" class="marker-label">NORTH_AMERICA</text>
+              </g>
+              <g class="map-marker-group" id="node-sa" data-region="sa">
+                <circle cx="240" cy="330" r="22" class="marker-pulse-ring"></circle>
+                <circle cx="240" cy="330" r="8" class="marker-core" style="fill: var(--color-red);"></circle>
+                <text x="240" y="300" class="marker-label">SOUTH_AMERICA</text>
+              </g>
+              <g class="map-marker-group" id="node-eu" data-region="eu">
+                <circle cx="485" cy="120" r="22" class="marker-pulse-ring"></circle>
+                <circle cx="485" cy="120" r="8" class="marker-core" style="fill: var(--color-red);"></circle>
+                <text x="485" y="90" class="marker-label">EUROPE</text>
+              </g>
+              <g class="map-marker-group" id="node-af" data-region="af">
+                <circle cx="510" cy="270" r="22" class="marker-pulse-ring"></circle>
+                <circle cx="510" cy="270" r="8" class="marker-core" style="fill: var(--color-red);"></circle>
+                <text x="510" y="240" class="marker-label">AFRICA</text>
+              </g>
+              <g class="map-marker-group" id="node-as" data-region="as">
+                <circle cx="700" cy="150" r="22" class="marker-pulse-ring"></circle>
+                <circle cx="700" cy="150" r="8" class="marker-core" style="fill: var(--color-red);"></circle>
+                <text x="700" y="120" class="marker-label">ASIA</text>
+              </g>
+              <g class="map-marker-group" id="node-au" data-region="au">
+                <circle cx="810" cy="360" r="22" class="marker-pulse-ring"></circle>
+                <circle cx="810" cy="360" r="8" class="marker-core" style="fill: var(--color-red);"></circle>
+                <text x="810" y="330" class="marker-label">AUSTRALIA</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Layer 2: United States Wireframe Map -->
+          <div class="map-layer" id="us-map-view">
+            <svg viewBox="0 0 1000 500" class="world-svg" id="us-map">
+              <g class="grid-mesh-lines"></g>
+              <!-- State Outlines (Simplified polygons) -->
+              <polygon points="100,80 180,90 200,200 120,220" class="continent-path" id="state-WA" data-state="WA" />
+              <polygon points="110,230 220,240 240,400 150,420" class="continent-path" id="state-CA" data-state="CA" />
+              <polygon points="400,280 620,280 650,420 480,420" class="continent-path" id="state-TX" data-state="TX" />
+              <polygon points="750,150 820,160 840,240 780,240" class="continent-path" id="state-NY" data-state="NY" />
+              <polygon points="740,360 800,360 820,440 760,450" class="continent-path" id="state-FL" data-state="FL" />
+              <polygon points="530,160 600,160 610,240 540,240" class="continent-path" id="state-IL" data-state="IL" />
+
+              <!-- State Threat Indicators -->
+              <g class="map-marker-group" id="node-state-CA" data-state="CA">
+                <circle cx="170" cy="320" r="22" class="marker-pulse-ring"></circle>
+                <circle cx="170" cy="320" r="8" class="marker-core" style="fill: var(--color-red);"></circle>
+                <text x="170" y="290" class="marker-label">CALIFORNIA_HUB</text>
+              </g>
+              <g class="map-marker-group" id="node-state-TX" data-state="TX">
+                <circle cx="530" cy="350" r="22" class="marker-pulse-ring"></circle>
+                <circle cx="530" cy="350" r="8" class="marker-core" style="fill: var(--color-red);"></circle>
+                <text x="530" y="320" class="marker-label">TEXAS_HUB</text>
+              </g>
+              <g class="map-marker-group" id="node-state-NY" data-state="NY">
+                <circle cx="785" cy="185" r="22" class="marker-pulse-ring"></circle>
+                <circle cx="785" cy="185" r="8" class="marker-core" style="fill: var(--color-red);"></circle>
+                <text x="785" y="155" class="marker-label">NEW_YORK_HUB</text>
+              </g>
+              <g class="map-marker-group" id="node-state-IL" data-state="IL">
+                <circle cx="570" cy="200" r="22" class="marker-pulse-ring"></circle>
+                <circle cx="570" cy="200" r="8" class="marker-core" style="fill: var(--color-red);"></circle>
+                <text x="570" y="170" class="marker-label">ILLINOIS_HUB</text>
+              </g>
+              <g class="map-marker-group" id="node-state-FL" data-state="FL">
+                <circle cx="780" cy="400" r="22" class="marker-pulse-ring"></circle>
+                <circle cx="780" cy="400" r="8" class="marker-core" style="fill: var(--color-red);"></circle>
+                <text x="780" y="370" class="marker-label">FLORIDA_HUB</text>
+              </g>
+              <g class="map-marker-group" id="node-state-WA" data-state="WA">
+                <circle cx="150" cy="140" r="22" class="marker-pulse-ring"></circle>
+                <circle cx="150" cy="140" r="8" class="marker-core" style="fill: var(--color-red);"></circle>
+                <text x="150" y="110" class="marker-label">WASHINGTON_HUB</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Layer 3: City Hub Schematic View -->
+          <div class="map-layer" id="city-map-view">
+            <svg viewBox="0 0 1000 500" class="world-svg" id="city-map">
+              <!-- Fiber Optic Backbones lines -->
+              <g class="fiber-backbones">
+                <!-- Connected Trunk Lines -->
+                <line x1="200" y1="250" x2="450" y2="150" class="fiber-line" />
+                <line x1="450" y1="150" x2="800" y2="250" class="fiber-line" />
+                <line x1="800" y1="250" x2="500" y2="380" class="fiber-line" />
+                <line x1="500" y1="380" x2="200" y2="250" class="fiber-line" />
+                <line x1="200" y1="250" x2="500" y2="250" class="fiber-line" />
+                <line x1="500" y1="250" x2="800" y2="250" class="fiber-line" />
+              </g>
+
+              <!-- Dynamic City Nodes based on State selection (Rendered via JS templates) -->
+              <g id="city-nodes-group"></g>
+            </svg>
+          </div>
+
+          <!-- Layer Globe Canvas (Tactical Rotating 3D wireframe) -->
+          <div class="map-layer" id="globe-map-view">
+            <canvas id="globe-canvas" width="1000" height="500" style="width: 100%; height: auto; display: block; background-color: rgba(3, 5, 8, 0.4);"></canvas>
+          </div>
+
+          <!-- Floating Tooltip Banner -->
+          <div id="map-tooltip" class="glass cyber-border hidden" style="position: absolute; pointer-events: none; z-index: 1000; padding: 10px 14px; font-family: var(--font-body); font-size: 11px; max-width: 260px; box-shadow: 0 4px 16px rgba(0,0,0,0.25); background-color: var(--bg-card-solid); border-radius: 6px;">
+            <div id="tooltip-title" style="font-weight: bold; color: var(--color-red); text-transform: uppercase;">BREACH_READOUT</div>
+            <div id="tooltip-loc" style="font-size: 10px; margin-top: 2px;">LOC: INTEL_NOMINAL</div>
+            <div id="tooltip-status" style="margin-top: 4px; font-weight: bold;">STATUS: NOMINAL</div>
+            <div id="tooltip-desc" style="color: var(--text-muted); margin-top: 6px; font-size: 10px; line-height: 1.3;">No active compromises reported in sector.</div>
+          </div>
+
+        </div>
+        <div class="map-footer-tip font-mono">// CLICK_NODES_TO_ZOOM_IN // BREADCRUMBS_TO_ZOOM_OUT</div>
+      </div>
+
+      <!-- Quick Metrics Summary & Simulation controls -->
+      <div class="summary-controls-panel">
+        <div class="metrics-grid">
+          <div class="metric-card card glass red-glow cyber-border" style="box-shadow: var(--glow-red); border-color: var(--color-red);">
+            <span class="metric-title">// ACTIVE_BREACHES</span>
+            <span class="metric-value font-mono" id="count-active" style="color: var(--color-red);">3</span>
+            <span class="metric-trend text-red" id="trend-status">↑ SEC_ALERT</span>
+            <span class="metric-desc text-muted font-mono" id="active-services-list" style="margin-top: 4px; display: block; font-size: 11px;">JPMORGAN, ERCOT</span>
+          </div>
+          <div class="metric-card card glass red-glow cyber-border">
+            <span class="metric-title">// CRITICAL_TARGETS</span>
+            <span class="metric-value font-mono text-red" id="count-major">1</span>
+            <span class="metric-desc text-muted font-mono" id="major-services-list" style="margin-top: 4px; display: block; font-size: 11px;">JPMORGAN</span>
+          </div>
+        </div>
+
+        <!-- Automated Simulator Controller -->
+        <div class="card control-card glass cyber-border">
+          <div class="card-header border-bottom">
+            <h4 class="font-mono">// SIMULATOR_THREAT_OPS</h4>
+            <div class="sim-toggle-wrapper">
+              <span class="sim-toggle-label font-mono">BREACH_SIM</span>
+              <label class="switch">
+                <input type="checkbox" id="simulation-toggle" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+          <p class="sim-info-text font-mono text-muted">Simulates automated cybersecurity breach attacks and remediation patches dynamically.</p>
+          <div class="control-actions">
+            <button id="report-outage-btn" class="pulse-btn danger font-mono">SYS_DISPATCH_BREACH</button>
+            <button id="clear-all-sim-btn" class="pulse-btn secondary font-mono">SYS_PATCH_ALL</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Section: Feed and Canvas Analytics -->
+    <section class="grid-two-cols bottom-section">
+      <!-- Live Breach Event Streams Console -->
+      <div class="card feed-card glass cyber-border">
+        <div class="card-header border-bottom">
+          <h3 class="font-mono">// ACTIVE_BREACHES_&_MAJOR_ALERTS</h3>
+          <div class="feed-sort font-mono">
+            <span class="feed-live-indicator" style="color: var(--color-red);"><span class="blink-dot" style="background-color: var(--color-red); box-shadow: var(--glow-red);"></span> HONEYPOT_FEED_LIVE</span>
+          </div>
+        </div>
+        
+        <div id="incidents-feed-list" class="feed-list cyber-console">
+          <!-- Populated Dynamically with Cyber breaches -->
+        </div>
+      </div>
+
+      <!-- Outages Analytics (Radial Health Gauges) -->
+      <div class="card chart-card glass cyber-border">
+        <div class="card-header border-bottom">
+          <h3 class="font-mono">// SECTOR_VULNERABILITY_METERS</h3>
+          <span class="chart-legend font-mono" style="color: var(--color-red);">ALERT: SEC_LEVEL_3</span>
+        </div>
+        
+        <!-- SVG Radial Meters container -->
+        <div class="radial-gauges-wrapper" style="display: grid; grid-template-columns: repeat(4, 1fr); padding: 10px 0; gap: 10px;">
+          <!-- SVG Radial Ring 1: Financial -->
+          <div class="radial-gauge-item" style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <svg width="80" height="80" viewBox="0 0 80 80">
+              <circle cx="40" cy="40" r="34" stroke="rgba(255,255,255,0.05)" stroke-width="6" fill="none"></circle>
+              <circle cx="40" cy="40" r="34" stroke="var(--color-green)" stroke-width="6" fill="none" stroke-dasharray="213" stroke-dashoffset="0" id="gauge-gaming-ring" transform="rotate(-90 40 40)" style="transition: stroke-dashoffset 0.8s ease-out; stroke-linecap: round;"></circle>
+              <text x="40" y="44" fill="var(--text-primary)" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle" id="gauge-gaming-lbl">100%</text>
+            </svg>
+            <span class="font-mono" style="font-size: 11px; text-transform: uppercase; color: var(--text-muted);">Finance</span>
+          </div>
+
+          <!-- SVG Radial Ring 2: Defense -->
+          <div class="radial-gauge-item" style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <svg width="80" height="80" viewBox="0 0 80 80">
+              <circle cx="40" cy="40" r="34" stroke="rgba(255,255,255,0.05)" stroke-width="6" fill="none"></circle>
+              <circle cx="40" cy="40" r="34" stroke="var(--color-green)" stroke-width="6" fill="none" stroke-dasharray="213" stroke-dashoffset="0" id="gauge-telecom-ring" transform="rotate(-90 40 40)" style="transition: stroke-dashoffset 0.8s ease-out; stroke-linecap: round;"></circle>
+              <text x="40" y="44" fill="var(--text-primary)" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle" id="gauge-telecom-lbl">100%</text>
+            </svg>
+            <span class="font-mono" style="font-size: 11px; text-transform: uppercase; color: var(--text-muted);">Defense</span>
+          </div>
+
+          <!-- SVG Radial Ring 3: Infrastructure -->
+          <div class="radial-gauge-item" style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <svg width="80" height="80" viewBox="0 0 80 80">
+              <circle cx="40" cy="40" r="34" stroke="rgba(255,255,255,0.05)" stroke-width="6" fill="none"></circle>
+              <circle cx="40" cy="40" r="34" stroke="var(--color-green)" stroke-width="6" fill="none" stroke-dasharray="213" stroke-dashoffset="0" id="gauge-web-ring" transform="rotate(-90 40 40)" style="transition: stroke-dashoffset 0.8s ease-out; stroke-linecap: round;"></circle>
+              <text x="40" y="44" fill="var(--text-primary)" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle" id="gauge-web-lbl">100%</text>
+            </svg>
+            <span class="font-mono" style="font-size: 11px; text-transform: uppercase; color: var(--text-muted);">Infra</span>
+          </div>
+
+          <!-- SVG Radial Ring 4: Tech Corps -->
+          <div class="radial-gauge-item" style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <svg width="80" height="80" viewBox="0 0 80 80">
+              <circle cx="40" cy="40" r="34" stroke="rgba(255,255,255,0.05)" stroke-width="6" fill="none"></circle>
+              <circle cx="40" cy="40" r="34" stroke="var(--color-green)" stroke-width="6" fill="none" stroke-dasharray="213" stroke-dashoffset="0" id="gauge-power-ring" transform="rotate(-90 40 40)" style="transition: stroke-dashoffset 0.8s ease-out; stroke-linecap: round;"></circle>
+              <text x="40" y="44" fill="var(--text-primary)" font-size="11" font-weight="bold" font-family="monospace" text-anchor="middle" id="gauge-power-lbl">100%</text>
+            </svg>
+            <span class="font-mono" style="font-size: 11px; text-transform: uppercase; color: var(--text-muted);">Tech_Corps</span>
+          </div>
+        </div>
+
+        <!-- Canvas Chart (Trend graph line under rings) -->
+        <div class="chart-container" style="min-height: 140px; margin-top: 10px;">
+          <canvas id="outage-line-chart" width="450" height="130"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TELEMETRY HISTORY ARCHIVE ==================== -->
+    <section class="card glass cyber-border" style="margin-top: 24px;" id="history-archive-card">
+      <div class="card-header border-bottom">
+        <h3 class="font-mono">// TELEMETRY_BREACH_ARCHIVE</h3>
+        <!-- Time filters buttons -->
+        <div class="tag-filters" id="history-time-filters">
+          <button class="tag-btn active" data-days="1">TODAY</button>
+          <button class="tag-btn" data-days="3">3_DAYS</button>
+          <button class="tag-btn" data-days="7">7_DAYS</button>
+          <button class="tag-btn" data-days="30">30_DAYS</button>
+          <button class="tag-btn" data-days="90">3_MONTHS</button>
+          <button class="tag-btn" data-days="180">6_MONTHS</button>
+          <button class="tag-btn" data-days="365">1_YEAR</button>
+        </div>
+      </div>
+
+      <!-- Historical stats overview panel -->
+      <div style="display: flex; gap: 24px; padding: 12px 0; border-bottom: 1px solid var(--border-color); font-size: 12px; font-family: var(--font-body); flex-wrap: wrap; margin-bottom: 16px; color: var(--text-primary);">
+        <div>ARCHIVE_ENTRIES: <strong id="hist-stat-count">0</strong></div>
+        <div>AVG_RECOVERY (MTTR): <strong id="hist-stat-mttr">1h 45m</strong></div>
+        <div>THREAT_REMEDIATION_RATE: <strong style="color: var(--color-green);" id="hist-stat-reliability">99.88%</strong></div>
+        <div>MOST_TARGETED_SECTOR: <strong style="color: var(--color-red);" id="hist-stat-unstable">TECH_CORPS</strong></div>
+      </div>
+
+      <!-- History Table/List -->
+      <div class="cyber-console" style="max-height: 250px; overflow-y: auto; font-family: var(--font-body); font-size: 12px; display: flex; flex-direction: column; gap: 8px;" id="history-logs-feed">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== REPORT OUTAGE MODAL ==================== -->
+  <div id="report-modal" class="modal-overlay hidden">
+    <div class="modal-card cyber-border">
+      <button class="modal-close" id="close-report-btn">✕</button>
+      <h2 class="font-mono">// DISPATCH_CYBER_BREACH_LOG</h2>
+      <p class="modal-desc font-mono">Dispatches active cyber breach threat telemetry to honeypot routers.</p>
+      
+      <form id="report-outage-form" class="modal-form">
+        <div class="form-group">
+          <label for="form-service-name">TARGET_NAME (CORPORATION / SYSTEM)</label>
+          <input type="text" id="form-service-name" placeholder="e.g. JPMorgan, ERCOT, Lockheed" required class="cyber-input">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="form-category">THREAT_SECTOR</label>
+            <select id="form-category" class="custom-select cyber-input" required>
+              <option value="finance">Financial Institution</option>
+              <option value="defense">Defense Sector</option>
+              <option value="infra">Critical Infrastructure</option>
+              <option value="tech">Tech Corporation</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="form-severity">THREAT_SEVERITY</label>
+            <select id="form-severity" class="custom-select cyber-input" required>
+              <option value="low">LOW // MINOR_LEAK</option>
+              <option value="medium">MEDIUM // DECRYPTION_ATTEMPT</option>
+              <option value="high">HIGH // ACTIVE_RANSOMWARE</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="form-scope-select">ATTACK_SCOPE</label>
+            <select id="form-scope-select" class="custom-select cyber-input" required>
+              <option value="world">Global Network</option>
+              <option value="region">Regional Backbone</option>
+              <option value="us">US State Subnet</option>
+              <option value="city">Localized City Node</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="form-location">ATTACK_LOCATION_GEO</label>
+            <input type="text" id="form-location" placeholder="e.g. Dallas, TX or Europe" required class="cyber-input">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="form-desc">BREACH_PAYLOAD_TELEMETRY</label>
+          <textarea id="form-desc" placeholder="Provide log trace indicators..." required class="cyber-input" style="min-height: 80px; font-family: inherit; resize: vertical;"></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn secondary" id="cancel-report-btn">CANCEL</button>
+          <button type="submit" class="btn primary danger">DISPATCH_BREACH</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== SUBSCRIBE ALERTS MODAL ==================== -->
+  <div id="subscribe-modal" class="modal-overlay hidden">
+    <div class="modal-card cyber-border">
+      <button class="modal-close" id="close-sub-btn">✕</button>
+      <h2 class="font-mono">// ESTABLISH_THREAT_INTEL_WEBHOOK</h2>
+      <p class="modal-desc font-mono">Registers notification updates to secure endpoint targets.</p>
+      
+      <form id="subscribe-form" class="modal-form">
+        <div class="form-group">
+          <label for="sub-email">ENDPOINT_SECURE_EMAIL / URI</label>
+          <input type="text" id="sub-email" placeholder="agent-ops@threatnet.net" required class="cyber-input">
+        </div>
+
+        <div class="form-group">
+          <label>SUBSCRIBE_SECTOR_SCOPES</label>
+          <div class="checkbox-grid">
+            <label class="checkbox-container">Financial Sector
+              <input type="checkbox" checked value="gaming">
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkbox-container">Defense Systems
+              <input type="checkbox" checked value="telecom">
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkbox-container">Infrastructure Grid
+              <input type="checkbox" checked value="web">
+              <span class="checkmark"></span>
+            </label>
+            <label class="checkbox-container">Tech Corporations
+              <input type="checkbox" checked value="power">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn secondary" id="cancel-sub-btn">CANCEL</button>
+          <button type="submit" class="btn primary">ESTABLISH_WEBHOOK</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="outages-footer">
+    <div>// SEC_NET // HONEYPOT TELEMETRY COMMAND BASE</div>
+    <div>
+      <a href="#">SYSTEM_STATUS</a>
+      <a href="#">SECURITY_POLICY</a>
+      <a href="index.html">CHOOGLE_HOME</a>
+    </div>
+  </footer>
+
+  <script src="hacked.js"></script>
+</body>
+</html>

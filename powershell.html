@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windows PowerShell Scripting Console - Training</title>
+  <link rel="stylesheet" href="powershell.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🟦</text></svg>">
+</head>
+<body class="cyber-theme">
+  <!-- Scanline Overlay for Cyber Retro Look -->
+  <div class="cyber-scanlines"></div>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="outages-header">
+    <div class="header-left">
+      <a href="index.html" class="logo-link">
+        <span class="pulse-dot" style="background-color: #002451; box-shadow: 0 0 12px rgba(0,36,81,0.4);"></span>
+        <span class="logo-text" style="font-family: 'Space Grotesk', sans-serif;">POWER<span style="color: #002451;">SHELL_LAB</span></span>
+      </a>
+      <span class="cyber-badge-header font-mono">POWERSHELL_V7.3.4</span>
+    </div>
+
+    <!-- Search bar connected back to Choogle search -->
+    <div class="choogle-search-bar">
+      <input type="text" id="choogle-search-input" placeholder="Search Choogle...">
+      <button id="choogle-search-btn">Search</button>
+    </div>
+
+    <div class="header-right">
+      <a href="index.html" class="back-link font-mono">◀ BACK_TO_CHOOGLE</a>
+      <button id="sfx-toggle-btn" class="icon-toggle" title="Toggle audio feedback">🔊</button>
+      <button id="theme-toggle-btn" class="icon-toggle" title="Toggle visual profile">🌓</button>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+  <main class="dashboard-wrapper">
+    
+    <!-- Title banner -->
+    <section class="card glass cyber-border" style="border-color: rgba(0, 36, 81, 0.2); padding: 16px 20px;">
+      <h2 class="font-mono" style="color: #002451;">// POWERSHELL_ENTERPRISE_COMMAND_CENTER</h2>
+      <p class="font-mono text-muted" style="margin-top: 6px; font-size: 13px;">Practice Active Directory cmdlets, execute process scripts, and complete structured loop syntax challenges.</p>
+    </section>
+
+    <!-- 3-Column Layout: AD Inventory Tree, PowerShell Shell console, Script challenge compiler -->
+    <div class="ps-main-layout">
+      
+      <!-- Column 1: Active Directory sidebar tree -->
+      <div class="card ad-sidebar glass cyber-border" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 520px; padding: 16px;">
+        <div>
+          <div class="card-header border-bottom" style="padding-bottom: 6px; margin-bottom: 12px;">
+            <h3 class="font-mono" style="color: #002451; font-size: 13px;">// ACTIVE_DIRECTORY_TREE</h3>
+            <span class="font-mono text-muted" style="font-size: 10px;">Domain: choogle.dev</span>
+          </div>
+
+          <!-- AD Tree view nodes -->
+          <div class="ad-tree font-mono" style="font-size: 11px; display: flex; flex-direction: column; gap: 8px;" id="ad-tree-view">
+            <!-- Dynamic elements loaded via JS -->
+          </div>
+        </div>
+        
+        <div style="font-size: 9px; color: var(--text-muted); font-family: monospace;">
+          // Use 'New-ADUser' inside the terminal console to insert nodes into this active tree directory
+        </div>
+      </div>
+
+      <!-- Column 2: Interactive PowerShell shell -->
+      <div class="card terminal-card glass cyber-border" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 520px; padding: 0; border-color: rgba(0, 36, 81, 0.3);">
+        <div style="display: flex; flex-direction: column; flex: 1; min-height: 0;">
+          <div class="card-header border-bottom" style="padding: 10px 16px; background-color: rgba(0, 36, 81, 0.05); display: flex; justify-content: space-between; align-items: center;">
+            <span class="font-mono" style="font-size: 12px; font-weight: bold; color: #002451;">Windows PowerShell v7.3.4</span>
+            <span class="font-mono text-muted" style="font-size: 10px;">active_shell</span>
+          </div>
+          
+          <!-- Console Logs -->
+          <div id="ps-console-log" class="cyber-console font-mono" style="flex: 1; padding: 16px; overflow-y: auto; font-size: 11px; line-height: 1.4; display: flex; flex-direction: column; gap: 4px; background-color: #001a35 !important; color: #fff !important; min-height: 380px;">
+            <div>Windows PowerShell Core Simulator environment initialized.</div>
+            <div>Copyright (C) Microsoft Corporation. All rights reserved.</div>
+            <div>Type <strong style="color: #38bdf8;">'help'</strong> to inspect training commands.</div>
+            <div style="border-bottom: 1px dashed rgba(255, 255, 255, 0.15); margin-top: 6px; padding-bottom: 6px;"></div>
+          </div>
+        </div>
+
+        <!-- CLI Input row -->
+        <div style="display: flex; align-items: center; padding: 10px 16px; border-top: 1px solid var(--border-color); background-color: rgba(0,0,0,0.02);">
+          <span class="font-mono" style="color: #002451; font-weight: bold; margin-right: 8px;" id="cli-prompt-indicator">PS C:\Users\chase></span>
+          <input type="text" id="cli-input" autocomplete="off" placeholder="Type PowerShell command..." style="flex: 1; background: transparent; border: none; outline: none; font-family: monospace; font-size: 12px; color: var(--text-primary);">
+        </div>
+      </div>
+
+      <!-- Column 3: Script Compiler Challenge Editor -->
+      <div class="card compiler-card glass cyber-border" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 520px; padding: 16px;">
+        <div>
+          <div class="card-header border-bottom" style="padding-bottom: 6px; margin-bottom: 12px;">
+            <h3 class="font-mono" style="color: #002451; font-size: 13px;">// SCRIPT_COMPILER</h3>
+            <span class="font-mono text-muted" style="font-size: 10px;">RESOLVE SYSTEM AUTOMATION QUIZZES</span>
+          </div>
+
+          <!-- Select Challenge Challenge -->
+          <div style="margin-bottom: 12px;">
+            <label style="font-size: 9px; font-weight: bold; color: var(--text-muted); font-family: monospace; display: block; margin-bottom: 2px;">SELECT ACTIVE CHALLENGE</label>
+            <select id="challenge-select" class="custom-select" style="width: 100%; height: 28px; font-size: 11px; padding: 2px 4px;">
+              <option value="ch1">Challenge 1: Auto-start Stopped Service</option>
+              <option value="ch2">Challenge 2: Wildcard Service Restarts</option>
+              <option value="ch3">Challenge 3: Monitor PM Process limits</option>
+            </select>
+          </div>
+
+          <div>
+            <p id="challenge-prompt" style="font-size: 10px; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px;">
+              <!-- Load task context via JS -->
+            </p>
+            <textarea id="challenge-editor" class="font-mono" style="width: 100%; height: 180px; padding: 10px; background-color: #000f1f; color: #38bdf8; border: 1px solid var(--border-color); border-radius: 6px; font-size: 11px; line-height: 1.4; outline: none; resize: none;"></textarea>
+          </div>
+
+          <div class="cyber-console font-mono" id="challenge-results-log" style="margin-top: 10px; padding: 8px; border: 1px dashed var(--border-color); border-radius: 4px; font-size: 9px; min-height: 70px; max-height: 80px; overflow-y: auto;">
+            // Select challenge and click run script...
+          </div>
+        </div>
+
+        <div>
+          <button id="compiler-run-btn" class="pulse-btn primary font-mono" style="width: 100%; height: 32px; font-size: 11px; padding: 0; background-color: #002451; box-shadow: 0 4px 12px rgba(0,36,81,0.25);">EXECUTE POWERSHELL SCRIPT</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PowerShell Cheatsheet panels -->
+    <section class="card glass cyber-border" style="border-color: rgba(0, 36, 81, 0.2); padding: 16px;">
+      <h3 class="font-mono" style="color: #002451; font-size: 13px; margin-bottom: 8px;">// POWERSHELL_CMDLET_REFERENCE</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+        <div>
+          <strong style="color: var(--text-primary);">Active Directory Management:</strong><br>
+          • Get-ADUser -Identity [username]<br>
+          • New-ADUser -Name [name] -Path "OU=[ou],DC=choogle,DC=dev"
+        </div>
+        <div>
+          <strong style="color: var(--text-primary);">Service & Process loops:</strong><br>
+          • Get-Service | Where-Object {$_.Status -eq "Stopped"}<br>
+          • Get-Process | Where-Object {$_.PM -gt 15MB} | Select ProcessName
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="outages-footer">
+    <div>// MICROSOFT // POWERSHELL LAB COMPILER CENTER</div>
+    <div>
+      <a href="index.html">CHOOGLE_HOME</a>
+      <a href="ccna.html">CCNA_NETWORKING_LAB</a>
+      <a href="dlm.html">DLM_STORAGE_CENTER</a>
+    </div>
+  </footer>
+
+  <script src="powershell.js"></script>
+</body>
+</html>

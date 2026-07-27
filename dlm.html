@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Lifecycle Management (DLM) Console - Operations</title>
+  <link rel="stylesheet" href="dlm.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📦</text></svg>">
+</head>
+<body class="cyber-theme">
+  <!-- Scanline Overlay for Cyber Retro Look -->
+  <div class="cyber-scanlines"></div>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="outages-header">
+    <div class="header-left">
+      <a href="index.html" class="logo-link">
+        <span class="pulse-dot" style="background-color: #7c3aed; box-shadow: 0 0 12px rgba(124,58,237,0.4);"></span>
+        <span class="logo-text" style="font-family: 'Space Grotesk', sans-serif;">DATA<span style="color: #7c3aed;">_DLM_OPS</span></span>
+      </a>
+      <span class="cyber-badge-header font-mono">RETENTION_MANAGEMENT_V4.0</span>
+    </div>
+
+    <!-- Search bar connected back to Choogle search -->
+    <div class="choogle-search-bar">
+      <input type="text" id="choogle-search-input" placeholder="Search Choogle...">
+      <button id="choogle-search-btn">Search</button>
+    </div>
+
+    <div class="header-right">
+      <a href="index.html" class="back-link font-mono">◀ BACK_TO_CHOOGLE</a>
+      <button id="sfx-toggle-btn" class="icon-toggle" title="Toggle audio feedback">🔊</button>
+      <button id="theme-toggle-btn" class="icon-toggle" title="Toggle visual profile">🌓</button>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+  <main class="dashboard-wrapper">
+    
+    <!-- Title banner -->
+    <section class="card glass cyber-border" style="border-color: rgba(124,58,237,0.2); padding: 16px 20px;">
+      <h2 class="font-mono" style="color: #7c3aed;">// ENTERPRISE_RETENTION_AND_CLASSIFICATION_DASHBOARD</h2>
+      <p class="font-mono text-muted" style="margin-top: 6px; font-size: 13px;">Establish schema classification matrices, rotate cryptographic keys, and manage storage tiering retention periods.</p>
+    </section>
+
+    <!-- 3-Column Detailed Layout: Schema Scanner, Encryption Vault, Policy Manager -->
+    <div class="dlm-main-layout">
+      
+      <!-- Column 1: Schema Classification Catalog & Field Details -->
+      <div style="display: flex; flex-direction: column; gap: 24px; min-height: 520px;">
+        
+        <!-- Schemas List -->
+        <div class="card schema-card glass cyber-border" style="flex: 1; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div class="card-header border-bottom" style="padding-bottom: 6px; margin-bottom: 12px;">
+              <h3 class="font-mono" style="color: #7c3aed; font-size: 13px;">// SCHEMA_LIST</h3>
+              <span class="font-mono text-muted" style="font-size: 10px;">CLICK TABLE TO VIEW FIELD SCHEMAS</span>
+            </div>
+            
+            <div style="display: flex; flex-direction: column; gap: 8px;" id="table-schema-list">
+              <!-- Users DB -->
+              <div class="schema-item active" data-table="users" style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; background: rgba(0,0,0,0.01);">
+                <span class="font-mono" style="font-size: 12px; font-weight: bold;">📁 users_production</span>
+                <span class="badge" id="badge-users" style="background-color: var(--color-yellow); color: white; padding: 1px 6px; border-radius: 4px; font-size: 8px; font-weight: bold;">PHI</span>
+              </div>
+              <!-- Payments DB -->
+              <div class="schema-item" data-table="payments" style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; background: rgba(0,0,0,0.01);">
+                <span class="font-mono" style="font-size: 12px; font-weight: bold;">📁 transactions_pci</span>
+                <span class="badge" id="badge-payments" style="background-color: var(--color-red); color: white; padding: 1px 6px; border-radius: 4px; font-size: 8px; font-weight: bold;">PCI</span>
+              </div>
+              <!-- Marketing DB -->
+              <div class="schema-item" data-table="marketing" style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; background: rgba(0,0,0,0.01);">
+                <span class="font-mono" style="font-size: 12px; font-weight: bold;">📁 campaigns_public</span>
+                <span class="badge" id="badge-marketing" style="background-color: var(--color-green); color: white; padding: 1px 6px; border-radius: 4px; font-size: 8px; font-weight: bold;">PUBLIC</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 14px;">
+            <div id="scan-progress-box" class="hidden" style="margin-bottom: 8px;">
+              <div style="display: flex; justify-content: space-between; font-size: 9px; font-family: monospace; color: var(--text-muted); margin-bottom: 3px;">
+                <span>ANALYZING SCHEMAS...</span>
+                <span id="scan-pct">0%</span>
+              </div>
+              <div style="width: 100%; height: 4px; background-color: rgba(0,0,0,0.05); border-radius: 2px; overflow: hidden;">
+                <div id="scan-bar" style="width: 0%; height: 100%; background-color: #7c3aed; transition: width 0.1s;"></div>
+              </div>
+            </div>
+            <button id="scan-btn" class="pulse-btn primary font-mono" style="width: 100%; height: 32px; font-size: 11px; padding: 0; background-color: #7c3aed; box-shadow: 0 4px 12px rgba(124,58,237,0.25);">RE-SCAN DATABASE SCHEMAS</button>
+          </div>
+        </div>
+
+        <!-- Field Details Sidebar (Dynamic) -->
+        <div class="card fields-card glass cyber-border" style="flex: 1.2; padding: 16px;">
+          <div class="card-header border-bottom" style="padding-bottom: 6px; margin-bottom: 12px;">
+            <h3 class="font-mono" style="color: #7c3aed; font-size: 13px;" id="fields-title">// FIELDS_IN_USERS</h3>
+            <span class="font-mono text-muted" style="font-size: 10px;">CONFIGURE FIELD SECURITY LEVELS</span>
+          </div>
+
+          <!-- Fields config table -->
+          <div style="max-height: 200px; overflow-y: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-family: monospace; font-size: 11px;" id="fields-table">
+              <!-- Populated by JS -->
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Column 2: Cryptographic Encryption Key Vault -->
+      <div class="card key-vault-card glass cyber-border" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 520px;">
+        <div>
+          <div class="card-header border-bottom" style="padding-bottom: 6px; margin-bottom: 12px;">
+            <h3 class="font-mono" style="color: #7c3aed; font-size: 13px;">// KEY_MANAGEMENT_VAULT</h3>
+            <span class="font-mono text-muted" style="font-size: 10px;">AES-256 KEY ROTATION ENGINE</span>
+          </div>
+
+          <!-- Key state info -->
+          <div style="background-color: rgba(0,0,0,0.02); padding: 12px; border: 1px dashed var(--border-color); border-radius: 6px; margin-bottom: 14px; font-family: monospace; font-size: 11px;">
+            <div>ACTIVE KEY ID: <strong style="color: #7c3aed;" id="active-key-id">key-prod-aes-256-v4</strong></div>
+            <div style="margin-top: 4px;">STATE: <span style="color: var(--color-green); font-weight: bold;">[ACTIVE]</span></div>
+            <div style="margin-top: 4px;">LAST ROTATED: <span id="last-rotated-date" style="color: var(--text-muted);">2026-07-25T08:00Z</span></div>
+          </div>
+
+          <!-- Key Logs -->
+          <div class="cyber-console font-mono" style="flex: 1; padding: 10px; font-size: 10px; border-radius: 4px; min-height: 220px; max-height: 240px; overflow-y: auto;" id="vault-logs">
+            [VAULT] Initialized security hardware module (HSM)...
+            [VAULT] Active key loaded: key-prod-aes-256-v4.
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-top: 14px;">
+          <button id="rotate-key-btn" class="pulse-btn primary font-mono" style="flex: 1.2; height: 32px; font-size: 11px; padding: 0; background-color: #7c3aed;">ROTATE_DECRYPTION_KEYS</button>
+          <button id="shred-btn" class="pulse-btn secondary font-mono" style="flex: 1; height: 32px; font-size: 11px; padding: 0; border-color: var(--color-red); color: var(--color-red);">SHRED_EXPIRED</button>
+        </div>
+      </div>
+
+      <!-- Column 3: Policy Configuration Manager & Visual Allocation Bar -->
+      <div class="card policy-card glass cyber-border" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 520px;">
+        <div>
+          <div class="card-header border-bottom" style="padding-bottom: 6px; margin-bottom: 12px;">
+            <h3 class="font-mono" style="color: #7c3aed; font-size: 13px;">// RETENTION_MANAGEMENT</h3>
+            <span class="font-mono text-muted" style="font-size: 10px;">CONFIGURE AUTOMATED LIFECYCLES</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 12px;">
+            <!-- Hot storage range -->
+            <div class="form-group">
+              <div style="display: flex; justify-content: space-between; font-size: 10px; font-weight: bold; color: var(--text-muted); font-family: monospace;">
+                <span>HOT STORAGE RETENTION</span>
+                <span id="label-range-hot" style="color: #7c3aed;">12 Months</span>
+              </div>
+              <input type="range" id="range-hot" min="1" max="60" value="12" style="width: 100%; margin-top: 4px; accent-color: #7c3aed;">
+            </div>
+
+            <!-- Cold storage range -->
+            <div class="form-group">
+              <div style="display: flex; justify-content: space-between; font-size: 10px; font-weight: bold; color: var(--text-muted); font-family: monospace;">
+                <span>COLD ARCHIVE RETENTION</span>
+                <span id="label-range-cold" style="color: #7c3aed;">7 Years</span>
+              </div>
+              <input type="range" id="range-cold" min="1" max="15" value="7" style="width: 100%; margin-top: 4px; accent-color: #7c3aed;">
+            </div>
+
+            <!-- Toggle check -->
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <input type="checkbox" id="shred-on-expire" checked style="accent-color: #7c3aed;">
+              <label for="shred-on-expire" style="font-size: 10px; font-weight: bold; color: var(--text-muted); font-family: monospace;">SHRED ENCRYPTED COLD BLOCK SEGMENTS</label>
+            </div>
+            
+            <!-- Output policy schedule logs -->
+            <div class="cyber-console font-mono" id="dlm-schedule-log" style="padding: 10px; border-radius: 4px; font-size: 10px; min-height: 80px;">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer visual storage block footprint allocations chart -->
+        <div style="margin-top: 18px;">
+          <h4 class="font-mono" style="font-size: 10px; color: var(--text-muted); margin-bottom: 6px;">// COMPRESSION_FOOTPRINT_ALLOCATIONS</h4>
+          <div style="width: 100%; height: 16px; background-color: #eee; border-radius: 8px; overflow: hidden; display: flex;" id="footprint-bar">
+            <!-- Dynamic segments -->
+            <div style="width: 40%; height: 100%; background-color: var(--color-yellow);" id="footprint-phi"></div>
+            <div style="width: 30%; height: 100%; background-color: var(--color-red);" id="footprint-pci"></div>
+            <div style="width: 30%; height: 100%; background-color: var(--color-green);" id="footprint-public"></div>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 8px; font-family: monospace; color: var(--text-muted); margin-top: 4px;">
+            <span>PHI (Yellow)</span>
+            <span>PCI (Red)</span>
+            <span>PUBLIC (Green)</span>
+          </div>
+
+          <button id="apply-policy-btn" class="pulse-btn primary font-mono" style="width: 100%; height: 32px; font-size: 11px; margin-top: 14px; background-color: #7c3aed; box-shadow: 0 4px 12px rgba(124,58,237,0.25);">APPLY COMPLIANCE DIRECTIVES</button>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="outages-footer">
+    <div>// DATASEC // RETENTION & CRYPTOGRAPHY OPS CENTER</div>
+    <div>
+      <a href="index.html">CHOOGLE_HOME</a>
+      <a href="ccna.html">CCNA_NETWORKING_LAB</a>
+      <a href="powershell.html">POWERSHELL_CONSOLE</a>
+    </div>
+  </footer>
+
+  <script src="dlm.js"></script>
+</body>
+</html>

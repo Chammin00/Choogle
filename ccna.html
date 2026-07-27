@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cisco CCNA Networking Lab - Command Center</title>
+  <link rel="stylesheet" href="ccna.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>">
+</head>
+<body class="cyber-theme">
+  <!-- Scanline Overlay for Cyber Retro Look -->
+  <div class="cyber-scanlines"></div>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="outages-header">
+    <div class="header-left">
+      <a href="index.html" class="logo-link">
+        <span class="pulse-dot" style="background-color: #0d6efd; box-shadow: 0 0 12px rgba(13,110,253,0.4);"></span>
+        <span class="logo-text" style="font-family: 'Space Grotesk', sans-serif;">CISCO<span style="color: #0d6efd;">_CCNA_LAB</span></span>
+      </a>
+      <span class="cyber-badge-header font-mono">IOS_ENTERPRISE_V15.2</span>
+    </div>
+
+    <!-- Search bar connected back to Choogle search -->
+    <div class="choogle-search-bar">
+      <input type="text" id="choogle-search-input" placeholder="Search Choogle...">
+      <button id="choogle-search-btn">Search</button>
+    </div>
+
+    <div class="header-right">
+      <a href="index.html" class="back-link font-mono">◀ BACK_TO_CHOOGLE</a>
+      <button id="sfx-toggle-btn" class="icon-toggle" title="Toggle audio feedback">🔊</button>
+      <button id="theme-toggle-btn" class="icon-toggle" title="Toggle visual profile">🌓</button>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+  <main class="dashboard-wrapper">
+    
+    <!-- Title banner -->
+    <section class="card glass cyber-border" style="border-color: rgba(13, 110, 253, 0.2); padding: 16px 20px;">
+      <h2 class="font-mono" style="color: #0d6efd;">// CCNA_ROUTING_AND_SWITCHING_LAB</h2>
+      <p class="font-mono text-muted" style="margin-top: 6px; font-size: 13px;">Configure interfaces, design routing tables via Cisco IOS CLI, and test connection packet flows in real-time.</p>
+    </section>
+
+    <!-- Detailed 3-Column Layout: Quests Sidebar, Topology Canvas, IOS Terminal + Tools -->
+    <div class="ccna-main-layout">
+      
+      <!-- Column 1: Lab Quests Panel -->
+      <div class="card quests-sidebar glass cyber-border" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 520px;">
+        <div>
+          <div class="card-header border-bottom" style="padding-bottom: 8px; margin-bottom: 12px;">
+            <h3 class="font-mono" style="color: #0d6efd; font-size: 13px;">// LAB_OBJECTIVES</h3>
+            <span class="font-mono text-muted" style="font-size: 10px;">CCNA EXAM PRACTICE TASKS</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <!-- Quest 1 -->
+            <div class="quest-item" id="q-ccna1" style="padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; background-color: rgba(0,0,0,0.01);">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <strong style="font-size: 12px; font-family: monospace;">1. Configure R1 Interface</strong>
+                <span class="badge" id="q-ccna1-badge" style="background-color: var(--text-muted); color: white; padding: 1px 6px; border-radius: 4px; font-size: 8px; font-weight: bold;">PENDING</span>
+              </div>
+              <p style="font-size: 10px; color: var(--text-muted); margin-top: 4px; line-height: 1.3;">
+                Elevate to privilege mode on R1. Assign IP address <strong style="color: var(--text-primary);">192.168.1.1 255.255.255.192</strong> to interface <strong style="color: var(--text-primary);">Fa0/0</strong> and run `no shutdown` to change interface link state to UP.
+              </p>
+            </div>
+
+            <!-- Quest 2 -->
+            <div class="quest-item" id="q-ccna2" style="padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; background-color: rgba(0,0,0,0.01);">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <strong style="font-size: 12px; font-family: monospace;">2. Configure R2 Interface</strong>
+                <span class="badge" id="q-ccna2-badge" style="background-color: var(--text-muted); color: white; padding: 1px 6px; border-radius: 4px; font-size: 8px; font-weight: bold;">PENDING</span>
+              </div>
+              <p style="font-size: 10px; color: var(--text-muted); margin-top: 4px; line-height: 1.3;">
+                Switch focus console node to R2. Assign IP address <strong style="color: var(--text-primary);">192.168.1.2 255.255.255.192</strong> to interface <strong style="color: var(--text-primary);">Fa0/0</strong> and execute `no shutdown`.
+              </p>
+            </div>
+
+            <!-- Quest 3 -->
+            <div class="quest-item" id="q-ccna3" style="padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; background-color: rgba(0,0,0,0.01);">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <strong style="font-size: 12px; font-family: monospace;">3. End-to-End Ping</strong>
+                <span class="badge" id="q-ccna3-badge" style="background-color: var(--text-muted); color: white; padding: 1px 6px; border-radius: 4px; font-size: 8px; font-weight: bold;">PENDING</span>
+              </div>
+              <p style="font-size: 10px; color: var(--text-muted); margin-top: 4px; line-height: 1.3;">
+                Once both interface links are up, return console focus to R1 and execute <strong style="color: var(--text-primary);">ping 192.168.1.2</strong> to verify packet routing connection.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 14px;">
+          <button id="reset-ccna-btn" class="pulse-btn secondary font-mono" style="width: 100%; height: 32px; font-size: 11px;">RESET_LAB_VARIABLES</button>
+        </div>
+      </div>
+
+      <!-- Column 2: Topology Canvas Map with active packet animations -->
+      <div class="card topology-card glass cyber-border" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 520px;">
+        <div class="card-header border-bottom" style="padding-bottom: 8px;">
+          <h3 class="font-mono" style="color: #0d6efd; font-size: 13px;">// INTERACTIVE_LAB_TOPOLOGY</h3>
+          <span class="font-mono text-muted" style="font-size: 10px;">CLI focus shifts to whichever node is clicked</span>
+        </div>
+
+        <!-- SVG Topology Canvas -->
+        <div style="flex: 1; display: flex; align-items: center; justify-content: center; background-color: rgba(0,0,0,0.02); margin: 12px 0; border-radius: 6px; border: 1px dashed var(--border-color); position: relative; overflow: hidden;">
+          <svg viewBox="0 0 500 350" style="width: 95%; height: auto;" id="topology-svg">
+            <!-- Connection trunks -->
+            <line x1="120" y1="120" x2="380" y2="120" id="topo-link-r1-r2" class="fiber-line" style="stroke: var(--text-muted); stroke-width: 2.5;" />
+            <line x1="120" y1="120" x2="250" y2="240" id="topo-link-r1-sw1" class="fiber-line" style="stroke: var(--text-muted); stroke-width: 2; stroke-dasharray: 4 2;" />
+            <line x1="380" y1="120" x2="250" y2="240" id="topo-link-r2-sw1" class="fiber-line" style="stroke: var(--text-muted); stroke-width: 2; stroke-dasharray: 4 2;" />
+            <line x1="250" y1="240" x2="250" y2="300" id="topo-link-sw1-pc" class="fiber-line" style="stroke: var(--text-muted); stroke-width: 1.5; stroke-dasharray: 2 2;" />
+
+            <!-- Packet Flow Dot Overlay (Hidden by default, animated on Ping) -->
+            <circle cx="120" cy="120" r="5" fill="#ffc107" id="ping-packet-dot" class="hidden">
+              <animate attributeName="cx" from="120" to="380" dur="0.8s" repeatCount="3" id="packet-anim" />
+            </circle>
+
+            <!-- R1 Node -->
+            <g class="topo-node active" id="topo-r1" style="cursor: pointer;">
+              <circle cx="120" cy="120" r="28" fill="var(--bg-card-solid)" stroke="#0d6efd" stroke-width="2" />
+              <text x="120" y="124" font-size="10" font-family="monospace" text-anchor="middle" font-weight="bold" fill="var(--text-primary)">R1</text>
+              <text x="120" y="80" font-size="9" font-family="monospace" text-anchor="middle" fill="var(--text-muted)" id="label-r1-ip">Fa0/0: Down</text>
+            </g>
+
+            <!-- R2 Node -->
+            <g class="topo-node" id="topo-r2" style="cursor: pointer;">
+              <circle cx="380" cy="120" r="28" fill="var(--bg-card-solid)" stroke="var(--border-color)" stroke-width="2" />
+              <text x="380" y="124" font-size="10" font-family="monospace" text-anchor="middle" font-weight="bold" fill="var(--text-primary)">R2</text>
+              <text x="380" y="80" font-size="9" font-family="monospace" text-anchor="middle" fill="var(--text-muted)" id="label-r2-ip">Fa0/0: Down</text>
+            </g>
+
+            <!-- SW1 Node -->
+            <g class="topo-node" id="topo-sw1" style="cursor: pointer;">
+              <rect x="220" y="225" width="60" height="30" rx="3" fill="var(--bg-card-solid)" stroke="var(--border-color)" stroke-width="2" />
+              <text x="250" y="244" font-size="9" font-family="monospace" text-anchor="middle" font-weight="bold" fill="var(--text-primary)">SW1</text>
+            </g>
+
+            <!-- PC Node -->
+            <g class="topo-node" id="topo-pc" style="cursor: pointer;">
+              <rect x="225" y="295" width="50" height="25" rx="2" fill="var(--bg-card-solid)" stroke="var(--border-color)" stroke-width="1.5" />
+              <text x="250" y="311" font-size="8" font-family="monospace" text-anchor="middle" fill="var(--text-primary)">PC-Host</text>
+            </g>
+          </svg>
+        </div>
+
+        <div style="font-size: 10px; color: var(--text-muted); font-family: monospace; text-align: center; margin-top: 4px;">
+          // LINK INTERFACES TO INITIATE CONSOLE TRUNK LINES
+        </div>
+      </div>
+
+      <!-- Column 3: Cisco IOS Terminal Console & Subnet calculator -->
+      <div style="display: flex; flex-direction: column; gap: 24px; min-height: 520px;">
+        
+        <!-- Cisco IOS Shell console -->
+        <div class="card terminal-card glass cyber-border" style="flex: 1.2; display: flex; flex-direction: column; padding: 0; min-height: 290px;">
+          <div class="card-header border-bottom" style="padding: 8px 16px; background-color: rgba(13, 110, 253, 0.04); display: flex; justify-content: space-between; align-items: center;">
+            <span class="font-mono" style="font-size: 11px; font-weight: bold; color: #0d6efd;" id="node-active-title">R1_IOS_CLI</span>
+            <span class="font-mono text-muted" style="font-size: 9px;">ACTIVE CONSOLE</span>
+          </div>
+
+          <div id="ps-console-log" class="cyber-console font-mono" style="flex: 1; padding: 12px; overflow-y: auto; font-size: 11px; line-height: 1.4; display: flex; flex-direction: column; gap: 4px; background-color: #03070f !important; color: #52a3ff !important;">
+            <div>Cisco IOS Software, C2900 Software, Version 15.2(4)M6</div>
+            <div>Bootstrap complete. Interfaces offline. Click nodes to switch consoles.</div>
+            <div>Type <strong style="color: #fff;">'enable'</strong> to begin configurations.</div>
+            <div style="border-bottom: 1px dashed rgba(82, 163, 255, 0.2); margin-top: 4px;"></div>
+          </div>
+
+          <div style="display: flex; align-items: center; padding: 8px 12px; border-top: 1px solid var(--border-color); background-color: rgba(0,0,0,0.02);">
+            <span class="font-mono" style="color: #0d6efd; font-weight: bold; margin-right: 6px; font-size: 12px;" id="cli-prompt-indicator">Router></span>
+            <input type="text" id="cli-input" autocomplete="off" placeholder="Enter Cisco command..." style="flex: 1; background: transparent; border: none; outline: none; font-family: monospace; font-size: 12px; color: var(--text-primary);">
+          </div>
+        </div>
+
+        <!-- Subnet Explainer & Calculator -->
+        <div class="card subnet-calc-card glass cyber-border" style="flex: 1; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; min-height: 210px;">
+          <div>
+            <h3 class="font-mono" style="color: #0d6efd; font-size: 13px; border-bottom: 1px solid var(--border-color); padding-bottom: 4px; margin-bottom: 10px;">// SUBNET_CALCULATOR_STUDIO</h3>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+              <div>
+                <label style="font-size: 9px; font-weight: bold; color: var(--text-muted); font-family: monospace; display: block; margin-bottom: 2px;">IP ADDRESS</label>
+                <input type="text" id="calc-ip-input" class="cyber-input" value="192.168.1.0" style="width: 100%; height: 28px; font-size: 11px; padding: 2px 6px;">
+              </div>
+              <div>
+                <label style="font-size: 9px; font-weight: bold; color: var(--text-muted); font-family: monospace; display: block; margin-bottom: 2px;">CIDR MASK</label>
+                <select id="calc-cidr-select" class="custom-select" style="width: 100%; height: 28px; font-size: 11px; padding: 2px 4px;">
+                  <option value="24">/24 (255.255.255.0)</option>
+                  <option value="25">/25 (255.255.255.128)</option>
+                  <option value="26" selected>/26 (255.255.255.192)</option>
+                  <option value="27">/27 (255.255.255.224)</option>
+                  <option value="28">/28 (255.255.255.240)</option>
+                  <option value="30">/30 (255.255.255.252)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Subnets detailed results -->
+            <div id="subnet-calc-results" style="font-family: monospace; font-size: 10px; display: flex; flex-direction: column; gap: 4px; border-top: 1px dashed rgba(13,110,253,0.1); padding-top: 8px;">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <button id="trigger-calc-btn" class="pulse-btn primary font-mono" style="width: 100%; height: 28px; font-size: 11px; padding: 0;">CALCULATE IP ARCHITECTURE</button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Cisco IOS command cheat sheet reference tables -->
+    <section class="card glass cyber-border" style="border-color: rgba(13, 110, 253, 0.2); padding: 16px;">
+      <h3 class="font-mono" style="color: #0d6efd; font-size: 13px; margin-bottom: 8px;">// CISCO_IOS_COMMAND_REFERENCE</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+        <div>
+          <strong style="color: var(--text-primary);">Interface Configuration:</strong><br>
+          • enable ❯ configure terminal<br>
+          • interface FastEthernet0/0<br>
+          • ip address [ip-addr] [subnet-mask]<br>
+          • no shutdown
+        </div>
+        <div>
+          <strong style="color: var(--text-primary);">Diagnostic utilities:</strong><br>
+          • ping [ip-addr] (Test network links)<br>
+          • show ip interface brief (List port states)<br>
+          • show ip route (Display routing table)<br>
+          • copy run start (Save running config)
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="outages-footer">
+    <div>// CISCO // ENTERPRISE LAB PREP DASHBOARD</div>
+    <div>
+      <a href="index.html">CHOOGLE_HOME</a>
+      <a href="dlm.html">DLM_STORAGE_CENTER</a>
+      <a href="powershell.html">POWERSHELL_TERMINAL</a>
+    </div>
+  </footer>
+
+  <script src="ccna.js"></script>
+</body>
+</html>
