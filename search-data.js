@@ -32,10 +32,49 @@ const SEARCH_DATA = {
     "active cyber attacks",
     "ransomware breaches",
     "is jpmorgan hacked",
-    "lockheed martin breach"
+    "lockheed martin breach",
+    "chai ai assistant",
+    "chatbot",
+    "ai help",
+    "notepad editor",
+    "notes workspace",
+    "tasks kanban",
+    "todo board",
+    "webstore plugins",
+    "extensions store",
+    "install add-ons",
+    "monopoly",
+    "monopoly board game",
+    "app hub",
+    "apps hub",
+    "application hub",
+    "my applications",
+    "projects hub"
   ],
   
   knowledgePanels: {
+    "app hub": {
+      title: "Choogle Application Hub",
+      subtitle: "Universal Workspace Application & Project Launcher",
+      description: "The Choogle Application Hub is the centralized launcher and discovery portal for all 33 web applications, games, cybersecurity suites, AI assistants, and IT labs created across Antigravity /projects.",
+      attributes: {
+        "Developer": "Chase & Antigravity Assistant",
+        "Total Apps": "33 Interactive Projects",
+        "Categories": "Games, Cybersecurity, AI & Ops, Linux Systems, Utilities",
+        "Entrypoint": "hub.html"
+      }
+    },
+    "application hub": {
+      title: "Choogle Application Hub",
+      subtitle: "Universal Workspace Application & Project Launcher",
+      description: "The Choogle Application Hub is the centralized launcher and discovery portal for all 33 web applications, games, cybersecurity suites, AI assistants, and IT labs created across Antigravity /projects.",
+      attributes: {
+        "Developer": "Chase & Antigravity Assistant",
+        "Total Apps": "33 Interactive Projects",
+        "Categories": "Games, Cybersecurity, AI & Ops, Linux Systems, Utilities",
+        "Entrypoint": "hub.html"
+      }
+    },
     "choogle": {
       title: "Choogle",
       subtitle: "Web Search Engine & Replica Project",
@@ -118,6 +157,17 @@ const SEARCH_DATA = {
         "Type": "Augmentative Communication Tool",
         "Features": "Predefined Speech Buttons, Category Filters, Sound Synthesizer",
         "Platform": "Web (Google Cloud Run)"
+      }
+    },
+    "monopoly": {
+      title: "Monopoly",
+      subtitle: "Interactive Web Board Game",
+      description: "A full-featured digital edition of the classic Monopoly board game built for modern web browsers. Includes real estate purchasing, mortgaging, houses, hotels, chance cards, and automated bank accounting.",
+      attributes: {
+        "Genre": "Turn-based Board Game",
+        "Players": "Multiplayer & AI Opponents",
+        "Platform": "Browser (HTML5/CSS3/JavaScript)",
+        "Features": "Property Trading, Dice Rolling, Jail Mechanics, Bankruptcy Tracking"
       }
     }
   },
@@ -291,12 +341,812 @@ const SEARCH_DATA = {
         snippet: "An interactive assistive speech device simulator that allows users to communicate thoughts and sentences through predefined sound buttons and customizable vocabulary arrays."
       }
     ],
+    "chai": [
+      {
+        title: "chAI — Personal AI Assistant | Powered by Google Gemini",
+        url: "chai.html",
+        displayedUrl: "chai.html",
+        snippet: "Your personal AI chatbot built into the Choogle ecosystem. Ask questions, get coding help, study for CCNA, RHCSA, and VMware certifications — powered by Google Gemini."
+      }
+    ],
+    "ai assistant": [
+      {
+        title: "chAI — Personal AI Assistant | Powered by Google Gemini",
+        url: "chai.html",
+        displayedUrl: "chai.html",
+        snippet: "Chat with chAI, your personal AI assistant. Get real-time answers, coding help, and IT infrastructure guidance powered by Google Gemini's latest models."
+      }
+    ],
+    "notes": [
+      {
+        title: "Choogle Notepad — Personal Notebook Workspace",
+        url: "notepad.html",
+        displayedUrl: "notepad.html",
+        snippet: "Write persistent notes, auto-save to browser local storage, format with markdown, and download backup files locally."
+      }
+    ],
+    "notepad": [
+      {
+        title: "Choogle Notepad — Personal Notebook Workspace",
+        url: "notepad.html",
+        displayedUrl: "notepad.html",
+        snippet: "Write persistent notes, auto-save to browser local storage, format with markdown, and download backup files locally."
+      }
+    ],
+    "tasks": [
+      {
+        title: "Choogle Tasks — Kanban Board Workspace",
+        url: "tasks.html",
+        displayedUrl: "tasks.html",
+        snippet: "Manage and prioritize tasks, organize study objectives, and track projects using an interactive kanban board workspace."
+      }
+    ],
+    "kanban": [
+      {
+        title: "Choogle Tasks — Kanban Board Workspace",
+        url: "tasks.html",
+        displayedUrl: "tasks.html",
+        snippet: "Manage and prioritize tasks, organize study objectives, and track projects using an interactive kanban board workspace."
+      }
+    ],
+    "store": [
+      {
+        title: "Choogle Web Store — Extensions & Plugins",
+        url: "webstore.html",
+        displayedUrl: "webstore.html",
+        snippet: "Customize your search experience. Browse, install, and configure mock extensions like AdBlock Choogle, floating chat bubbles, and telemetry trackers."
+      }
+    ],
+    "plugins": [
+      {
+        title: "Choogle Web Store — Extensions & Plugins",
+        url: "webstore.html",
+        displayedUrl: "webstore.html",
+        snippet: "Customize your search experience. Browse, install, and configure mock extensions like AdBlock Choogle, floating chat bubbles, and telemetry trackers."
+      }
+    ],
+    "extensions": [
+      {
+        title: "Choogle Web Store — Extensions & Plugins",
+        url: "webstore.html",
+        displayedUrl: "webstore.html",
+        snippet: "Customize your search experience. Browse, install, and configure mock extensions like AdBlock Choogle, floating chat bubbles, and telemetry trackers."
+      }
+    ],
+    "deploy": [
+      {
+        title: "Antigravity Deployment Hub & Project Catalog",
+        url: "../deploy/index.html",
+        displayedUrl: "deploy/index.html",
+        snippet: "Centralized Antigravity deployment hub with live health checks, project packaging, completed webapp launchers, and active development tracking."
+      }
+    ],
+    "projects": [
+      {
+        title: "Antigravity Projects & Deployment Hub",
+        url: "../deploy/index.html",
+        displayedUrl: "deploy/index.html",
+        snippet: "Browse all 16 Antigravity projects: launch completed web apps (CompTIA Exam Simulator, Chess, 1st Grade Learning, BotFinder, AI Operations) or track Development in Progress."
+      }
+    ],
+        "sentinel": [
+      {
+        title: "Sentinel PC Security Guard & Auditor",
+        url: "../MY Security/wwwroot/index.html",
+        displayedUrl: "../MY Security/wwwroot/index.html",
+        snippet: "Sentinel PC Security Guard & Auditor web dashboard with real-time security score, vulnerability remediation drawer, and PowerShell status collectors."
+      }
+    ],
+    "my security": [
+      {
+        title: "Sentinel PC Security Guard & Auditor",
+        url: "../MY Security/wwwroot/index.html",
+        displayedUrl: "../MY Security/wwwroot/index.html",
+        snippet: "Sentinel PC Security Guard & Auditor web dashboard with real-time security score, vulnerability remediation drawer, and PowerShell status collectors."
+      }
+    ],
+    "pc security": [
+      {
+        title: "Sentinel PC Security Guard & Auditor",
+        url: "../MY Security/wwwroot/index.html",
+        displayedUrl: "../MY Security/wwwroot/index.html",
+        snippet: "Sentinel PC Security Guard & Auditor web dashboard with real-time security score, vulnerability remediation drawer, and PowerShell status collectors."
+      }
+    ],
+    "audit": [
+      {
+        title: "Sentinel PC Security Guard & Auditor",
+        url: "../MY Security/wwwroot/index.html",
+        displayedUrl: "../MY Security/wwwroot/index.html",
+        snippet: "Sentinel PC Security Guard & Auditor web dashboard with real-time security score, vulnerability remediation drawer, and PowerShell status collectors."
+      }
+    ],
+    "screensaver": [
+      {
+        title: "Cosmic Cityscape Interactive Screensaver",
+        url: "../desktopscreensaver/Cosmic_Cityscape.html",
+        displayedUrl: "../desktopscreensaver/Cosmic_Cityscape.html",
+        snippet: "Atmospheric cosmic cityscape canvas screensavers rendered dynamically across seasons (Spring, Summer, Autumn, Winter, Rain)."
+      }
+    ],
+    "cosmic cityscape": [
+      {
+        title: "Cosmic Cityscape Interactive Screensaver",
+        url: "../desktopscreensaver/Cosmic_Cityscape.html",
+        displayedUrl: "../desktopscreensaver/Cosmic_Cityscape.html",
+        snippet: "Atmospheric cosmic cityscape canvas screensavers rendered dynamically across seasons (Spring, Summer, Autumn, Winter, Rain)."
+      }
+    ],
+    "ambient": [
+      {
+        title: "Cosmic Cityscape Interactive Screensaver",
+        url: "../desktopscreensaver/Cosmic_Cityscape.html",
+        displayedUrl: "../desktopscreensaver/Cosmic_Cityscape.html",
+        snippet: "Atmospheric cosmic cityscape canvas screensavers rendered dynamically across seasons (Spring, Summer, Autumn, Winter, Rain)."
+      }
+    ],
+    "1st grade": [
+      {
+        title: "1st Grade Learning & Typing Trainer",
+        url: "../1st grade learning/index.html",
+        displayedUrl: "../1st grade learning/index.html",
+        snippet: "Interactive educational exercises for young learners including elementary phonics drills and keyboard typing trainer."
+      }
+    ],
+    "typing trainer": [
+      {
+        title: "1st Grade Learning & Typing Trainer",
+        url: "../1st grade learning/index.html",
+        displayedUrl: "../1st grade learning/index.html",
+        snippet: "Interactive educational exercises for young learners including elementary phonics drills and keyboard typing trainer."
+      }
+    ],
+    "phonics": [
+      {
+        title: "1st Grade Learning & Typing Trainer",
+        url: "../1st grade learning/index.html",
+        displayedUrl: "../1st grade learning/index.html",
+        snippet: "Interactive educational exercises for young learners including elementary phonics drills and keyboard typing trainer."
+      }
+    ],
+    "learning": [
+      {
+        title: "1st Grade Learning & Typing Trainer",
+        url: "../1st grade learning/index.html",
+        displayedUrl: "../1st grade learning/index.html",
+        snippet: "Interactive educational exercises for young learners including elementary phonics drills and keyboard typing trainer."
+      }
+    ],
+    "rhcsa practice": [
+      {
+        title: "RHCSA Linux Terminal Practice Simulator",
+        url: "../RHCSA Exam200/RHCSA_Terminal_Practice.html",
+        displayedUrl: "../RHCSA Exam200/RHCSA_Terminal_Practice.html",
+        snippet: "Red Hat Certified System Administrator study suite with interactive browser terminal practice simulator."
+      }
+    ],
+    "terminal simulator": [
+      {
+        title: "RHCSA Linux Terminal Practice Simulator",
+        url: "../RHCSA Exam200/RHCSA_Terminal_Practice.html",
+        displayedUrl: "../RHCSA Exam200/RHCSA_Terminal_Practice.html",
+        snippet: "Red Hat Certified System Administrator study suite with interactive browser terminal practice simulator."
+      }
+    ],
+    "rhcsa sim": [
+      {
+        title: "RHCSA Linux Terminal Practice Simulator",
+        url: "../RHCSA Exam200/RHCSA_Terminal_Practice.html",
+        displayedUrl: "../RHCSA Exam200/RHCSA_Terminal_Practice.html",
+        snippet: "Red Hat Certified System Administrator study suite with interactive browser terminal practice simulator."
+      }
+    ],
+    "vulnguard": [
+      {
+        title: "VulnGuard Vulnerability Management MVC Web App",
+        url: "../vulnerability management/README.md",
+        displayedUrl: "../vulnerability management/README.md",
+        snippet: "VulnGuard vulnerability management MVC web app with SQLite database, hardening services, and crypto tools."
+      }
+    ],
+    "vulnerability management": [
+      {
+        title: "VulnGuard Vulnerability Management MVC Web App",
+        url: "../vulnerability management/README.md",
+        displayedUrl: "../vulnerability management/README.md",
+        snippet: "VulnGuard vulnerability management MVC web app with SQLite database, hardening services, and crypto tools."
+      }
+    ],
+    "vuln": [
+      {
+        title: "VulnGuard Vulnerability Management MVC Web App",
+        url: "../vulnerability management/README.md",
+        displayedUrl: "../vulnerability management/README.md",
+        snippet: "VulnGuard vulnerability management MVC web app with SQLite database, hardening services, and crypto tools."
+      }
+    ],
+    "bot finder": [
+      {
+        title: "BotFinder & RageShield Social Media Intelligence",
+        url: "../bot finder/dashboard/index.html",
+        displayedUrl: "../bot finder/dashboard/index.html",
+        snippet: "Real-time social media bot & ragebait intelligence platform with live feed monitor, profile deep scan, and Chrome extension."
+      }
+    ],
+    "rageshield": [
+      {
+        title: "BotFinder & RageShield Social Media Intelligence",
+        url: "../bot finder/dashboard/index.html",
+        displayedUrl: "../bot finder/dashboard/index.html",
+        snippet: "Real-time social media bot & ragebait intelligence platform with live feed monitor, profile deep scan, and Chrome extension."
+      }
+    ],
+    "bot detection": [
+      {
+        title: "BotFinder & RageShield Social Media Intelligence",
+        url: "../bot finder/dashboard/index.html",
+        displayedUrl: "../bot finder/dashboard/index.html",
+        snippet: "Real-time social media bot & ragebait intelligence platform with live feed monitor, profile deep scan, and Chrome extension."
+      }
+    ],
+    "comptia": [
+      {
+        title: "CompTIA Security+ SY0-701 Exam Simulator",
+        url: "../comptia exam simulator/index.html",
+        displayedUrl: "../comptia exam simulator/index.html",
+        snippet: "Comprehensive CompTIA Security+ SY0-701 exam simulator with practice engines, PBQ engine, flashcards, and mock exam PDFs."
+      }
+    ],
+    "security+": [
+      {
+        title: "CompTIA Security+ SY0-701 Exam Simulator",
+        url: "../comptia exam simulator/index.html",
+        displayedUrl: "../comptia exam simulator/index.html",
+        snippet: "Comprehensive CompTIA Security+ SY0-701 exam simulator with practice engines, PBQ engine, flashcards, and mock exam PDFs."
+      }
+    ],
+    "exam simulator": [
+      {
+        title: "CompTIA Security+ SY0-701 Exam Simulator",
+        url: "../comptia exam simulator/index.html",
+        displayedUrl: "../comptia exam simulator/index.html",
+        snippet: "Comprehensive CompTIA Security+ SY0-701 exam simulator with practice engines, PBQ engine, flashcards, and mock exam PDFs."
+      }
+    ],
+    "pbq": [
+      {
+        title: "CompTIA Security+ SY0-701 Exam Simulator",
+        url: "../comptia exam simulator/index.html",
+        displayedUrl: "../comptia exam simulator/index.html",
+        snippet: "Comprehensive CompTIA Security+ SY0-701 exam simulator with practice engines, PBQ engine, flashcards, and mock exam PDFs."
+      }
+    ],
+    "ai agents": [
+      {
+        title: "B2B AI Operations Engine & Document Reconciliation",
+        url: "../using ai agents for profit/static/index.html",
+        displayedUrl: "../using ai agents for profit/static/index.html",
+        snippet: "Autonomous invoice and BOL reconciliation engine with interactive operations dashboard, KPI analytics summary, and demo data generator."
+      }
+    ],
+    "operations engine": [
+      {
+        title: "B2B AI Operations Engine & Document Reconciliation",
+        url: "../using ai agents for profit/static/index.html",
+        displayedUrl: "../using ai agents for profit/static/index.html",
+        snippet: "Autonomous invoice and BOL reconciliation engine with interactive operations dashboard, KPI analytics summary, and demo data generator."
+      }
+    ],
+    "reconciliation": [
+      {
+        title: "B2B AI Operations Engine & Document Reconciliation",
+        url: "../using ai agents for profit/static/index.html",
+        displayedUrl: "../using ai agents for profit/static/index.html",
+        snippet: "Autonomous invoice and BOL reconciliation engine with interactive operations dashboard, KPI analytics summary, and demo data generator."
+      }
+    ],
+    "invoice": [
+      {
+        title: "B2B AI Operations Engine & Document Reconciliation",
+        url: "../using ai agents for profit/static/index.html",
+        displayedUrl: "../using ai agents for profit/static/index.html",
+        snippet: "Autonomous invoice and BOL reconciliation engine with interactive operations dashboard, KPI analytics summary, and demo data generator."
+      }
+    ],
+    "onestop": [
+      {
+        title: "OneStop Media Player & Capture Server",
+        url: "../onestop/index.html",
+        displayedUrl: "../onestop/index.html",
+        snippet: "PowerShell-backed local HTTP streaming server, screen capture viewer, and video player."
+      }
+    ],
+    "media server": [
+      {
+        title: "OneStop Media Player & Capture Server",
+        url: "../onestop/index.html",
+        displayedUrl: "../onestop/index.html",
+        snippet: "PowerShell-backed local HTTP streaming server, screen capture viewer, and video player."
+      }
+    ],
+    "video player": [
+      {
+        title: "OneStop Media Player & Capture Server",
+        url: "../onestop/index.html",
+        displayedUrl: "../onestop/index.html",
+        snippet: "PowerShell-backed local HTTP streaming server, screen capture viewer, and video player."
+      }
+    ],
+    "screen reader": [
+      {
+        title: "Screen Reader Desktop OCR & TTS Companion",
+        url: "../screen reader/README.md",
+        displayedUrl: "../screen reader/README.md",
+        snippet: "Desktop OCR, automatic page-turner, and text-to-speech reading companion with bookmark manager."
+      }
+    ],
+    "ocr": [
+      {
+        title: "Screen Reader Desktop OCR & TTS Companion",
+        url: "../screen reader/README.md",
+        displayedUrl: "../screen reader/README.md",
+        snippet: "Desktop OCR, automatic page-turner, and text-to-speech reading companion with bookmark manager."
+      }
+    ],
+    "tts": [
+      {
+        title: "Screen Reader Desktop OCR & TTS Companion",
+        url: "../screen reader/README.md",
+        displayedUrl: "../screen reader/README.md",
+        snippet: "Desktop OCR, automatic page-turner, and text-to-speech reading companion with bookmark manager."
+      }
+    ],
+    "page turner": [
+      {
+        title: "Screen Reader Desktop OCR & TTS Companion",
+        url: "../screen reader/README.md",
+        displayedUrl: "../screen reader/README.md",
+        snippet: "Desktop OCR, automatic page-turner, and text-to-speech reading companion with bookmark manager."
+      }
+    ],
+    "synergize": [
+      {
+        title: "Synergize & Pay Private Monetization Blueprint",
+        url: "../synergize and pay/index.html",
+        displayedUrl: "../synergize and pay/index.html",
+        snippet: "Confidential portfolio manifest and monetization strategy interactive dashboard displaying pricing, tiers, and commercial blueprints."
+      }
+    ],
+    "monetization": [
+      {
+        title: "Synergize & Pay Private Monetization Blueprint",
+        url: "../synergize and pay/index.html",
+        displayedUrl: "../synergize and pay/index.html",
+        snippet: "Confidential portfolio manifest and monetization strategy interactive dashboard displaying pricing, tiers, and commercial blueprints."
+      }
+    ],
+    "portfolio manifest": [
+      {
+        title: "Synergize & Pay Private Monetization Blueprint",
+        url: "../synergize and pay/index.html",
+        displayedUrl: "../synergize and pay/index.html",
+        snippet: "Confidential portfolio manifest and monetization strategy interactive dashboard displaying pricing, tiers, and commercial blueprints."
+      }
+    ],
+    "zfold6": [
+      {
+        title: "Samsung Galaxy Z Fold 6 Master Guide",
+        url: "../zfold6 features/galaxy_z_fold_6_tips_and_tricks_guide.md",
+        displayedUrl: "../zfold6 features/galaxy_z_fold_6_tips_and_tricks_guide.md",
+        snippet: "Comprehensive master power-user guide and tips for Samsung Galaxy Z Fold 6 multitasking, DeX mode, and Galaxy AI tools."
+      }
+    ],
+    "galaxy z fold": [
+      {
+        title: "Samsung Galaxy Z Fold 6 Master Guide",
+        url: "../zfold6 features/galaxy_z_fold_6_tips_and_tricks_guide.md",
+        displayedUrl: "../zfold6 features/galaxy_z_fold_6_tips_and_tricks_guide.md",
+        snippet: "Comprehensive master power-user guide and tips for Samsung Galaxy Z Fold 6 multitasking, DeX mode, and Galaxy AI tools."
+      }
+    ],
+    "fold 6": [
+      {
+        title: "Samsung Galaxy Z Fold 6 Master Guide",
+        url: "../zfold6 features/galaxy_z_fold_6_tips_and_tricks_guide.md",
+        displayedUrl: "../zfold6 features/galaxy_z_fold_6_tips_and_tricks_guide.md",
+        snippet: "Comprehensive master power-user guide and tips for Samsung Galaxy Z Fold 6 multitasking, DeX mode, and Galaxy AI tools."
+      }
+    ],
+    "note taker": [
+      {
+        title: "Study Notes Hub & Cheatsheet Library",
+        url: "../note taker/README.md",
+        displayedUrl: "../note taker/README.md",
+        snippet: "CompTIA Security+ SY0-701 study notes, cheatsheets, and session documentation."
+      }
+    ],
+    "study notes": [
+      {
+        title: "Study Notes Hub & Cheatsheet Library",
+        url: "../note taker/README.md",
+        displayedUrl: "../note taker/README.md",
+        snippet: "CompTIA Security+ SY0-701 study notes, cheatsheets, and session documentation."
+      }
+    ],
+    "security+ notes": [
+      {
+        title: "Study Notes Hub & Cheatsheet Library",
+        url: "../note taker/README.md",
+        displayedUrl: "../note taker/README.md",
+        snippet: "CompTIA Security+ SY0-701 study notes, cheatsheets, and session documentation."
+      }
+    ],
+    "monopoly": [
+      {
+        title: "Monopoly - Interactive Browser Board Game",
+        url: "../monopoly/index.html",
+        displayedUrl: "choogle.dev › monopoly",
+        snippet: "Interactive browser Monopoly board game featuring animated dice rolls, property deeds, bank ledger, player tokens, and real estate trading mechanics."
+      }
+    ],
+    "monopoly board game": [
+      {
+        title: "Monopoly - Interactive Browser Board Game",
+        url: "../monopoly/index.html",
+        displayedUrl: "choogle.dev › monopoly",
+        snippet: "Interactive browser Monopoly board game featuring animated dice rolls, property deeds, bank ledger, player tokens, and real estate trading mechanics."
+      }
+    ],
+    "sandbox": [
+      {
+        title: "Antigravity Projects Sandbox Studio",
+        url: "../sandbox/index.html",
+        displayedUrl: "choogle.dev › sandbox",
+        snippet: "Centralized preview, diagnostic, and staging testbed environment for all Antigravity projects."
+      }
+    ],
+        "personal training": [
+      {
+        title: "personal training",
+        url: "../personal training/README.md",
+        displayedUrl: "../personal training/README.md",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+        "is this ai": [
+      {
+        title: "is this AI",
+        url: "../is this AI/is this ai mobile/index.html",
+        displayedUrl: "../is this AI/is this ai mobile/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+        "game mods": [
+      {
+        title: "game mods",
+        url: "../game mods/n64 mods/tools/snowboardkids-decomp-main/tools/decompilation_summary/template.html",
+        displayedUrl: "../game mods/n64 mods/tools/snowboardkids-decomp-main/tools/decompilation_summary/template.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+        "google drive organizer": [
+      {
+        title: "google drive organizer",
+        url: "../google drive organizer/public/index.html",
+        displayedUrl: "../google drive organizer/public/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+        "email organizer": [
+      {
+        title: "email organizer",
+        url: "../email organizer/README.md",
+        displayedUrl: "../email organizer/README.md",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+    "game studio": [
+      {
+        title: "game studio",
+        url: "../game studio/paper_ronin_expedition/index.html",
+        displayedUrl: "../game studio/paper_ronin_expedition/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+        "automate my day": [
+      {
+        title: "automate my day",
+        url: "../automate my day/README.md",
+        displayedUrl: "../automate my day/README.md",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+    "portfolio": [
+      {
+        title: "portfolio",
+        url: "../portfolio/index.html",
+        displayedUrl: "../portfolio/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+        "vr creation apps": [
+      {
+        title: "VR creation apps",
+        url: "../VR creation apps/index.html",
+        displayedUrl: "../VR creation apps/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+    "how to train your ai": [
+      {
+        title: "How to train your AI",
+        url: "../How to train your AI/README.md",
+        displayedUrl: "../How to train your AI/README.md",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+    "3d images": [
+      {
+        title: "3d images",
+        url: "../3d images/index.html",
+        displayedUrl: "../3d images/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+        "personal assistant": [
+      {
+        title: "personal assistant",
+        url: "../personal assistant/ui/index.html",
+        displayedUrl: "../personal assistant/ui/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+    "aws": [
+      {
+        title: "aws",
+        url: "../aws/README.md",
+        displayedUrl: "../aws/README.md",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+        "project refinement": [
+      {
+        title: "project refinement",
+        url: "../project refinement/README.md",
+        displayedUrl: "../project refinement/README.md",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+    "backgrounds for gaming,apps": [
+      {
+        title: "backgrounds for gaming,apps",
+        url: "../backgrounds for gaming,apps/index.html",
+        displayedUrl: "../backgrounds for gaming,apps/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+        "architect": [
+      {
+        title: "architect",
+        url: "../architect/index.html",
+        displayedUrl: "../architect/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+    "track home value": [
+      {
+        title: "Track Home Value",
+        url: "../Track Home Value/dashboard.html",
+        displayedUrl: "../Track Home Value/dashboard.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+        "track most wanted": [
+      {
+        title: "track most wanted",
+        url: "../track most wanted/dashboard.html",
+        displayedUrl: "../track most wanted/dashboard.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+        "rea": [
+      {
+        title: "REA",
+        url: "../REA/README.md",
+        displayedUrl: "../REA/README.md",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+    "ollama": [
+      {
+        title: "ollama",
+        url: "../ollama/index.html",
+        displayedUrl: "../ollama/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+        "stock watch": [
+      {
+        title: "stock watch",
+        url: "../stock watch/README.md",
+        displayedUrl: "../stock watch/README.md",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+        "spam block": [
+      {
+        title: "spam block",
+        url: "../spam block/README.md",
+        displayedUrl: "../spam block/README.md",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+    "github portfolio": [
+      {
+        title: "Github Portfolio",
+        url: "../Github Portfolio/index.html",
+        displayedUrl: "../Github Portfolio/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+        "ai models tools from threads": [
+      {
+        title: "ai models tools from threads",
+        url: "../ai models tools from threads/index.html",
+        displayedUrl: "../ai models tools from threads/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+    "my custom gui": [
+      {
+        title: "My Custom Gui",
+        url: "../My Custom Gui/index.html",
+        displayedUrl: "../My Custom Gui/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+        "stock bot traders": [
+      {
+        title: "stock Bot traders",
+        url: "../stock Bot traders/gui/templates/index.html",
+        displayedUrl: "../stock Bot traders/gui/templates/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+    "scripting": [
+      {
+        title: "Scripting",
+        url: "../Scripting/webpage/index.html",
+        displayedUrl: "../Scripting/webpage/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+        "openshift": [
+      {
+        title: "openshift",
+        url: "../openshift/README.md",
+        displayedUrl: "../openshift/README.md",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+        "record my gameplay": [
+      {
+        title: "Record my Gameplay",
+        url: "../Record my Gameplay/README.md",
+        displayedUrl: "../Record my Gameplay/README.md",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+        "baselines": [
+      {
+        title: "baselines",
+        url: "../baselines/index.html",
+        displayedUrl: "../baselines/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+    "agent 365": [
+      {
+        title: "agent 365",
+        url: "../agent 365/agent365/web/index.html",
+        displayedUrl: "../agent 365/agent365/web/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+    "ai defense": [
+      {
+        title: "ai defense",
+        url: "../ai defense/index.html",
+        displayedUrl: "../ai defense/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+    "mcp": [
+      {
+        title: "MCP",
+        url: "../MCP/README.md",
+        displayedUrl: "../MCP/README.md",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+    "my planetarium": [
+      {
+        title: "My Planetarium",
+        url: "../My Planetarium/index.html",
+        displayedUrl: "../My Planetarium/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+    "scary water slides": [
+      {
+        title: "Scary Water Slides",
+        url: "../Scary Water Slides/simulator/index.html",
+        displayedUrl: "../Scary Water Slides/simulator/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+        "anime": [
+      {
+        title: "anime",
+        url: "../anime/index.html",
+        displayedUrl: "../anime/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+    "chancenvaders": [
+      {
+        title: "chancenvaders",
+        url: "../chancenvaders/index.html",
+        displayedUrl: "../chancenvaders/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+    "docker": [
+      {
+        title: "docker",
+        url: "../docker/README.md",
+        displayedUrl: "../docker/README.md",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
     "chase webapps": [
       {
         title: "Chase's Operations Directory - Custom Webapps Suite",
         url: "index.html",
         displayedUrl: "choogle.dev › chase-apps",
         snippet: "Access Chase's full suite of responsive web tools including the RHCSA Linux prep engine, VMware lab simulator, and Chance's AAC assistive speech device."
+      }
+    ],
+    "app hub": [
+      {
+        title: "Choogle Application Hub — All Projects & Tools",
+        url: "hub.html",
+        displayedUrl: "choogle.dev › hub",
+        snippet: "Centralized application hub and unified launcher for all 33 Antigravity projects, interactive web apps, games, security tools, and AI assistants across /projects."
+      }
+    ],
+    "apps hub": [
+      {
+        title: "Choogle Application Hub — All Projects & Tools",
+        url: "hub.html",
+        displayedUrl: "choogle.dev › hub",
+        snippet: "Centralized application hub and unified launcher for all 33 Antigravity projects, interactive web apps, games, security tools, and AI assistants across /projects."
+      }
+    ],
+    "application hub": [
+      {
+        title: "Choogle Application Hub — All Projects & Tools",
+        url: "hub.html",
+        displayedUrl: "choogle.dev › hub",
+        snippet: "Centralized application hub and unified launcher for all 33 Antigravity projects, interactive web apps, games, security tools, and AI assistants across /projects."
+      }
+    ],
+    "applications": [
+      {
+        title: "Choogle Application Hub — All Projects & Tools",
+        url: "hub.html",
+        displayedUrl: "choogle.dev › hub",
+        snippet: "Centralized application hub and unified launcher for all 33 Antigravity projects, interactive web apps, games, security tools, and AI assistants across /projects."
       }
     ]
   }
@@ -360,3 +1210,5 @@ function getSearchResults(query) {
 
   return { results, knowledgePanel };
 }
+
+

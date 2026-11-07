@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choogle Notepad — Rich Text Notes Editor</title>
+  <link rel="stylesheet" href="notepad.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📝</text></svg>">
+  <script src="cosmic-background.js"></script>
+  <link rel="stylesheet" href="high-gloss-lacquer.css">
+  <script src="high-gloss-lacquer.js"></script>
+
+  <!-- Antigravity Baseline Integration -->
+  <script src="mcp-baseline.js"></script>
+
+  <!-- Antigravity Baseline Integration -->
+  <link rel="stylesheet" href="aws-enterprise-baseline.css">
+  <script src="aws-enterprise-baseline.js"></script>
+</head>
+<body class="cyber-theme">
+  <!-- Scanline Overlay for Cyber Retro Look -->
+  <div class="cyber-scanlines"></div>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="outages-header">
+    <div class="header-left">
+      <a href="index.html" class="logo-link">
+        <span class="pulse-dot" style="background-color: var(--g-navy); box-shadow: 0 0 12px var(--g-navy);"></span>
+        <span class="logo-text">CHOOGLE<span style="color: var(--g-tan);">_NOTEPAD</span></span>
+      </a>
+      <span class="cyber-badge-header font-mono">NOTES_V2.1</span>
+    </div>
+
+    <!-- Search bar connected back to Choogle search -->
+    <div class="choogle-search-bar">
+      <input type="text" id="choogle-search-input" placeholder="Search Choogle...">
+      <button id="choogle-search-btn">Search</button>
+    </div>
+
+    <div class="header-right">
+      <a href="hub.html" class="back-link font-mono" style="color: var(--g-tan); font-weight: 700; margin-right: 0.5rem;">⚡ APP_HUB</a>
+      <a href="index.html" class="back-link font-mono">◀ BACK_TO_CHOOGLE</a>
+      <button id="sfx-toggle-btn" class="icon-toggle" title="Toggle audio feedback">🔊</button>
+      <button id="theme-toggle-btn" class="icon-toggle" title="Toggle visual profile">🌓</button>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+  <main class="dashboard-wrapper">
+    
+    <!-- Title banner -->
+    <section class="card glass cyber-border" style="border-color: rgba(200, 169, 110, 0.2); padding: 16px 20px;">
+      <h2 class="font-mono" style="color: var(--g-navy);">// CHOOGLE_NOTEBOOK_WORKSPACE</h2>
+      <p class="font-mono text-muted" style="margin-top: 6px; font-size: 13px;">Write persistent text notes, format with markdown, and download backups to local storage.</p>
+    </section>
+
+    <!-- Layout Container: Sidebar + Editor -->
+    <div class="notepad-layout">
+      
+      <!-- Left sidebar: Notes catalogue -->
+      <aside class="card glass cyber-border sidebar-notes-list" style="display: flex; flex-direction: column; justify-content: space-between; padding: 16px; min-height: 480px;">
+        <div>
+          <button id="new-note-btn" class="pulse-btn primary font-mono" style="width: 100%; margin-bottom: 16px; background-color: var(--g-navy);">+ NEW_NOTE</button>
+          
+          <div class="border-bottom" style="padding-bottom: 4px; margin-bottom: 8px;">
+            <span class="font-mono text-muted" style="font-size: 10px;">CATALOGUE (LOCALSTORAGE)</span>
+          </div>
+          
+          <!-- Notes container -->
+          <div id="notes-list-container" class="notes-catalog-scroll">
+            <!-- Loaded dynamically via JS -->
+          </div>
+        </div>
+
+        <button id="download-all-btn" class="pulse-btn secondary font-mono" style="width: 100%; font-size: 11px; margin-top: 14px;">BACKUP_ALL_NOTES</button>
+      </aside>
+
+      <!-- Center & Right: Document Editor Pane -->
+      <div class="card glass cyber-border editor-container" style="padding: 20px; display: flex; flex-direction: column; gap: 14px; min-height: 480px;">
+        
+        <!-- Editor Header Inputs -->
+        <div style="display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+          <input type="text" id="note-title-input" class="cyber-input font-mono" placeholder="Note Title..." style="flex: 1; height: 38px; font-size: 16px; font-weight: bold; padding: 0 12px;">
+          
+          <div style="display: flex; gap: 8px;">
+            <button id="toggle-preview-btn" class="pulse-btn secondary font-mono" style="font-size: 11px; height: 32px; padding: 0 14px;">PREVIEW (OFF)</button>
+            <button id="delete-note-btn" class="pulse-btn secondary font-mono" style="font-size: 11px; height: 32px; padding: 0 14px; border-color: var(--color-red); color: var(--color-red);">DELETE</button>
+          </div>
+        </div>
+
+        <!-- Working Area: Textarea vs Markdown HTML Preview -->
+        <div style="flex: 1; display: flex; flex-direction: column; min-height: 280px; position: relative;">
+          <!-- Editor Area -->
+          <textarea id="note-body-textarea" class="font-mono cyber-input" placeholder="Start typing note content here (Markdown syntax supported)..." style="width: 100%; flex: 1; padding: 16px; font-size: 13px; line-height: 1.6; resize: none; border-radius: 6px; outline: none;"></textarea>
+          
+          <!-- Preview Area (Hidden by default) -->
+          <div id="note-preview-div" class="hidden font-mono html-preview-box" style="width: 100%; flex: 1; padding: 16px; font-size: 13px; line-height: 1.6; border: 1px solid var(--border-color); border-radius: 6px; overflow-y: auto; background-color: var(--bg-card-solid);">
+            <!-- Rendered markdown html will go here -->
+          </div>
+        </div>
+
+        <!-- Status & Logs indicator bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 10px; font-family: monospace; color: var(--text-muted);">
+          <span id="note-char-count">0 characters | 0 words</span>
+          <span id="save-status-log">Saved: Auto</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="outages-footer">
+    <div>// PRODUCTIVITY // CHOOGLE NOTEBOOK COMPONENT</div>
+    <div>
+      <a href="index.html">CHOOGLE_HOME</a>
+      <a href="tasks.html">TASKS_BOARD</a>
+      <a href="chai.html">CHAI_ASSISTANT</a>
+    </div>
+  </footer>
+
+  <script src="notepad.js"></script>
+</body>
+</html>
+

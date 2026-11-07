@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choogle Web Store — Extensions & Plugins</title>
+  <link rel="stylesheet" href="webstore.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛍️</text></svg>">
+  <script src="cosmic-background.js"></script>
+  <link rel="stylesheet" href="high-gloss-lacquer.css">
+  <script src="high-gloss-lacquer.js"></script>
+
+  <!-- Antigravity Baseline Integration -->
+  <script src="mcp-baseline.js"></script>
+
+  <!-- Antigravity Baseline Integration -->
+  <link rel="stylesheet" href="aws-enterprise-baseline.css">
+  <script src="aws-enterprise-baseline.js"></script>
+</head>
+<body class="cyber-theme">
+  <!-- Scanline Overlay for Cyber Retro Look -->
+  <div class="cyber-scanlines"></div>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="outages-header">
+    <div class="header-left">
+      <a href="index.html" class="logo-link">
+        <span class="pulse-dot" style="background-color: var(--g-navy); box-shadow: 0 0 12px var(--g-navy);"></span>
+        <span class="logo-text">CHOOGLE<span style="color: var(--g-tan);">_WEB_STORE</span></span>
+      </a>
+      <span class="cyber-badge-header font-mono">EXTENSIONS_STORE_V1.0</span>
+    </div>
+
+    <!-- Search bar connected back to Choogle search -->
+    <div class="choogle-search-bar">
+      <input type="text" id="choogle-search-input" placeholder="Search extensions...">
+      <button id="choogle-search-btn">Search</button>
+    </div>
+
+    <div class="header-right">
+      <a href="hub.html" class="back-link font-mono" style="color: var(--g-tan); font-weight: 700; margin-right: 0.5rem;">⚡ APP_HUB</a>
+      <a href="index.html" class="back-link font-mono">◀ BACK_TO_CHOOGLE</a>
+      <button id="sfx-toggle-btn" class="icon-toggle" title="Toggle audio feedback">🔊</button>
+      <button id="theme-toggle-btn" class="icon-toggle" title="Toggle visual profile">🌓</button>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+  <main class="dashboard-wrapper">
+    
+    <!-- Title banner -->
+    <section class="card glass cyber-border" style="border-color: rgba(200, 169, 110, 0.2); padding: 16px 20px;">
+      <h2 class="font-mono" style="color: var(--g-navy);">// CHOOGLE_EXTENSIONS_AND_PLUGINS_DIRECTORY</h2>
+      <p class="font-mono text-muted" style="margin-top: 6px; font-size: 13px;">Enhance your search experience. Install plugins to unlock diagnostics overlays, adblock shields, or floating assistants.</p>
+    </section>
+
+    <!-- Web Store Grid Layout: Categories Sidebar + Plugins Catalog -->
+    <div class="store-layout">
+      
+      <!-- Sidebar Categories -->
+      <aside class="card glass cyber-border store-sidebar" style="padding: 16px; min-height: 400px;">
+        <div class="border-bottom" style="padding-bottom: 6px; margin-bottom: 12px;">
+          <h3 class="font-mono" style="color: var(--g-navy); font-size: 13px;">// CATEGORIES</h3>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <button class="category-btn active" data-category="all">📁 All Extensions</button>
+          <button class="category-btn" data-category="utility">🛠️ Utility & Security</button>
+          <button class="category-btn" data-category="productivity">📊 Productivity Tools</button>
+          <button class="category-btn" data-category="fun">🎮 Fun & Personalization</button>
+        </div>
+      </aside>
+
+      <!-- Plugins Cards Grid -->
+      <div class="plugins-grid" id="plugins-container">
+        <!-- Loaded dynamically via webstore.js -->
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="outages-footer">
+    <div>// WEB STORE // PLUGINS ECOSYSTEM HUB</div>
+    <div>
+      <a href="index.html">CHOOGLE_HOME</a>
+      <a href="chai.html">CHAI_ASSISTANT</a>
+      <a href="tasks.html">TASKS_BOARD</a>
+    </div>
+  </footer>
+
+  <script src="webstore.js"></script>
+</body>
+</html>
+

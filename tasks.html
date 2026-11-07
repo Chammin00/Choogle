@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choogle Tasks — Kanban Board Workspace</title>
+  <link rel="stylesheet" href="tasks.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✅</text></svg>">
+  <script src="cosmic-background.js"></script>
+  <link rel="stylesheet" href="high-gloss-lacquer.css">
+  <script src="high-gloss-lacquer.js"></script>
+
+  <!-- Antigravity Baseline Integration -->
+  <script src="mcp-baseline.js"></script>
+
+  <!-- Antigravity Baseline Integration -->
+  <link rel="stylesheet" href="aws-enterprise-baseline.css">
+  <script src="aws-enterprise-baseline.js"></script>
+</head>
+<body class="cyber-theme">
+  <!-- Scanline Overlay for Cyber Retro Look -->
+  <div class="cyber-scanlines"></div>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="outages-header">
+    <div class="header-left">
+      <a href="index.html" class="logo-link">
+        <span class="pulse-dot" style="background-color: var(--g-navy); box-shadow: 0 0 12px var(--g-navy);"></span>
+        <span class="logo-text">CHOOGLE<span style="color: var(--g-tan);">_TASKS</span></span>
+      </a>
+      <span class="cyber-badge-header font-mono">KANBAN_V1.5</span>
+    </div>
+
+    <!-- Search bar connected back to Choogle search -->
+    <div class="choogle-search-bar">
+      <input type="text" id="choogle-search-input" placeholder="Search Choogle...">
+      <button id="choogle-search-btn">Search</button>
+    </div>
+
+    <div class="header-right">
+      <a href="hub.html" class="back-link font-mono" style="color: var(--g-tan); font-weight: 700; margin-right: 0.5rem;">⚡ APP_HUB</a>
+      <a href="index.html" class="back-link font-mono">◀ BACK_TO_CHOOGLE</a>
+      <button id="sfx-toggle-btn" class="icon-toggle" title="Toggle audio feedback">🔊</button>
+      <button id="theme-toggle-btn" class="icon-toggle" title="Toggle visual profile">🌓</button>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+  <main class="dashboard-wrapper">
+    
+    <!-- Title banner -->
+    <section class="card glass cyber-border" style="border-color: rgba(200, 169, 110, 0.2); padding: 16px 20px;">
+      <h2 class="font-mono" style="color: var(--g-navy);">// KANBAN_PROJECT_TASK_BOARD</h2>
+      <p class="font-mono text-muted" style="margin-top: 6px; font-size: 13px;">Organize study objectives, track assignments, and drag cards to update progress states.</p>
+    </section>
+
+    <!-- Kanban Board Grid -->
+    <div class="kanban-board-grid">
+      
+      <!-- Column 1: TO DO -->
+      <div class="card glass cyber-border kanban-column" id="col-todo" data-status="todo" style="padding: 16px; display: flex; flex-direction: column; min-height: 480px;">
+        <div class="column-header border-bottom" style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; margin-bottom: 12px;">
+          <h3 class="font-mono" style="color: var(--g-navy); font-size: 14px;">// TO_DO</h3>
+          <span class="task-count font-mono" id="count-todo" style="font-size: 11px; color: var(--text-muted);">[0]</span>
+        </div>
+        
+        <!-- Task cards container -->
+        <div class="tasks-dropzone" style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
+          <!-- Loaded dynamically -->
+        </div>
+
+        <button class="pulse-btn secondary font-mono add-task-trigger-btn" data-status="todo" style="width: 100%; font-size: 11px; margin-top: 12px; border-style: dashed;">+ ADD_TASK</button>
+      </div>
+
+      <!-- Column 2: IN PROGRESS -->
+      <div class="card glass cyber-border kanban-column" id="col-progress" data-status="progress" style="padding: 16px; display: flex; flex-direction: column; min-height: 480px;">
+        <div class="column-header border-bottom" style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; margin-bottom: 12px;">
+          <h3 class="font-mono" style="color: var(--g-navy); font-size: 14px;">// IN_PROGRESS</h3>
+          <span class="task-count font-mono" id="count-progress" style="font-size: 11px; color: var(--text-muted);">[0]</span>
+        </div>
+        
+        <!-- Task cards container -->
+        <div class="tasks-dropzone" style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
+          <!-- Loaded dynamically -->
+        </div>
+
+        <button class="pulse-btn secondary font-mono add-task-trigger-btn" data-status="progress" style="width: 100%; font-size: 11px; margin-top: 12px; border-style: dashed;">+ ADD_TASK</button>
+      </div>
+
+      <!-- Column 3: DONE -->
+      <div class="card glass cyber-border kanban-column" id="col-done" data-status="done" style="padding: 16px; display: flex; flex-direction: column; min-height: 480px;">
+        <div class="column-header border-bottom" style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; margin-bottom: 12px;">
+          <h3 class="font-mono" style="color: var(--g-navy); font-size: 14px;">// DONE</h3>
+          <span class="task-count font-mono" id="count-done" style="font-size: 11px; color: var(--text-muted);">[0]</span>
+        </div>
+        
+        <!-- Task cards container -->
+        <div class="tasks-dropzone" style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
+          <!-- Loaded dynamically -->
+        </div>
+
+        <button class="pulse-btn secondary font-mono add-task-trigger-btn" data-status="done" style="width: 100%; font-size: 11px; margin-top: 12px; border-style: dashed;">+ ADD_TASK</button>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ==================== NEW TASK DIALOG MODAL ==================== -->
+  <div id="new-task-modal" class="modal-overlay hidden">
+    <div class="modal-card card glass cyber-border" style="width: 380px; padding: 20px;">
+      <h3 class="font-mono border-bottom" style="color: var(--g-navy); padding-bottom: 8px; margin-bottom: 14px;" id="modal-title">// ADD_NEW_TASK</h3>
+      
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div class="form-group">
+          <label class="font-mono" style="font-size: 10px; color: var(--text-muted); display: block; margin-bottom: 2px;">TASK TITLE</label>
+          <input type="text" id="task-title-input" class="cyber-input font-mono" placeholder="Enter title..." style="width: 100%; height: 32px; padding: 0 8px; font-size: 12px;">
+        </div>
+
+        <div class="form-group">
+          <label class="font-mono" style="font-size: 10px; color: var(--text-muted); display: block; margin-bottom: 2px;">TASK DESCRIPTION</label>
+          <textarea id="task-desc-input" class="cyber-input font-mono" placeholder="Enter details..." style="width: 100%; height: 60px; padding: 6px 8px; font-size: 11px; resize: none;"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="font-mono" style="font-size: 10px; color: var(--text-muted); display: block; margin-bottom: 2px;">PRIORITY / BRAND</label>
+          <select id="task-priority-select" class="custom-select font-mono" style="width: 100%; height: 28px; font-size: 11px; padding: 2px 4px;">
+            <option value="low">LOW PRIORITY (Green)</option>
+            <option value="medium">MEDIUM PRIORITY (Yellow)</option>
+            <option value="high">HIGH PRIORITY (Red)</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 18px;">
+        <button id="cancel-task-btn" class="pulse-btn secondary font-mono" style="font-size: 11px; height: 32px; padding: 0 14px;">CANCEL</button>
+        <button id="save-task-btn" class="pulse-btn primary font-mono" style="font-size: 11px; height: 32px; padding: 0 14px; background-color: var(--g-navy);">SAVE_TASK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="outages-footer">
+    <div>// TASKBOARD // KANBAN WORKSPACE COMPONENT</div>
+    <div>
+      <a href="index.html">CHOOGLE_HOME</a>
+      <a href="notepad.html">NOTEPAD_WORKSPACE</a>
+      <a href="chai.html">CHAI_ASSISTANT</a>
+    </div>
+  </footer>
+
+  <script src="tasks.js"></script>
+</body>
+</html>
+

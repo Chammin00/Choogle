@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>chAI — Your Personal AI Assistant</title>
+  <meta name="description" content="chAI is a personal AI assistant powered by Google Gemini, built into the Choogle ecosystem.">
+  <link rel="stylesheet" href="chai.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+  <script src="cosmic-background.js"></script>
+  <link rel="stylesheet" href="high-gloss-lacquer.css">
+  <script src="high-gloss-lacquer.js"></script>
+
+  <!-- Antigravity Baseline Integration -->
+  <script src="mcp-baseline.js"></script>
+
+  <!-- Antigravity Baseline Integration -->
+  <link rel="stylesheet" href="aws-enterprise-baseline.css">
+  <script src="aws-enterprise-baseline.js"></script>
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="chai-header">
+    <div class="header-left">
+      <button id="sidebar-toggle" class="icon-btn" title="Toggle sidebar">☰</button>
+      <a href="chai.html" class="logo-link">
+        <span class="logo-text">ch<span class="logo-accent">AI</span></span>
+      </a>
+      <span class="version-badge">Gemini Powered</span>
+    </div>
+
+    <div class="choogle-search-bar">
+      <input type="text" id="choogle-search-input" placeholder="Search Choogle...">
+      <button id="choogle-search-btn">Search</button>
+    </div>
+
+    <div class="header-right">
+      <a href="hub.html" class="back-link" style="color: var(--g-tan); font-weight: 700; margin-right: 0.5rem;">⚡ APP_HUB</a>
+      <a href="index.html" class="back-link">◀ CHOOGLE</a>
+      <button id="settings-btn" class="icon-btn" title="Settings">⚙️</button>
+      <button id="theme-toggle-btn" class="icon-btn" title="Toggle theme">🌓</button>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN LAYOUT ==================== -->
+  <div class="chai-layout">
+
+    <!-- Sidebar: Conversation List -->
+    <aside id="sidebar" class="chai-sidebar">
+      <div class="sidebar-header">
+        <button id="new-chat-btn" class="new-chat-btn">+ New Chat</button>
+      </div>
+      <div class="sidebar-section-label">Today</div>
+      <div id="conversation-list" class="conversation-list">
+        <!-- Populated by JS -->
+      </div>
+      <div class="sidebar-footer">
+        <button id="clear-all-btn" class="clear-all-btn">🗑️ Clear All Chats</button>
+      </div>
+    </aside>
+
+    <!-- Main Chat Area -->
+    <main class="chai-main">
+
+      <!-- Welcome screen (shown when no messages) -->
+      <div id="welcome-screen" class="welcome-screen">
+        <div class="welcome-logo">🤖</div>
+        <h1 class="welcome-title">Welcome to <span class="logo-accent">chAI</span></h1>
+        <p class="welcome-subtitle">Your personal AI assistant powered by Google Gemini</p>
+        <div class="welcome-suggestions">
+          <button class="suggestion-chip" data-prompt="Explain subnetting in simple terms">📡 Explain subnetting</button>
+          <button class="suggestion-chip" data-prompt="Write a PowerShell script to find large files">🟦 PowerShell script help</button>
+          <button class="suggestion-chip" data-prompt="What are the key differences between RHEL 8 and RHEL 9?">🐧 RHEL 8 vs RHEL 9</button>
+          <button class="suggestion-chip" data-prompt="Explain VMware vSphere HA and DRS">🖥️ VMware HA vs DRS</button>
+          <button class="suggestion-chip" data-prompt="Create a study plan for CCNA certification">📖 CCNA study plan</button>
+          <button class="suggestion-chip" data-prompt="What is data lifecycle management and why is it important?">📦 What is DLM?</button>
+        </div>
+      </div>
+
+      <!-- Messages container -->
+      <div id="messages-container" class="messages-container hidden">
+        <!-- Messages populated by JS -->
+      </div>
+
+      <!-- Typing indicator -->
+      <div id="typing-indicator" class="typing-indicator hidden">
+        <div class="typing-avatar">🤖</div>
+        <div class="typing-dots">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <!-- Input Area -->
+      <div class="input-area">
+        <div class="input-wrapper">
+          <textarea id="chat-input" placeholder="Message chAI..." rows="1" maxlength="30000"></textarea>
+          <button id="send-btn" class="send-btn" disabled title="Send message">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="currentColor"/></svg>
+          </button>
+        </div>
+        <div class="input-footer">
+          <span class="input-hint">chAI uses Google Gemini. Responses may not always be accurate.</span>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ==================== SETTINGS MODAL ==================== -->
+  <div id="settings-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>⚙️ chAI Settings</h2>
+        <button id="close-settings-btn" class="icon-btn">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="setting-group">
+          <label for="api-key-input">Google Gemini API Key</label>
+          <p class="setting-hint">Get a free key from <a href="https://aistudio.google.com/apikey" target="_blank">Google AI Studio</a>. Your key is stored only in your browser — never sent anywhere except Google's API.</p>
+          <div class="key-input-row">
+            <input type="password" id="api-key-input" placeholder="Paste your API key here..." autocomplete="off">
+            <button id="toggle-key-visibility" class="icon-btn" title="Show/hide key">👁️</button>
+          </div>
+        </div>
+        <div class="setting-group">
+          <label for="system-prompt-input">System Prompt (AI Personality)</label>
+          <p class="setting-hint">Customize how chAI behaves. Leave default for a helpful IT-focused assistant.</p>
+          <textarea id="system-prompt-input" rows="4" placeholder="You are a helpful assistant..."></textarea>
+        </div>
+        <div class="setting-group">
+          <label for="model-select">Model</label>
+          <select id="model-select" class="setting-select">
+            <option value="gemini-2.0-flash" selected>Gemini 2.0 Flash (Fast)</option>
+            <option value="gemini-2.5-flash">Gemini 2.5 Flash (Latest)</option>
+            <option value="gemini-2.5-pro">Gemini 2.5 Pro (Advanced)</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="save-settings-btn" class="save-btn">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="chai.js"></script>
+</body>
+</html>
+

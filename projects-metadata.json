@@ -1,0 +1,138 @@
+{
+  "hub": {
+    "Name": "App Hub",
+    "Icon": "⚡",
+    "Title": "Choogle Application Hub — All Projects",
+    "Entry": "hub.html",
+    "SearchKeys": ["app hub", "apps hub", "application hub", "all applications", "hub"],
+    "Snippet": "Unified application hub and launcher for all 33 projects across Antigravity, including games, cybersecurity engines, AI suites, and IT labs."
+  },
+  "comptia exam simulator": {
+    "Name": "Security+",
+    "Icon": "🛡️",
+    "Title": "CompTIA Security+ SY0-701 Exam Simulator",
+    "Entry": "../comptia exam simulator/index.html",
+    "SearchKeys": ["comptia", "security+", "exam simulator", "pbq"],
+    "Snippet": "Comprehensive CompTIA Security+ SY0-701 exam simulator with practice engines, PBQ engine, flashcards, and mock exam PDFs."
+  },
+  "chess": {
+    "Name": "Chess",
+    "Icon": "♟️",
+    "Title": "Interactive Browser Chess Game",
+    "Entry": "../chess/index.html",
+    "SearchKeys": ["chess", "chess game", "chessboard"],
+    "Snippet": "Interactive browser chess game with responsive board, piece rule validation, and move history."
+  },
+  "1st grade learning": {
+    "Name": "1st Grade",
+    "Icon": "🎒",
+    "Title": "1st Grade Learning & Typing Trainer",
+    "Entry": "../1st grade learning/index.html",
+    "SearchKeys": ["1st grade", "typing trainer", "phonics", "learning"],
+    "Snippet": "Interactive educational exercises for young learners including elementary phonics drills and keyboard typing trainer."
+  },
+  "desktopscreensaver": {
+    "Name": "Screensaver",
+    "Icon": "🌌",
+    "Title": "Cosmic Cityscape Interactive Screensaver",
+    "Entry": "../desktopscreensaver/Cosmic_Cityscape.html",
+    "SearchKeys": ["screensaver", "cosmic cityscape", "ambient"],
+    "Snippet": "Atmospheric cosmic cityscape canvas screensavers rendered dynamically across seasons (Spring, Summer, Autumn, Winter, Rain)."
+  },
+  "bot finder": {
+    "Name": "BotFinder",
+    "Icon": "🤖",
+    "Title": "BotFinder & RageShield Social Media Intelligence",
+    "Entry": "../bot finder/dashboard/index.html",
+    "SearchKeys": ["bot finder", "rageshield", "bot detection"],
+    "Snippet": "Real-time social media bot & ragebait intelligence platform with live feed monitor, profile deep scan, and Chrome extension."
+  },
+  "using ai agents for profit": {
+    "Name": "AI Ops",
+    "Icon": "💼",
+    "Title": "B2B AI Operations Engine & Document Reconciliation",
+    "Entry": "../using ai agents for profit/static/index.html",
+    "SearchKeys": ["ai agents", "operations engine", "reconciliation", "invoice"],
+    "Snippet": "Autonomous invoice and BOL reconciliation engine with interactive operations dashboard, KPI analytics summary, and demo data generator."
+  },
+  "MY Security": {
+    "Name": "Sentinel",
+    "Icon": "🛡️",
+    "Title": "Sentinel PC Security Guard & Auditor",
+    "Entry": "../MY Security/wwwroot/index.html",
+    "SearchKeys": ["sentinel", "my security", "pc security", "audit"],
+    "Snippet": "Sentinel PC Security Guard & Auditor web dashboard with real-time security score, vulnerability remediation drawer, and PowerShell status collectors."
+  },
+  "onestop": {
+    "Name": "OneStop",
+    "Icon": "🎬",
+    "Title": "OneStop Media Player & Capture Server",
+    "Entry": "../onestop/index.html",
+    "SearchKeys": ["onestop", "media server", "video player"],
+    "Snippet": "PowerShell-backed local HTTP streaming server, screen capture viewer, and video player."
+  },
+  "synergize and pay": {
+    "Name": "Synergize",
+    "Icon": "💎",
+    "Title": "Synergize & Pay Private Monetization Blueprint",
+    "Entry": "../synergize and pay/index.html",
+    "SearchKeys": ["synergize", "monetization", "portfolio manifest"],
+    "Snippet": "Confidential portfolio manifest and monetization strategy interactive dashboard displaying pricing, tiers, and commercial blueprints."
+  },
+  "RHCSA Exam200": {
+    "Name": "RHCSA Sim",
+    "Icon": "🐧",
+    "Title": "RHCSA Linux Terminal Practice Simulator",
+    "Entry": "../RHCSA Exam200/RHCSA_Terminal_Practice.html",
+    "SearchKeys": ["rhcsa practice", "terminal simulator", "rhcsa sim"],
+    "Snippet": "Red Hat Certified System Administrator study suite with interactive browser terminal practice simulator."
+  },
+  "vulnerability management": {
+    "Name": "VulnGuard",
+    "Icon": "🔒",
+    "Title": "VulnGuard Vulnerability Management MVC Web App",
+    "Entry": "../vulnerability management/README.md",
+    "SearchKeys": ["vulnguard", "vulnerability management", "vuln"],
+    "Snippet": "VulnGuard vulnerability management MVC web app with SQLite database, hardening services, and crypto tools."
+  },
+  "screen reader": {
+    "Name": "ScreenReader",
+    "Icon": "👓",
+    "Title": "Screen Reader Desktop OCR & TTS Companion",
+    "Entry": "../screen reader/README.md",
+    "SearchKeys": ["screen reader", "ocr", "tts", "page turner"],
+    "Snippet": "Desktop OCR, automatic page-turner, and text-to-speech reading companion with bookmark manager."
+  },
+  "note taker": {
+    "Name": "Notes Hub",
+    "Icon": "📒",
+    "Title": "Study Notes Hub & Cheatsheet Library",
+    "Entry": "../note taker/README.md",
+    "SearchKeys": ["note taker", "study notes", "security+ notes"],
+    "Snippet": "CompTIA Security+ SY0-701 study notes, cheatsheets, and session documentation."
+  },
+  "zfold6 features": {
+    "Name": "Z Fold 6",
+    "Icon": "📱",
+    "Title": "Samsung Galaxy Z Fold 6 Master Guide",
+    "Entry": "../zfold6 features/galaxy_z_fold_6_tips_and_tricks_guide.md",
+    "SearchKeys": ["zfold6", "galaxy z fold", "fold 6"],
+    "Snippet": "Comprehensive master power-user guide and tips for Samsung Galaxy Z Fold 6 multitasking, DeX mode, and Galaxy AI tools."
+  },
+  "monopoly": {
+    "Name": "Monopoly",
+    "Icon": "🎲",
+    "Title": "Interactive Monopoly Board Game",
+    "Entry": "../monopoly/index.html",
+    "SearchKeys": ["monopoly", "board game", "monopoly game"],
+    "Snippet": "Interactive browser Monopoly board game featuring animated dice rolls, property deeds, bank ledger, player tokens, and real estate trading mechanics."
+  },
+  "sandbox": {
+    "Name": "Sandbox",
+    "Icon": "🧪",
+    "Title": "Antigravity Projects Sandbox Studio",
+    "Entry": "../sandbox/index.html",
+    "SearchKeys": ["sandbox", "testbed", "testing studio"],
+    "Snippet": "Centralized preview, diagnostic, and staging testbed environment for all Antigravity projects."
+  }
+}

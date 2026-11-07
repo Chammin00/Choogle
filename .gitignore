@@ -1,0 +1,9 @@
+# Logs
+*.log
+*_log.txt
+
+# Editor and OS files
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini

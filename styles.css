@@ -1,5 +1,6 @@
 /* ==================== FONTS & IMPORTS ==================== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Roboto:wght@300;400;500;700&display=swap');
+@import url('high-gloss-lacquer.css');
 
 /* ==================== GLOBAL VARIABES & THEMES ==================== */
 :root {
@@ -33,11 +34,13 @@
   --widget-bg: #ffffff;
   --widget-border: #dfe1e5;
   
-  /* Custom Google Brand Colors */
-  --g-blue: #4285f4;
-  --g-red: #ea4335;
-  --g-yellow: #fbbc05;
-  --g-green: #34a853;
+  /* Choogle Brand Colors — Tan & Navy Blue */
+  --g-navy: #1B2A4A;
+  --g-tan: #C8A96E;
+  --g-blue: #1B2A4A;
+  --g-red: #C8A96E;
+  --g-yellow: #1B2A4A;
+  --g-green: #C8A96E;
   
   --overlay-bg: rgba(255, 255, 255, 0.95);
   --overlay-card-bg: #ffffff;
@@ -54,7 +57,7 @@ html[data-theme="dark"] {
   --text-link: #8ab4f8;
   --text-link-visited: #c58af9;
   --border-color: #3c4043;
-  --search-bg: #303134;
+  --search-bg: rgba(48, 49, 52, 0.75);
   --search-shadow-hover: 0 4px 6px rgba(0,0,0,0.4);
   --button-bg: #303134;
   --button-text: #e8eaed;
@@ -88,7 +91,7 @@ html[data-theme="dark"] {
 
 body {
   font-family: var(--font-main);
-  background-color: var(--bg-color);
+  background-color: transparent !important;
   color: var(--text-color);
   min-height: 100vh;
   display: flex;
@@ -127,10 +130,13 @@ button {
 }
 
 /* ==================== BRAND COLOR CLASSES ==================== */
-.c-blue { color: var(--g-blue); }
-.c-red { color: var(--g-red); }
-.c-yellow { color: var(--g-yellow); }
-.c-green { color: var(--g-green); }
+.c-navy { color: var(--g-navy); }
+.c-tan { color: var(--g-tan); }
+/* Legacy classes mapped to new brand */
+.c-blue { color: var(--g-navy); }
+.c-red { color: var(--g-tan); }
+.c-yellow { color: var(--g-navy); }
+.c-green { color: var(--g-tan); }
 
 /* ==================== HEADER STYLING ==================== */
 header {
@@ -212,7 +218,7 @@ header {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background-color: var(--g-blue);
+  background-color: var(--g-navy);
   color: white;
   display: flex;
   align-items: center;
@@ -232,16 +238,25 @@ header {
   position: absolute;
   top: 52px;
   right: 60px;
-  width: 320px;
-  max-height: 450px;
+  width: 330px;
+  max-height: 480px;
   background-color: var(--dropdown-bg);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 12px;
   box-shadow: var(--dropdown-shadow);
   padding: 16px;
   overflow-y: auto;
   z-index: 100;
   animation: fadeIn 0.15s ease-out;
+}
+
+.apps-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.apps-dropdown::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.4);
+  border-radius: 4px;
 }
 
 .apps-grid {
@@ -431,6 +446,8 @@ header {
   width: 100%;
   height: 46px;
   background-color: var(--search-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
   border-radius: 24px;
   padding: 0 14px;
@@ -814,9 +831,9 @@ header {
   align-items: center;
 }
 
-.pg-c-blue { color: var(--g-blue); }
-.pg-c-red { color: var(--g-red); }
-.pg-c-yellow { color: var(--g-yellow); }
+.pg-c-blue { color: var(--g-navy); }
+.pg-c-red { color: var(--g-tan); }
+.pg-c-yellow { color: var(--g-navy); }
 
 .pagination-pages {
   display: flex;
@@ -2669,4 +2686,136 @@ html[data-theme="light"] .yt-player-back-btn {
 html[data-theme="light"] .yt-player-back-btn:hover {
   background-color: #e5e5e5;
 }
+
+/* ==================== GAME CAPTURE DVR STYLES ==================== */
+.xbox-dvr-panel {
+  grid-column: 1 / -1;
+  background-color: #1a1a1a;
+  border: 1px solid #333333;
+  border-radius: 6px;
+  padding: 14px;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dvr-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #333333;
+  padding-bottom: 6px;
+}
+
+.dvr-title {
+  font-size: 13px;
+  font-weight: bold;
+  color: #107c10;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dvr-rec-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #ff3344;
+  border-radius: 50%;
+}
+
+.dvr-rec-dot.active {
+  animation: blink 1s infinite ease-in-out;
+}
+
+.dvr-controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.dvr-btn {
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  color: #e0e0e0;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.dvr-btn:hover {
+  background-color: #3a3a3a;
+  border-color: #107c10;
+  color: white;
+}
+
+.dvr-btn.rec-active {
+  background-color: #ff3344;
+  color: white;
+  border-color: #ff3344;
+}
+
+.dvr-clips-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 120px;
+  overflow-y: auto;
+  border-top: 1px dashed #333333;
+  padding-top: 8px;
+}
+
+.dvr-clip-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #222;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.dvr-clip-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.dvr-clip-btn {
+  background: none;
+  border: none;
+  color: #107c10;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.dvr-clip-btn:hover {
+  text-decoration: underline;
+}
+
+.dvr-voice-status {
+  font-size: 10px;
+  color: #999;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Steam DVR Theme overrides */
+.steam-widget .dvr-title {
+  color: #10adf2;
+}
+.steam-widget .dvr-btn:hover {
+  border-color: #10adf2;
+}
+.steam-widget .dvr-clip-btn {
+  color: #10adf2;
+}
+
 

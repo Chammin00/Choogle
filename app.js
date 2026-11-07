@@ -84,6 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupEventListeners();
     setupRoutingFromUrl();
     setupSpeechRecognition();
+    loadInstalledPlugins();
   }
 
   // ==================== THEME CONTROLLER ====================
@@ -400,99 +401,158 @@ document.addEventListener("DOMContentLoaded", () => {
   async function resolveLiveSearch(query) {
     const results = [];
     let source = "local";
+    let wikiSummaryTitle = null;
 
-    // 1. Try DuckDuckGo via CORS proxy
+    // 1. Try DuckDuckGo via CORS proxy (First try: allorigins.win)
     try {
       const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(`https://html.duckduckgo.com/html/?q=${encodeURIComponent(query)}`)}`;
       const controller = new AbortController();
-      const id = setTimeout(() => controller.abort(), 4000); // 4s timeout
+      const id = setTimeout(() => controller.abort(), 3500); // 3.5s timeout
       
       const response = await fetch(proxyUrl, { signal: controller.signal });
       clearTimeout(id);
       
       if (response.ok) {
         const htmlText = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(htmlText, "text/html");
-        const items = doc.querySelectorAll(".result");
+        parseDuckDuckGoHtml(htmlText, results);
+      }
+    } catch (e) {
+      console.warn("DuckDuckGo fetch via allorigins failed, trying backup proxy...", e);
+      
+      // Try backup proxy: corsproxy.io
+      try {
+        const backupProxyUrl = `https://corsproxy.io/?${encodeURIComponent(`https://html.duckduckgo.com/html/?q=${encodeURIComponent(query)}`)}`;
+        const controller = new AbortController();
+        const id = setTimeout(() => controller.abort(), 3500);
+        const response = await fetch(backupProxyUrl, { signal: controller.signal });
+        clearTimeout(id);
+        if (response.ok) {
+          const htmlText = await response.text();
+          parseDuckDuckGoHtml(htmlText, results);
+        }
+      } catch (backupErr) {
+        console.warn("DuckDuckGo backup proxy failed as well.", backupErr);
+      }
+    }
+
+    if (results.length > 0) {
+      source = "web";
+      // We will also try to fetch a Wikipedia summary for the query to show a knowledge panel!
+      wikiSummaryTitle = query;
+    } else {
+      // 2. Try Wikipedia OpenSearch API (CORS enabled native)
+      try {
+        const wikiUrl = `https://en.wikipedia.org/w/api.php?action=opensearch&search=${encodeURIComponent(query)}&limit=10&namespace=0&format=json&origin=*`;
+        const controller = new AbortController();
+        const id = setTimeout(() => controller.abort(), 3000); // 3s timeout
         
-        if (items.length > 0) {
-          items.forEach(item => {
-            const titleEl = item.querySelector(".result__a");
-            const snippetEl = item.querySelector(".result__snippet");
-            const urlEl = item.querySelector(".result__url");
+        const response = await fetch(wikiUrl, { signal: controller.signal });
+        clearTimeout(id);
+        
+        if (response.ok) {
+          const data = await response.json();
+          if (data && data[1] && data[1].length > 0) {
+            const titles = data[1];
+            const snippets = data[2];
+            const urls = data[3];
             
-            if (titleEl) {
-              const title = titleEl.textContent.trim();
-              let url = titleEl.getAttribute("href") || "";
-              
-              // Clean redirect links
-              if (url.includes("uddg=")) {
-                const parts = url.split("uddg=");
-                if (parts[1]) {
-                  url = decodeURIComponent(parts[1].split("&")[0]);
-                }
-              }
-              
-              const snippet = snippetEl ? snippetEl.textContent.trim() : "";
-              const displayedUrl = urlEl ? urlEl.textContent.trim() : url;
-              
-              results.push({ title, url, displayedUrl, snippet });
-            }
-          });
-        }
-      }
-      
-      if (results.length > 0) {
-        source = "web";
-        return { results, source };
-      }
-    } catch (e) {
-      console.warn("DuckDuckGo fetch failed, trying Wikipedia fallback...", e);
-    }
-
-    // 2. Try Wikipedia OpenSearch API (CORS enabled native)
-    try {
-      const wikiUrl = `https://en.wikipedia.org/w/api.php?action=opensearch&search=${encodeURIComponent(query)}&limit=10&namespace=0&format=json&origin=*`;
-      const controller = new AbortController();
-      const id = setTimeout(() => controller.abort(), 3000); // 3s timeout
-      
-      const response = await fetch(wikiUrl, { signal: controller.signal });
-      clearTimeout(id);
-      
-      if (response.ok) {
-        const data = await response.json();
-        if (data && data[1] && data[1].length > 0) {
-          const titles = data[1];
-          const snippets = data[2];
-          const urls = data[3];
-          
-          titles.forEach((title, idx) => {
-            results.push({
-              title: title,
-              url: urls[idx],
-              displayedUrl: urls[idx],
-              snippet: snippets[idx] || "Read article on Wikipedia, the free encyclopedia."
+            titles.forEach((title, idx) => {
+              results.push({
+                title: title,
+                url: urls[idx],
+                displayedUrl: urls[idx],
+                snippet: snippets[idx] || "Read article on Wikipedia, the free encyclopedia."
+              });
             });
-          });
+            wikiSummaryTitle = titles[0]; // Fetch summary for the top match!
+            source = "wikipedia";
+          }
         }
+      } catch (e) {
+        console.warn("Wikipedia fetch failed, falling back to local database...", e);
       }
-      
-      if (results.length > 0) {
-        source = "wikipedia";
-        return { results, source };
-      }
-    } catch (e) {
-      console.warn("Wikipedia fetch failed, falling back to local database...", e);
     }
 
-    // 3. Fallback to Local Mock Database
-    const localData = getSearchResults(query);
+    // Try to get Wikipedia Page Summary for Knowledge Panel if we have a title match
+    let knowledgePanel = null;
+    if (wikiSummaryTitle) {
+      try {
+        // Query Wikipedia Summary REST API
+        const summaryUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikiSummaryTitle.trim().replace(/\s+/g, "_"))}`;
+        const controller = new AbortController();
+        const id = setTimeout(() => controller.abort(), 2000);
+        const response = await fetch(summaryUrl, { signal: controller.signal });
+        clearTimeout(id);
+        
+        if (response.ok) {
+          const data = await response.json();
+          if (data && data.title && data.extract) {
+            knowledgePanel = {
+              title: data.title,
+              subtitle: data.description || "Wikipedia Article Summary",
+              description: data.extract,
+              image: data.thumbnail ? data.thumbnail.source : null,
+              attributes: {
+                "Source": `<a href="${data.content_urls.desktop.page}" target="_blank" style="color: var(--text-link);">Wikipedia Page</a>`,
+                "Language": "English",
+                "Last Updated": data.timestamp ? new Date(data.timestamp).toLocaleDateString() : "Recently"
+              }
+            };
+          }
+        }
+      } catch (e) {
+        console.warn("Failed to retrieve Wikipedia page summary.", e);
+      }
+    }
+
+    // 3. Fallback to Local Mock Database if no web results found
+    if (results.length === 0) {
+      const localData = getSearchResults(query);
+      return {
+        results: localData.results,
+        knowledgePanel: localData.knowledgePanel,
+        source: "local"
+      };
+    }
+
     return {
-      results: localData.results,
-      knowledgePanel: localData.knowledgePanel,
-      source: "local"
+      results: results,
+      knowledgePanel: knowledgePanel,
+      source: source
     };
+  }
+
+  // Helper function to parse DuckDuckGo HTML output
+  function parseDuckDuckGoHtml(htmlText, resultsArray) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlText, "text/html");
+    const items = doc.querySelectorAll(".result");
+    
+    if (items.length > 0) {
+      items.forEach(item => {
+        const titleEl = item.querySelector(".result__a");
+        const snippetEl = item.querySelector(".result__snippet");
+        const urlEl = item.querySelector(".result__url");
+        
+        if (titleEl) {
+          const title = titleEl.textContent.trim();
+          let url = titleEl.getAttribute("href") || "";
+          
+          // Clean redirect links
+          if (url.includes("uddg=")) {
+            const parts = url.split("uddg=");
+            if (parts[1]) {
+              url = decodeURIComponent(parts[1].split("&")[0]);
+            }
+          }
+          
+          const snippet = snippetEl ? snippetEl.textContent.trim() : "";
+          const displayedUrl = urlEl ? urlEl.textContent.trim() : url;
+          
+          resultsArray.push({ title, url, displayedUrl, snippet });
+        }
+      });
+    }
   }
 
   async function performSearch(query) {
@@ -574,6 +634,18 @@ document.addEventListener("DOMContentLoaded", () => {
       widgetLoaded = true;
     } else if (normalizedQuery.includes("aac") || normalizedQuery.includes("talker") || normalizedQuery.includes("speech board")) {
       loadAacWidget();
+      widgetLoaded = true;
+    } else if (normalizedQuery.includes("chai") || normalizedQuery.includes("ai assistant") || normalizedQuery.includes("chatbot") || normalizedQuery === "ai") {
+      loadChaiWidget();
+      widgetLoaded = true;
+    } else if (normalizedQuery.includes("note") || normalizedQuery.includes("workspace") || normalizedQuery === "write" || normalizedQuery.includes("editor")) {
+      loadNotepadWidget();
+      widgetLoaded = true;
+    } else if (normalizedQuery.includes("task") || normalizedQuery.includes("kanban") || normalizedQuery.includes("todo") || normalizedQuery.includes("board")) {
+      loadTasksWidget();
+      widgetLoaded = true;
+    } else if (normalizedQuery.includes("store") || normalizedQuery.includes("plugin") || normalizedQuery.includes("extension") || normalizedQuery === "shop") {
+      loadWebstoreWidget();
       widgetLoaded = true;
     }
 
@@ -671,9 +743,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Render Knowledge Panel (Right column)
     if (searchData.knowledgePanel) {
+      let imageHtml = "";
+      if (searchData.knowledgePanel.image) {
+        imageHtml = `<img src="${searchData.knowledgePanel.image}" alt="${searchData.knowledgePanel.title}" style="width: 100%; max-height: 200px; object-fit: contain; border-radius: 8px; margin-bottom: 12px; border: 1px solid var(--border-color);">`;
+      }
+      
       knowledgePanel.innerHTML = `
         <h2 class="knowledge-title">${searchData.knowledgePanel.title}</h2>
         <div class="knowledge-subtitle">${searchData.knowledgePanel.subtitle}</div>
+        ${imageHtml}
         <p class="knowledge-desc">${searchData.knowledgePanel.description}</p>
         <div class="knowledge-attr-list">
           ${Object.entries(searchData.knowledgePanel.attributes).map(([key, val]) => `
@@ -1457,6 +1535,138 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // 0c-2. chAI - Personal AI Assistant Widget
+  function loadChaiWidget() {
+    widgetContainer.classList.remove("hidden");
+    const card = document.createElement("div");
+    card.className = "widget-card chai-widget";
+    card.style.borderLeft = "4px solid #1B2A4A";
+    
+    card.innerHTML = `
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;">
+        <div style="flex: 1;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-size: 20px;">🤖</span>
+            <strong style="font-size: 15px;">chAI — Personal AI Assistant</strong>
+            <span style="background: linear-gradient(135deg, #1B2A4A, #C8A96E); color: white; font-size: 9px; padding: 2px 8px; border-radius: 12px; font-weight: bold; text-transform: uppercase;">Gemini Powered</span>
+          </div>
+          <p style="font-size: 13px; line-height: 1.5; color: var(--text-muted); margin-bottom: 12px;">
+            Your personal AI chatbot built into the Choogle ecosystem. Ask questions, get coding help, study for certifications, and more — powered by Google Gemini.
+          </p>
+          
+          <div style="padding: 14px; background: linear-gradient(135deg, rgba(27,42,74,0.03), rgba(200,169,110,0.05)); border: 1px solid rgba(27,42,74,0.12); border-radius: 8px; margin-bottom: 12px;">
+            <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px;">
+              <span style="font-size: 16px;">🤖</span>
+              <div style="background-color: var(--widget-bg); border: 1px solid var(--widget-border); padding: 10px 14px; border-radius: 12px; border-bottom-left-radius: 4px; font-size: 13px; color: var(--text-color); line-height: 1.5;">
+                Hello! I'm <strong>chAI</strong>, your personal AI assistant. I can help with <strong>networking</strong>, <strong>Linux admin</strong>, <strong>PowerShell scripts</strong>, <strong>VMware</strong>, and much more. What would you like to work on?
+              </div>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+              <span style="padding: 4px 10px; border: 1px solid rgba(200,169,110,0.3); border-radius: 14px; font-size: 11px; color: var(--text-muted);">📡 Explain OSPF routing</span>
+              <span style="padding: 4px 10px; border: 1px solid rgba(200,169,110,0.3); border-radius: 14px; font-size: 11px; color: var(--text-muted);">🐧 RHCSA exam tips</span>
+              <span style="padding: 4px 10px; border: 1px solid rgba(200,169,110,0.3); border-radius: 14px; font-size: 11px; color: var(--text-muted);">💻 Debug my code</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 10px;">
+            <a href="chai.html" class="btn-search" style="display: inline-flex; align-items: center; justify-content: center; height: 34px; font-size: 12px; font-weight: 600; text-decoration: none; padding: 0 20px; border: none; border-radius: 6px; background: linear-gradient(135deg, #1B2A4A, #2d4a7a); color: white; cursor: pointer;">
+              🤖 Open chAI Assistant
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+
+    widgetContainer.appendChild(card);
+  }
+
+  // 0c-3. Choogle Notepad Widget
+  function loadNotepadWidget() {
+    widgetContainer.classList.remove("hidden");
+    const card = document.createElement("div");
+    card.className = "widget-card notepad-widget";
+    card.style.borderLeft = "4px solid var(--g-tan)";
+    
+    card.innerHTML = `
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;">
+        <div style="flex: 1;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-size: 20px;">📝</span>
+            <strong style="font-size: 15px;">Choogle Notepad — Personal Notebook</strong>
+            <span style="background-color: var(--g-tan); color: black; font-size: 9px; padding: 2px 8px; border-radius: 12px; font-weight: bold; text-transform: uppercase;">Workspace</span>
+          </div>
+          <p style="font-size: 13px; line-height: 1.5; color: var(--text-muted); margin-bottom: 12px;">
+            Write persistent notes, format using markdown, auto-save to browser storage, and back up files locally.
+          </p>
+          <div style="display: flex; gap: 10px;">
+            <a href="notepad.html" class="btn-search" style="display: inline-flex; align-items: center; justify-content: center; height: 34px; font-size: 12px; font-weight: 600; text-decoration: none; padding: 0 20px; border: none; border-radius: 6px; background-color: var(--g-navy); color: white; cursor: pointer;">
+              📝 Open Notepad Editor
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+    widgetContainer.appendChild(card);
+  }
+
+  // 0c-4. Choogle Tasks Widget
+  function loadTasksWidget() {
+    widgetContainer.classList.remove("hidden");
+    const card = document.createElement("div");
+    card.className = "widget-card tasks-widget";
+    card.style.borderLeft = "4px solid var(--g-navy)";
+    
+    card.innerHTML = `
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;">
+        <div style="flex: 1;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-size: 20px;">✅</span>
+            <strong style="font-size: 15px;">Choogle Tasks — Kanban Board</strong>
+            <span style="background-color: var(--g-navy); color: white; font-size: 9px; padding: 2px 8px; border-radius: 12px; font-weight: bold; text-transform: uppercase;">Kanban</span>
+          </div>
+          <p style="font-size: 13px; line-height: 1.5; color: var(--text-muted); margin-bottom: 12px;">
+            Manage and prioritize tasks, organize study objectives, and track projects using an interactive kanban board workspace.
+          </p>
+          <div style="display: flex; gap: 10px;">
+            <a href="tasks.html" class="btn-search" style="display: inline-flex; align-items: center; justify-content: center; height: 34px; font-size: 12px; font-weight: 600; text-decoration: none; padding: 0 20px; border: none; border-radius: 6px; background-color: var(--g-navy); color: white; cursor: pointer;">
+              ✅ Open Tasks Board
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+    widgetContainer.appendChild(card);
+  }
+
+  // 0c-5. Choogle Web Store Widget
+  function loadWebstoreWidget() {
+    widgetContainer.classList.remove("hidden");
+    const card = document.createElement("div");
+    card.className = "widget-card webstore-widget";
+    card.style.borderLeft = "4px solid var(--g-tan)";
+    
+    card.innerHTML = `
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;">
+        <div style="flex: 1;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span style="font-size: 20px;">🛍️</span>
+            <strong style="font-size: 15px;">Choogle Web Store — Extensions & Plugins</strong>
+            <span style="background-color: var(--g-tan); color: black; font-size: 9px; padding: 2px 8px; border-radius: 12px; font-weight: bold; text-transform: uppercase;">Store</span>
+          </div>
+          <p style="font-size: 13px; line-height: 1.5; color: var(--text-muted); margin-bottom: 12px;">
+            Customize your search experience. Browse, install, or disable extensions like AdBlock Choogle, chAI floating assistant, and system telemetry bars.
+          </p>
+          <div style="display: flex; gap: 10px;">
+            <a href="webstore.html" class="btn-search" style="display: inline-flex; align-items: center; justify-content: center; height: 34px; font-size: 12px; font-weight: 600; text-decoration: none; padding: 0 20px; border: none; border-radius: 6px; background-color: var(--g-navy); color: white; cursor: pointer;">
+              🛍️ Open Web Store
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+    widgetContainer.appendChild(card);
+  }
+
   // 0d. Cisco CCNA Lab Widget
   function loadCcnaWidget() {
     widgetContainer.classList.remove("hidden");
@@ -1732,7 +1942,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 2. Steam Store Widget
-  function loadSteamWidget() {
+  function loadSteamWidget(voiceCommand = null) {
     widgetContainer.classList.remove("hidden");
     
     const card = document.createElement("div");
@@ -1786,11 +1996,41 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         </div>
       </div>
+
+      <!-- Steam Game DVR Panel -->
+      <div class="xbox-dvr-panel">
+        <div class="dvr-header">
+          <div class="dvr-title">
+            <span class="dvr-rec-dot" id="dvr-rec-dot"></span>
+            <span>STEAM GAME DVR & CAPTURE</span>
+          </div>
+          <div class="dvr-voice-status" id="dvr-voice-status">
+            <span>🎙️ Voice Commands: Enabled</span>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <div class="dvr-controls">
+            <button class="dvr-btn" id="dvr-btn-rec">🔴 Start Recording</button>
+            <button class="dvr-btn" id="dvr-btn-30s">⏳ Clip Last 30s</button>
+            <button class="dvr-btn" id="dvr-btn-1m">⏳ Clip Last 1m</button>
+            <button class="dvr-btn" id="dvr-btn-3m">⏳ Clip Last 3m</button>
+          </div>
+          <div style="font-size: 12px; color: #ff3344; font-weight: bold; font-family: monospace;" id="dvr-timer">
+            00:00:00
+          </div>
+        </div>
+        <div class="dvr-clips-list" id="dvr-clips-list">
+          <div class="dvr-clip-item" style="color: #666; justify-content: center; font-style: italic;" id="dvr-empty-log">
+            No clips captured yet. Say "record that" or click buttons to capture clips.
+          </div>
+        </div>
+      </div>
     `;
     
     widgetContainer.appendChild(card);
     
     setupSteamHandlers(card);
+    setupXboxDvr(card, voiceCommand);
   }
 
   function setupSteamHandlers(card) {
@@ -1835,7 +2075,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 3. Xbox Game Pass Widget
-  function loadXboxWidget() {
+  function loadXboxWidget(voiceCommand = null) {
     widgetContainer.classList.remove("hidden");
     
     const card = document.createElement("div");
@@ -1908,6 +2148,35 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
           </div>
         </div>
+        
+        <!-- Xbox Game DVR Panel -->
+        <div class="xbox-dvr-panel">
+          <div class="dvr-header">
+            <div class="dvr-title">
+              <span class="dvr-rec-dot" id="dvr-rec-dot"></span>
+              <span>XBOX GAME DVR & CAPTURE</span>
+            </div>
+            <div class="dvr-voice-status" id="dvr-voice-status">
+              <span>🎙️ Voice Commands: Enabled</span>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div class="dvr-controls">
+              <button class="dvr-btn" id="dvr-btn-rec">🔴 Start Recording</button>
+              <button class="dvr-btn" id="dvr-btn-30s">⏳ Clip Last 30s</button>
+              <button class="dvr-btn" id="dvr-btn-1m">⏳ Clip Last 1m</button>
+              <button class="dvr-btn" id="dvr-btn-3m">⏳ Clip Last 3m</button>
+            </div>
+            <div style="font-size: 12px; color: #ff3344; font-weight: bold; font-family: monospace;" id="dvr-timer">
+              00:00:00
+            </div>
+          </div>
+          <div class="dvr-clips-list" id="dvr-clips-list">
+            <div class="dvr-clip-item" style="color: #666; justify-content: center; font-style: italic;" id="dvr-empty-log">
+              No clips captured yet. Say "record that" or click buttons to capture clips.
+            </div>
+          </div>
+        </div>
       </div>
     `;
     
@@ -1929,6 +2198,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 1200);
       });
     });
+
+    setupXboxDvr(card, voiceCommand);
   }
 
   // 4. Chess.com Mate-in-1 Puzzle Widget
@@ -2548,8 +2819,31 @@ document.addEventListener("DOMContentLoaded", () => {
       state.recognition.onresult = (event) => {
         const resultText = event.results[0][0].transcript;
         voiceSpeechOutput.textContent = `"${resultText}"`;
-        voiceStatusText.textContent = "Searching...";
         
+        const lowerResult = resultText.toLowerCase();
+        if (lowerResult.includes("record")) {
+          voiceStatusText.textContent = "Executing DVR command...";
+          
+          let dvrAction = "start";
+          if (lowerResult.includes("30 second") || lowerResult.includes("30s")) dvrAction = "30s";
+          else if (lowerResult.includes("1 minute") || lowerResult.includes("one minute") || lowerResult.includes("1m")) dvrAction = "1m";
+          else if (lowerResult.includes("3 minute") || lowerResult.includes("three minute") || lowerResult.includes("3m")) dvrAction = "3m";
+
+          const targetApp = lowerResult.includes("steam") ? "steam" : "xbox";
+
+          setTimeout(() => {
+            closeVoiceSearch();
+            navigateTo("results", targetApp);
+            if (targetApp === "steam") {
+              loadSteamWidget(dvrAction);
+            } else {
+              loadXboxWidget(dvrAction);
+            }
+          }, 1200);
+          return;
+        }
+
+        voiceStatusText.textContent = "Searching...";
         setTimeout(() => {
           closeVoiceSearch();
           navigateTo("results", resultText);
@@ -2572,17 +2866,43 @@ document.addEventListener("DOMContentLoaded", () => {
       voiceStatusText.textContent = "Listening (Simulation)...";
       voiceSpeechOutput.textContent = "";
       
-      const simulatedKeywords = ["weather today", "calculator online", "tic tac toe", "choogle"];
+      const simulatedKeywords = [
+        "weather today",
+        "calculator online",
+        "tic tac toe",
+        "choogle",
+        "xbox record last 30 seconds",
+        "start recording gameplay",
+        "steam record 1 minute",
+        "steam start recording"
+      ];
       const randSpeech = simulatedKeywords[Math.floor(Math.random() * simulatedKeywords.length)];
       
       setTimeout(() => {
-        voiceSpeechOutput.textContent = `"speak now: ${randSpeech}"`;
+        voiceSpeechOutput.textContent = `"${randSpeech}"`;
         voiceStatusText.textContent = "Transcribing...";
       }, 1500);
 
       setTimeout(() => {
         closeVoiceSearch();
-        navigateTo("results", randSpeech);
+        const lowerResult = randSpeech.toLowerCase();
+        if (lowerResult.includes("record")) {
+          let dvrAction = "start";
+          if (lowerResult.includes("30 second") || lowerResult.includes("30s")) dvrAction = "30s";
+          else if (lowerResult.includes("1 minute") || lowerResult.includes("one minute") || lowerResult.includes("1m")) dvrAction = "1m";
+          else if (lowerResult.includes("3 minute") || lowerResult.includes("three minute") || lowerResult.includes("3m")) dvrAction = "3m";
+
+          const targetApp = lowerResult.includes("steam") ? "steam" : "xbox";
+
+          navigateTo("results", targetApp);
+          if (targetApp === "steam") {
+            loadSteamWidget(dvrAction);
+          } else {
+            loadXboxWidget(dvrAction);
+          }
+        } else {
+          navigateTo("results", randSpeech);
+        }
       }, 3000);
     }
   }
@@ -2664,6 +2984,225 @@ document.addEventListener("DOMContentLoaded", () => {
           navigateTo("results", query);
         }, 1800);
       });
+    });
+  }
+
+  // ==================== GAME CAPTURE DVR MANAGER ====================
+  function setupXboxDvr(card, voiceCommand = null) {
+    const recBtn = card.querySelector("#dvr-btn-rec");
+    const clip30sBtn = card.querySelector("#dvr-btn-30s");
+    const clip1mBtn = card.querySelector("#dvr-btn-1m");
+    const clip3mBtn = card.querySelector("#dvr-btn-3m");
+    const recDot = card.querySelector("#dvr-rec-dot");
+    const timerVal = card.querySelector("#dvr-timer");
+    const clipsList = card.querySelector("#dvr-clips-list");
+    const emptyLog = card.querySelector("#dvr-empty-log");
+    const voiceStatus = card.querySelector("#dvr-voice-status");
+
+    let recInterval = null;
+    let secondsElapsed = 0;
+    let isRecording = false;
+
+    // Helper to format duration timer
+    function formatTime(totalSecs) {
+      const hrs = String(Math.floor(totalSecs / 3600)).padStart(2, '0');
+      const mins = String(Math.floor((totalSecs % 3600) / 60)).padStart(2, '0');
+      const secs = String(totalSecs % 60).padStart(2, '0');
+      return `${hrs}:${mins}:${secs}`;
+    }
+
+    // Toggle Recording function
+    function toggleRecording() {
+      if (isRecording) {
+        // Stop recording
+        isRecording = false;
+        clearInterval(recInterval);
+        recBtn.textContent = "🔴 Start Recording";
+        recBtn.classList.remove("rec-active");
+        recDot.classList.remove("active");
+        
+        // Add final clip to list
+        const duration = formatTime(secondsElapsed);
+        addClipToGallery(`Gameplay_Recording_${new Date().toISOString().substring(11,19)}.mp4`, duration);
+        
+        secondsElapsed = 0;
+        timerVal.textContent = "00:00:00";
+      } else {
+        // Start recording
+        isRecording = true;
+        recBtn.textContent = "⏹️ Stop Recording";
+        recBtn.classList.add("rec-active");
+        recDot.classList.add("active");
+        
+        recInterval = setInterval(() => {
+          secondsElapsed++;
+          timerVal.textContent = formatTime(secondsElapsed);
+        }, 1000);
+      }
+    }
+
+    // Add clip item to the scrolling DVR list
+    function addClipToGallery(name, duration) {
+      if (emptyLog) {
+        emptyLog.classList.add("hidden");
+      }
+      
+      const item = document.createElement("div");
+      item.className = "dvr-clip-item";
+      item.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <span>🎬</span>
+          <span>${name}</span>
+          <span style="color: #999; font-size: 10px;">(${duration})</span>
+        </div>
+        <div class="dvr-clip-actions">
+          <button class="dvr-clip-btn play-clip-btn">Play</button>
+          <button class="dvr-clip-btn delete-clip-btn" style="color: #ff3344;">Delete</button>
+        </div>
+      `;
+      
+      clipsList.appendChild(item);
+      clipsList.scrollTop = clipsList.scrollHeight;
+
+      // Bind actions
+      item.querySelector(".play-clip-btn").addEventListener("click", () => {
+        alert(`Playing captured gameplay clip: ${name}... Rendering MP4 container.`);
+      });
+
+      item.querySelector(".delete-clip-btn").addEventListener("click", () => {
+        item.remove();
+        if (clipsList.children.length === 1 && clipsList.firstElementChild.id === "dvr-empty-log") {
+          emptyLog.classList.remove("hidden");
+        }
+      });
+    }
+
+    function triggerCustomClip(durationStr, durationSecs) {
+      addClipToGallery(`Game_DVR_Clip_${new Date().toISOString().substring(11,19)}.mp4`, durationStr);
+      
+      // Temporary flash indicators
+      timerVal.style.color = "#107c10";
+      timerVal.textContent = `CLIPPED ${durationStr}!`;
+      setTimeout(() => {
+        timerVal.style.color = "";
+        timerVal.textContent = "00:00:00";
+      }, 1500);
+    }
+
+    // Event bounds
+    recBtn.addEventListener("click", toggleRecording);
+    clip30sBtn.addEventListener("click", () => triggerCustomClip("00:00:30", 30));
+    clip1mBtn.addEventListener("click", () => triggerCustomClip("00:01:00", 60));
+    clip3mBtn.addEventListener("click", () => triggerCustomClip("00:03:00", 180));
+
+    // Handle voiceCommand parameter
+    if (voiceCommand) {
+      voiceStatus.innerHTML = `<span style="background-color: #107c10; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold;">🎙️ Voice command: "${voiceCommand}"</span>`;
+      
+      setTimeout(() => {
+        if (voiceCommand === "start") {
+          toggleRecording();
+        } else if (voiceCommand === "30s") {
+          triggerCustomClip("00:00:30", 30);
+        } else if (voiceCommand === "1m") {
+          triggerCustomClip("00:01:00", 60);
+        } else if (voiceCommand === "3m") {
+          triggerCustomClip("00:03:00", 180);
+        }
+      }, 1000);
+    }
+  }
+
+  // ==================== PLUGINS MANAGER ====================
+  function loadInstalledPlugins() {
+    const installed = JSON.parse(localStorage.getItem("choogle-installed-plugins") || "[]");
+
+    installed.forEach(id => {
+      // 1. AdBlock Choogle
+      if (id === "adblock") {
+        const headerRight = document.querySelector(".header-right");
+        if (headerRight && !document.getElementById("adblock-badge")) {
+          const badge = document.createElement("span");
+          badge.id = "adblock-badge";
+          badge.innerHTML = "🛡️";
+          badge.title = "AdBlock: Active";
+          badge.style.cssText = "font-size: 16px; margin-right: 12px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;";
+          badge.onclick = () => alert("AdBlock Choogle: 0 ads blocked on this session. Sandbox safe.");
+          headerRight.insertBefore(badge, headerRight.firstChild);
+        }
+      }
+
+      // 2. chAI Floating Assistant
+      if (id === "chaifloat") {
+        if (!document.getElementById("chaifloat-btn")) {
+          const floatBtn = document.createElement("button");
+          floatBtn.id = "chaifloat-btn";
+          floatBtn.innerHTML = "🤖";
+          floatBtn.title = "Chat with chAI";
+          floatBtn.style.cssText = "position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #1B2A4A, #2d4a7a); border: 2px solid #C8A96E; color: white; font-size: 24px; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.3); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: transform 0.2s;";
+          floatBtn.addEventListener("mouseover", () => floatBtn.style.transform = "scale(1.1)");
+          floatBtn.addEventListener("mouseout", () => floatBtn.style.transform = "scale(1)");
+          
+          // Floating chat window iframe wrapper
+          const chatWin = document.createElement("div");
+          chatWin.id = "chaifloat-win";
+          chatWin.classList.add("view-hidden");
+          chatWin.style.cssText = "position: fixed; bottom: 82px; right: 20px; width: 380px; height: 500px; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: var(--dropdown-shadow); z-index: 9999; overflow: hidden; background-color: var(--bg-color); transition: opacity 0.2s;";
+          chatWin.innerHTML = `<iframe src="chai.html" style="width: 100%; height: 100%; border: none;"></iframe>`;
+          
+          floatBtn.addEventListener("click", () => {
+            if (chatWin.classList.contains("view-hidden")) {
+              chatWin.classList.remove("view-hidden");
+              chatWin.style.opacity = "1";
+            } else {
+              chatWin.classList.add("view-hidden");
+            }
+          });
+          
+          document.body.appendChild(floatBtn);
+          document.body.appendChild(chatWin);
+        }
+      }
+
+      // 3. System Telemetry Bar
+      if (id === "telemetry") {
+        const header = document.querySelector("header");
+        if (header && !document.getElementById("telemetry-bar")) {
+          const bar = document.createElement("div");
+          bar.id = "telemetry-bar";
+          bar.style.cssText = "font-size: 11px; font-family: monospace; color: var(--text-muted); display: flex; gap: 8px; margin-left: 14px; align-items: center;";
+          bar.innerHTML = `<span>FPS: <span id="tel-fps" style="color: var(--g-green); font-weight: bold;">60</span></span> | <span>Ping: <span id="tel-ping" style="color: var(--g-green); font-weight: bold;">12ms</span></span> | <span>RAM: <span id="tel-ram" style="color: var(--g-green); font-weight: bold;">240MB</span></span>`;
+          
+          const logoWrapper = header.querySelector(".header-left");
+          if (logoWrapper) {
+            logoWrapper.appendChild(bar);
+          }
+          
+          // Update telemetry loops
+          setInterval(() => {
+            const fpsVal = document.getElementById("tel-fps");
+            const pingVal = document.getElementById("tel-ping");
+            const ramVal = document.getElementById("tel-ram");
+            if (fpsVal) fpsVal.textContent = Math.floor(58 + Math.random() * 5);
+            if (pingVal) pingVal.textContent = `${Math.floor(8 + Math.random() * 12)}ms`;
+            if (ramVal) ramVal.textContent = `${Math.floor(220 + Math.random() * 40)}MB`;
+          }, 1500);
+        }
+      }
+
+      // 4. Cyber Neon Cursor
+      if (id === "cyber-cursor") {
+        if (!document.getElementById("cyber-cursor-style")) {
+          const style = document.createElement("style");
+          style.id = "cyber-cursor-style";
+          style.innerHTML = `
+            * {
+              cursor: crosshair !important;
+            }
+          `;
+          document.head.appendChild(style);
+        }
+      }
     });
   }
 
