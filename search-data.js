@@ -1109,6 +1109,14 @@ const SEARCH_DATA = {
         snippet: "Interactive web tool and application created in Antigravity Projects."
       }
     ],
+        "game library": [
+      {
+        title: "Game Library",
+        url: "../Game Library/index.html",
+        displayedUrl: "../Game Library/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
     "chase webapps": [
       {
         title: "Chase's Operations Directory - Custom Webapps Suite",
