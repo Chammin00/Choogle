@@ -1117,6 +1117,14 @@ const SEARCH_DATA = {
         snippet: "Interactive web tool and application created in Antigravity Projects."
       }
     ],
+        "youtube channels": [
+      {
+        title: "youtube channels",
+        url: "../youtube channels/index.html",
+        displayedUrl: "../youtube channels/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
     "chase webapps": [
       {
         title: "Chase's Operations Directory - Custom Webapps Suite",
