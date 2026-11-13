@@ -1125,6 +1125,14 @@ const SEARCH_DATA = {
         snippet: "Interactive web tool and application created in Antigravity Projects."
       }
     ],
+        "index folder": [
+      {
+        title: "index folder",
+        url: "../index folder/index.html",
+        displayedUrl: "../index folder/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
     "chase webapps": [
       {
         title: "Chase's Operations Directory - Custom Webapps Suite",
