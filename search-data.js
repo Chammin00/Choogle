@@ -1133,6 +1133,14 @@ const SEARCH_DATA = {
         snippet: "Interactive web tool and application created in Antigravity Projects."
       }
     ],
+        "chrome tab and bar": [
+      {
+        title: "chrome tab and bar",
+        url: "../chrome tab and bar/index.html",
+        displayedUrl: "../chrome tab and bar/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
     "chase webapps": [
       {
         title: "Chase's Operations Directory - Custom Webapps Suite",
