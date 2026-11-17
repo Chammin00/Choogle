@@ -1141,6 +1141,30 @@ const SEARCH_DATA = {
         snippet: "Interactive web tool and application created in Antigravity Projects."
       }
     ],
+        "my social media": [
+      {
+        title: "My Social Media",
+        url: "../My Social Media/index.html",
+        displayedUrl: "../My Social Media/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+        "onedrive cleanup": [
+      {
+        title: "onedrive cleanup",
+        url: "../onedrive cleanup/README.md",
+        displayedUrl: "../onedrive cleanup/README.md",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+    "cert training guide": [
+      {
+        title: "Cert Training Guide",
+        url: "../Cert Training Guide/index.html",
+        displayedUrl: "../Cert Training Guide/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
     "chase webapps": [
       {
         title: "Chase's Operations Directory - Custom Webapps Suite",
