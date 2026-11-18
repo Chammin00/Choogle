@@ -470,7 +470,7 @@ header {
   flex: 1;
   height: 100%;
   border: none;
-  outline: none;
+  outline: 2px solid transparent; outline-offset: 2px;
   background: transparent;
   color: var(--text-color);
   font-size: 16px;
@@ -573,7 +573,7 @@ header {
 
 .btn-search:focus {
   border-color: var(--g-blue);
-  outline: none;
+  outline: 2px solid transparent; outline-offset: 2px;
 }
 
 /* Languages */
@@ -1678,7 +1678,7 @@ body.egg-gravity header, body.egg-gravity footer {
   flex: 1;
   background: transparent;
   border: none;
-  outline: none;
+  outline: 2px solid transparent; outline-offset: 2px;
   color: #00ff00;
   font-family: inherit;
   font-size: inherit;
@@ -2746,7 +2746,7 @@ html[data-theme="light"] .yt-player-back-btn:hover {
   display: flex;
   align-items: center;
   gap: 6px;
-  transition: all 0.2s;
+  transition: transform 0.2s, opacity 0.2s, background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
 .dvr-btn:hover {
@@ -2819,3 +2819,10 @@ html[data-theme="light"] .yt-player-back-btn:hover {
 }
 
 
+
+
+/* Accessible keyboard focus ring (Web Design Guidelines) */
+:focus-visible {
+  outline: 2px solid #58a6ff;
+  outline-offset: 2px;
+}

@@ -22,7 +22,7 @@
   --glow-yellow: 0 4px 12px rgba(217, 119, 6, 0.15);
   --glow-red: 0 4px 12px rgba(220, 38, 38, 0.2);
   
-  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 /* Dark Theme Variables (Cyber Tactical Theme) */
@@ -279,7 +279,7 @@ html[data-theme="light"] .outages-header {
 .choogle-search-bar input {
   background: transparent;
   border: none;
-  outline: none;
+  outline: 2px solid transparent; outline-offset: 2px;
   color: var(--text-primary);
   font-family: inherit;
   font-size: 13px;
@@ -476,7 +476,7 @@ html[data-theme="light"] .outages-header {
   padding: 6px 12px;
   font-family: inherit;
   font-size: 12px;
-  outline: none;
+  outline: 2px solid transparent; outline-offset: 2px;
 }
 
 .search-filter {
@@ -499,7 +499,7 @@ html[data-theme="light"] .outages-header {
   color: var(--text-primary);
   font-family: inherit;
   font-size: 12px;
-  outline: none;
+  outline: 2px solid transparent; outline-offset: 2px;
   transition: border-color var(--transition);
 }
 
@@ -1018,7 +1018,7 @@ input:checked + .slider:before {
   color: var(--text-primary) !important;
   font-family: inherit !important;
   font-size: 12px !important;
-  outline: none !important;
+  outline: 2px solid transparent !important; outline-offset: 2px;
   transition: border-color var(--transition) !important;
 }
 
@@ -1180,4 +1180,11 @@ input:checked + .slider:before {
 @keyframes slideUp {
   from { transform: translateY(8px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
+}
+
+
+/* Accessible keyboard focus ring (Web Design Guidelines) */
+:focus-visible {
+  outline: 2px solid #58a6ff;
+  outline-offset: 2px;
 }

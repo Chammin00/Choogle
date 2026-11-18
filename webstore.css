@@ -16,7 +16,7 @@
   --g-tan: #C8A96E;
   
   --glow-tan: 0 4px 12px rgba(200, 169, 110, 0.15);
-  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 html[data-theme="dark"] {
@@ -197,7 +197,7 @@ html[data-theme="dark"] body.cyber-theme {
 .choogle-search-bar input {
   background: transparent;
   border: none;
-  outline: none;
+  outline: 2px solid transparent; outline-offset: 2px;
   color: var(--text-primary);
   font-family: inherit;
   font-size: 13px;
@@ -423,4 +423,11 @@ html[data-theme="dark"] .pulse-btn.primary {
   0% { opacity: 0.3; }
   50% { opacity: 1; }
   100% { opacity: 0.3; }
+}
+
+
+/* Accessible keyboard focus ring (Web Design Guidelines) */
+:focus-visible {
+  outline: 2px solid #58a6ff;
+  outline-offset: 2px;
 }

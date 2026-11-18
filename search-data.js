@@ -1165,6 +1165,14 @@ const SEARCH_DATA = {
         snippet: "Interactive web tool and application created in Antigravity Projects."
       }
     ],
+        "resume": [
+      {
+        title: "resume",
+        url: "../resume/Chase_Hamilton_Resume.html",
+        displayedUrl: "../resume/Chase_Hamilton_Resume.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
     "chase webapps": [
       {
         title: "Chase's Operations Directory - Custom Webapps Suite",

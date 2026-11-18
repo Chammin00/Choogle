@@ -32,7 +32,7 @@
 
   --sidebar-width: 280px;
   --header-height: 56px;
-  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), color 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 html[data-theme="dark"] {
@@ -175,7 +175,7 @@ body {
 .choogle-search-bar input {
   background: transparent;
   border: none;
-  outline: none;
+  outline: 2px solid transparent; outline-offset: 2px;
   color: var(--text-primary);
   font-family: var(--font-main);
   font-size: 13px;
@@ -695,7 +695,7 @@ html[data-theme="dark"] .msg-content strong {
 #chat-input {
   flex: 1;
   border: none;
-  outline: none;
+  outline: 2px solid transparent; outline-offset: 2px;
   background: transparent;
   color: var(--text-primary);
   font-family: var(--font-main);
@@ -824,7 +824,7 @@ html[data-theme="dark"] .msg-content strong {
   color: var(--text-primary);
   font-family: var(--font-mono);
   font-size: 13px;
-  outline: none;
+  outline: 2px solid transparent; outline-offset: 2px;
   transition: border-color 0.2s;
 }
 
@@ -841,7 +841,7 @@ html[data-theme="dark"] .msg-content strong {
   color: var(--text-primary);
   font-family: var(--font-main);
   font-size: 13px;
-  outline: none;
+  outline: 2px solid transparent; outline-offset: 2px;
   resize: vertical;
   transition: border-color 0.2s;
 }
@@ -859,7 +859,7 @@ html[data-theme="dark"] .msg-content strong {
   color: var(--text-primary);
   font-family: var(--font-main);
   font-size: 13px;
-  outline: none;
+  outline: 2px solid transparent; outline-offset: 2px;
 }
 
 .modal-footer {
@@ -926,4 +926,11 @@ html[data-theme="dark"] .msg-content strong {
   .message {
     padding: 12px 16px;
   }
+}
+
+
+/* Accessible keyboard focus ring (Web Design Guidelines) */
+:focus-visible {
+  outline: 2px solid #58a6ff;
+  outline-offset: 2px;
 }
