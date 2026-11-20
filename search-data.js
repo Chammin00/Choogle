@@ -1173,6 +1173,14 @@ const SEARCH_DATA = {
         snippet: "Interactive web tool and application created in Antigravity Projects."
       }
     ],
+        "popular github projects": [
+      {
+        title: "Popular Github Projects",
+        url: "../Popular Github Projects/public/index.html",
+        displayedUrl: "../Popular Github Projects/public/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
     "chase webapps": [
       {
         title: "Chase's Operations Directory - Custom Webapps Suite",
