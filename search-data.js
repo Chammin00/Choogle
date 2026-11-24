@@ -1181,6 +1181,22 @@ const SEARCH_DATA = {
         snippet: "Interactive web tool and application created in Antigravity Projects."
       }
     ],
+        "increase my bing score": [
+      {
+        title: "increase my bing score",
+        url: "../increase my bing score/README.md",
+        displayedUrl: "../increase my bing score/README.md",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+        "bookmark favorites": [
+      {
+        title: "Bookmark favorites",
+        url: "../Bookmark-favorites/antigravity-all-projects-bookmarks.html",
+        displayedUrl: "../Bookmark-favorites/antigravity-all-projects-bookmarks.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
     "chase webapps": [
       {
         title: "Chase's Operations Directory - Custom Webapps Suite",
