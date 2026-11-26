@@ -1197,6 +1197,22 @@ const SEARCH_DATA = {
         snippet: "Interactive web tool and application created in Antigravity Projects."
       }
     ],
+        "maps and wikepedia": [
+      {
+        title: "Maps and Wikepedia",
+        url: "../Maps and Wikepedia/README.md",
+        displayedUrl: "../Maps and Wikepedia/README.md",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+    "google flow music": [
+      {
+        title: "Google Flow music",
+        url: "../Google Flow-music/README.md",
+        displayedUrl: "../Google Flow-music/README.md",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
     "chase webapps": [
       {
         title: "Chase's Operations Directory - Custom Webapps Suite",
