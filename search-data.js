@@ -1213,6 +1213,22 @@ const SEARCH_DATA = {
         snippet: "Interactive web tool and application created in Antigravity Projects."
       }
     ],
+        "media player": [
+      {
+        title: "media player",
+        url: "../media player/index.html",
+        displayedUrl: "../media player/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
+    "foldscape": [
+      {
+        title: "foldscape",
+        url: "../foldscape/studio/index.html",
+        displayedUrl: "../foldscape/studio/index.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
     "chase webapps": [
       {
         title: "Chase's Operations Directory - Custom Webapps Suite",
