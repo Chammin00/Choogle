@@ -1229,6 +1229,14 @@ const SEARCH_DATA = {
         snippet: "Interactive web tool and application created in Antigravity Projects."
       }
     ],
+        "human motion inputs": [
+      {
+        title: "Human Motion inputs",
+        url: "../Human Motion inputs/src/motion_inputs/static/studio.html",
+        displayedUrl: "../Human Motion inputs/src/motion_inputs/static/studio.html",
+        snippet: "Interactive web tool and application created in Antigravity Projects."
+      }
+    ],
     "chase webapps": [
       {
         title: "Chase's Operations Directory - Custom Webapps Suite",
@@ -1259,6 +1267,38 @@ const SEARCH_DATA = {
         url: "hub.html",
         displayedUrl: "choogle.dev › hub",
         snippet: "Centralized application hub and unified launcher for all 33 Antigravity projects, interactive web apps, games, security tools, and AI assistants across /projects."
+      }
+    ],
+    "game review": [
+      {
+        title: "game review",
+        url: "../game review/a_plague_tale_resonance_review_script.md",
+        displayedUrl: "../game review/a_plague_tale_resonance_review_script.md",
+        snippet: "Local Antigravity workspace project located at projects/game review."
+      }
+    ],
+    "google flow  movies": [
+      {
+        title: "Google Flow  Movies",
+        url: "../Google Flow- Movies/dead-channel-13/production_bible.md",
+        displayedUrl: "../Google Flow- Movies/dead-channel-13/production_bible.md",
+        snippet: "Local Antigravity workspace project located at projects/Google Flow- Movies."
+      }
+    ],
+    "mobile game": [
+      {
+        title: "mobile game",
+        url: "../mobile game/AGENTS.md",
+        displayedUrl: "../mobile game/AGENTS.md",
+        snippet: "Local Antigravity workspace project located at projects/mobile game."
+      }
+    ],
+    "youtube shorts edit for gaming": [
+      {
+        title: "youtube shorts edit for gaming",
+        url: "../youtube shorts edit for gaming/SOUNDTRACK_CURATION_GUIDE.md",
+        displayedUrl: "../youtube shorts edit for gaming/SOUNDTRACK_CURATION_GUIDE.md",
+        snippet: "Local Antigravity workspace project located at projects/youtube shorts edit for gaming."
       }
     ],
     "applications": [

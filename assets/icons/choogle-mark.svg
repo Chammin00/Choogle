@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
+  <defs>
+    <linearGradient id="choogle-bg" x1="24" y1="20" x2="232" y2="236" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#172442"/>
+      <stop offset="100%" stop-color="#090E1A"/>
+    </linearGradient>
+    <linearGradient id="choogle-gold" x1="48" y1="48" x2="208" y2="208" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F2D492"/>
+      <stop offset="55%" stop-color="#DFBA73"/>
+      <stop offset="100%" stop-color="#B9924F"/>
+    </linearGradient>
+  </defs>
+  <rect x="12" y="12" width="232" height="232" rx="56" fill="url(#choogle-bg)" stroke="#C8A96E" stroke-width="4.5" stroke-opacity="0.82"/>
+  <rect x="22" y="22" width="212" height="212" rx="48" fill="#131E36" fill-opacity="0.72"/>
+  <circle cx="128" cy="128" r="92" stroke="#2C4170" stroke-width="3" stroke-opacity="0.7"/>
+  <path d="M193.6 179.4A83.2 83.2 0 1 1 193.6 76.6L169.3 95.8A52.5 52.5 0 1 0 169.3 160.2Z" fill="url(#choogle-gold)"/>
+  <polygon points="172.8,128 133.1,152.3 111.4,128 133.1,103.7" fill="#F0D496"/>
+  <circle cx="135.7" cy="128" r="10.8" fill="#0B1120"/>
+  <circle cx="135.7" cy="128" r="4.6" fill="#DFBA73"/>
+</svg>

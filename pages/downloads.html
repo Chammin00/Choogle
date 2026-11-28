@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choogle Downloads</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/choogle-mark.svg">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .dl-list { display: flex; flex-direction: column; gap: 10px; }
+    .dl-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 16px;
+      border-radius: 10px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+    }
+    .dl-meta { flex: 1; min-width: 0; }
+    .dl-name { font-weight: 600; color: var(--text-primary); }
+    .dl-sub { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  </style>
+</head>
+<body class="with-cosmic">
+  <header class="page-topbar">
+    <a class="page-brand" href="choogle://home">
+      <img src="../assets/icons/choogle-32.png" alt="Choogle" width="22" height="22">
+      <span>Choogle Browser</span>
+    </a>
+    <nav class="page-nav" id="dl-nav"></nav>
+  </header>
+
+  <main class="page-container">
+    <div class="page-header">
+      <div class="page-title-group">
+        <h1>
+          <span class="icon-badge" id="dl-title-icon"></span>
+          <span>Downloads</span>
+        </h1>
+        <p>Track files downloaded in Choogle Browser and open their local folders.</p>
+      </div>
+      <button id="clear-dl-btn" class="btn btn-danger">Clear Completed</button>
+    </div>
+
+    <div id="dl-list" class="dl-list"></div>
+  </main>
+
+  <script src="../assets/icons/icon-library.js"></script>
+  <script>
+    (function () {
+      const Icons = window.ChoogleIcons;
+      const internal = window.choogleInternal;
+
+      function esc(str) {
+        return String(str == null ? '' : str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      }
+
+      function initNav() {
+        const nav = [
+          { label: 'Home', url: 'choogle://home', icon: 'nav-home' },
+          { label: 'Bookmarks', url: 'choogle://bookmarks', icon: 'bookmark-filled' },
+          { label: 'History', url: 'choogle://history', icon: 'history' },
+          { label: 'Downloads', url: 'choogle://downloads', icon: 'downloads', active: true },
+          { label: 'Settings', url: 'choogle://settings', icon: 'settings' }
+        ];
+        document.getElementById('dl-nav').innerHTML = nav
+          .map((n) => `<a class="nav-pill${n.active ? ' active' : ''}" href="${n.url}">${Icons.svg(n.icon, { size: 14 })}<span>${n.label}</span></a>`)
+          .join('');
+        document.getElementById('dl-title-icon').innerHTML = Icons.svg('downloads', { size: 18 });
+      }
+
+      async function load() {
+        const items = internal && internal.isChoogleBrowser ? await internal.getDownloads() : [];
+        const box = document.getElementById('dl-list');
+        if (items.length === 0) {
+          box.innerHTML = '<div class="surface-card" style="color:var(--text-muted);text-align:center;">No downloads recorded yet.</div>';
+          return;
+        }
+        box.innerHTML = items
+          .map((d) => `
+            <div class="dl-row">
+              <span class="icon-badge">${Icons.svg('download-file', { size: 17 })}</span>
+              <div class="dl-meta">
+                <div class="dl-name">${esc(d.filename)}</div>
+                <div class="dl-sub">${esc(d.state)} • ${Math.round((d.receivedBytes || 0) / 1024)} KB • ${esc(d.savePath || d.url)}</div>
+              </div>
+              <button class="btn" data-folder="${esc(d.id)}">Show Folder</button>
+              <button class="btn btn-primary" data-open="${esc(d.id)}">Open File</button>
+            </div>
+          `)
+          .join('');
+      }
+
+      document.getElementById('clear-dl-btn').addEventListener('click', async () => {
+        if (internal && internal.isChoogleBrowser) {
+          await internal.clearDownloads();
+          await load();
+        }
+      });
+
+      document.getElementById('dl-list').addEventListener('click', async (ev) => {
+        if (!(internal && internal.isChoogleBrowser)) return;
+        const openBtn = ev.target.closest('[data-open]');
+        if (openBtn) return internal.openDownload(openBtn.dataset.open);
+        const folderBtn = ev.target.closest('[data-folder]');
+        if (folderBtn) return internal.showDownloadInFolder(folderBtn.dataset.folder);
+      });
+
+      initNav();
+      load();
+    })();
+  </script>
+</body>
+</html>

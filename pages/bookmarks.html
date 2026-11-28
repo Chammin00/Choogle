@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choogle Bookmarks</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/choogle-mark.svg">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .add-bm-form {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr 180px auto;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    @media (max-width: 820px) {
+      .add-bm-form { grid-template-columns: 1fr; }
+    }
+    .bm-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .bm-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+    }
+    .bm-row:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-strong);
+    }
+    .bm-meta {
+      flex: 1;
+      min-width: 0;
+    }
+    .bm-title {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .bm-url {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  </style>
+</head>
+<body class="with-cosmic">
+  <header class="page-topbar">
+    <a class="page-brand" href="choogle://home">
+      <img src="../assets/icons/choogle-32.png" alt="Choogle" width="22" height="22">
+      <span>Choogle Browser</span>
+    </a>
+    <nav class="page-nav" id="bm-nav"></nav>
+  </header>
+
+  <main class="page-container">
+    <div class="page-header">
+      <div class="page-title-group">
+        <h1>
+          <span class="icon-badge" id="bm-title-icon"></span>
+          <span>Bookmarks Manager</span>
+        </h1>
+        <p>Saved internal routes, local Antigravity apps, and web bookmarks across your Choogle profile.</p>
+      </div>
+    </div>
+
+    <form id="add-bm-form" class="surface-card add-bm-form">
+      <input id="bm-title-input" class="input-field" type="text" placeholder="Title (e.g. GitHub)" required>
+      <input id="bm-url-input" class="input-field" type="text" placeholder="URL (e.g. https://github.com)" required>
+      <input id="bm-folder-input" class="input-field" type="text" placeholder="Folder (e.g. Web)" value="Bookmarks">
+      <button type="submit" class="btn btn-primary">Add Bookmark</button>
+    </form>
+
+    <div style="margin-bottom:14px;">
+      <input id="bm-filter-input" class="input-field" style="width:100%;" type="text" placeholder="Filter bookmarks...">
+    </div>
+
+    <div id="bm-list" class="bm-list"></div>
+  </main>
+
+  <script src="../assets/icons/icon-library.js"></script>
+  <script>
+    (function () {
+      const Icons = window.ChoogleIcons;
+      const internal = window.choogleInternal;
+      let bookmarks = [];
+
+      function esc(str) {
+        return String(str == null ? '' : str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      }
+
+      function initNav() {
+        const nav = [
+          { label: 'Home', url: 'choogle://home', icon: 'nav-home' },
+          { label: 'Bookmarks', url: 'choogle://bookmarks', icon: 'bookmark-filled', active: true },
+          { label: 'History', url: 'choogle://history', icon: 'history' },
+          { label: 'Downloads', url: 'choogle://downloads', icon: 'downloads' },
+          { label: 'Settings', url: 'choogle://settings', icon: 'settings' }
+        ];
+        document.getElementById('bm-nav').innerHTML = nav
+          .map((n) => `<a class="nav-pill${n.active ? ' active' : ''}" href="${n.url}">${Icons.svg(n.icon, { size: 14 })}<span>${n.label}</span></a>`)
+          .join('');
+        document.getElementById('bm-title-icon').innerHTML = Icons.svg('bookmark-filled', { size: 18 });
+      }
+
+      function renderList() {
+        const q = document.getElementById('bm-filter-input').value.trim().toLowerCase();
+        const filtered = bookmarks.filter((b) => !q || b.title.toLowerCase().includes(q) || b.url.toLowerCase().includes(q) || (b.folder || '').toLowerCase().includes(q));
+        const box = document.getElementById('bm-list');
+        if (filtered.length === 0) {
+          box.innerHTML = '<div class="surface-card" style="color:var(--text-muted);text-align:center;">No bookmarks match your filter.</div>';
+          return;
+        }
+        box.innerHTML = filtered
+          .map((b) => `
+            <div class="bm-row">
+              <span class="icon-badge">${Icons.svg(b.iconId || 'bookmark-filled', { size: 16 })}</span>
+              <div class="bm-meta">
+                <div class="bm-title">${esc(b.title)}</div>
+                <div class="bm-url">${esc(b.url)}</div>
+              </div>
+              <span class="pill-badge">${esc(b.folder || 'Bookmarks')}</span>
+              <button class="btn" data-open="${esc(b.url)}">Open</button>
+              <button class="btn btn-danger" data-del="${esc(b.id)}">Remove</button>
+            </div>
+          `)
+          .join('');
+      }
+
+      async function load() {
+        if (internal && internal.isChoogleBrowser) {
+          bookmarks = await internal.getBookmarks();
+        }
+        renderList();
+      }
+
+      document.getElementById('add-bm-form').addEventListener('submit', async (ev) => {
+        ev.preventDefault();
+        if (!(internal && internal.isChoogleBrowser)) return;
+        const title = document.getElementById('bm-title-input').value.trim();
+        const url = document.getElementById('bm-url-input').value.trim();
+        const folder = document.getElementById('bm-folder-input').value.trim();
+        await internal.addBookmark({ title, url, folder });
+        document.getElementById('bm-title-input').value = '';
+        document.getElementById('bm-url-input').value = '';
+        await load();
+      });
+
+      document.getElementById('bm-filter-input').addEventListener('input', renderList);
+
+      document.getElementById('bm-list').addEventListener('click', async (ev) => {
+        const openBtn = ev.target.closest('[data-open]');
+        if (openBtn) {
+          if (internal && internal.isChoogleBrowser) internal.navigate(openBtn.dataset.open);
+          else window.location.href = openBtn.dataset.open;
+          return;
+        }
+        const delBtn = ev.target.closest('[data-del]');
+        if (delBtn && internal && internal.isChoogleBrowser) {
+          await internal.removeBookmark(delBtn.dataset.del);
+          await load();
+        }
+      });
+
+      initNav();
+      load();
+    })();
+  </script>
+</body>
+</html>

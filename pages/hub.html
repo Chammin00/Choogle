@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choogle Application Hub</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/choogle-mark.svg">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .controls-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+      padding: 14px;
+      border-radius: 12px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+    }
+
+    .hub-search-box {
+      flex: 1;
+      min-width: 240px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      height: 36px;
+      padding: 0 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg-inset);
+    }
+
+    .hub-search-box input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--text-primary);
+      font-size: 13.5px;
+    }
+
+    .filter-pills {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .cat-pill {
+      height: 30px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--bg-panel);
+      color: var(--text-secondary);
+      font-size: 12.5px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cat-pill.active {
+      background: var(--navy);
+      border-color: var(--gold-bright);
+      color: var(--gold-bright);
+    }
+
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 14px;
+    }
+
+    .project-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color 0.14s ease, background 0.14s ease;
+    }
+
+    .project-card:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(223, 186, 115, 0.5);
+    }
+
+    .project-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .project-title-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .project-title-text {
+      min-width: 0;
+    }
+
+    .project-title-text h3 {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .project-title-text span {
+      font-size: 11.5px;
+      color: var(--gold);
+    }
+
+    .star-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .star-btn.starred {
+      color: var(--gold-bright);
+      border-color: rgba(223, 186, 115, 0.45);
+      background: rgba(223, 186, 115, 0.12);
+    }
+
+    .project-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .project-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(36, 48, 71, 0.65);
+    }
+
+    .project-path {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  </style>
+</head>
+<body class="with-cosmic">
+  <header class="page-topbar">
+    <a class="page-brand" href="choogle://home">
+      <img src="../assets/icons/choogle-32.png" alt="Choogle" width="22" height="22">
+      <span>Choogle Browser</span>
+    </a>
+    <nav class="page-nav" id="hub-topbar-nav"></nav>
+  </header>
+
+  <main class="page-container">
+    <div class="page-header">
+      <div class="page-title-group">
+        <h1>
+          <span class="icon-badge" id="hub-title-icon"></span>
+          <span>Application Hub</span>
+          <span class="pill-badge" id="hub-total-badge">0 Projects</span>
+        </h1>
+        <p>Unified launcher for Choogle Suite modules and all deduplicated Antigravity workspace projects.</p>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button id="hub-sync-btn" class="btn btn-primary">Resync Projects</button>
+      </div>
+    </div>
+
+    <div class="controls-bar">
+      <div class="hub-search-box">
+        <span id="hub-search-icon" style="color:var(--gold-bright);display:inline-flex;"></span>
+        <input id="hub-search-input" type="text" placeholder="Search apps, folders, categories, or keywords...">
+      </div>
+      <select id="hub-sort-select" class="input-field" aria-label="Sort projects">
+        <option value="name-asc">Sort: Name (A-Z)</option>
+        <option value="name-desc">Sort: Name (Z-A)</option>
+        <option value="category">Sort: Category</option>
+      </select>
+    </div>
+
+    <div id="hub-filter-pills" class="filter-pills"></div>
+    <div id="hub-apps-grid" class="apps-grid"></div>
+  </main>
+
+  <script src="../assets/icons/icon-library.js"></script>
+  <script src="hub.js"></script>
+</body>
+</html>

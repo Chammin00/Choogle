@@ -1,0 +1,1414 @@
+{
+    "version":  "2.0.0",
+    "generatedAt":  "2026-11-27T16:33:51Z",
+    "count":  77,
+    "suiteApps":  [
+                      {
+                          "id":  "choogle-home",
+                          "name":  "Choogle Home",
+                          "iconId":  "app-choogle",
+                          "description":  "Primary Choogle Browser new-tab search portal and quick-launch command surface.",
+                          "category":  "suite",
+                          "title":  "Choogle Search \u0026 Workspace Home",
+                          "url":  "choogle://home"
+                      },
+                      {
+                          "id":  "choogle-hub",
+                          "name":  "App Hub",
+                          "iconId":  "app-hub",
+                          "description":  "Unified launcher and discovery directory for all Antigravity projects.",
+                          "category":  "suite",
+                          "title":  "Choogle Application Hub",
+                          "url":  "choogle://hub"
+                      },
+                      {
+                          "id":  "choogle-icons",
+                          "name":  "Icon Studio",
+                          "iconId":  "app-icons",
+                          "description":  "Browse, customize, recolor, and export the bespoke Choogle SVG and PNG icon pack.",
+                          "category":  "suite",
+                          "title":  "Choogle Custom Icon Studio",
+                          "url":  "choogle://icons"
+                      },
+                      {
+                          "id":  "choogle-chai",
+                          "name":  "chAI",
+                          "iconId":  "app-chai",
+                          "description":  "Multi-session conversational AI workspace built into Choogle.",
+                          "category":  "suite",
+                          "title":  "chAI Personal AI Assistant",
+                          "url":  "choogle://app/chai.html"
+                      },
+                      {
+                          "id":  "choogle-tasks",
+                          "name":  "Tasks",
+                          "iconId":  "app-tasks",
+                          "description":  "Local Kanban project board for tracking engineering work.",
+                          "category":  "suite",
+                          "title":  "Choogle Kanban Tasks",
+                          "url":  "choogle://app/tasks.html"
+                      },
+                      {
+                          "id":  "choogle-notepad",
+                          "name":  "Notepad",
+                          "iconId":  "app-notepad",
+                          "description":  "Persistent browser notebook and quick technical scratchpad.",
+                          "category":  "suite",
+                          "title":  "Choogle Scratchpad \u0026 Notes",
+                          "url":  "choogle://app/notepad.html"
+                      },
+                      {
+                          "id":  "choogle-webstore",
+                          "name":  "Web Store",
+                          "iconId":  "app-webstore",
+                          "description":  "Extensions, overlays, and enhancements directory for Choogle.",
+                          "category":  "suite",
+                          "title":  "Choogle Extensions \u0026 Modules",
+                          "url":  "choogle://app/webstore.html"
+                      },
+                      {
+                          "id":  "choogle-outages",
+                          "name":  "Outages",
+                          "iconId":  "app-outages",
+                          "description":  "Live cloud and ISP telemetry radar.",
+                          "category":  "suite",
+                          "title":  "Outages \u0026 Service Status Radar",
+                          "url":  "choogle://app/outages.html"
+                      },
+                      {
+                          "id":  "choogle-hacked",
+                          "name":  "HackedOut",
+                          "iconId":  "app-hacked",
+                          "description":  "Security breach intelligence and incident feed monitor.",
+                          "category":  "suite",
+                          "title":  "HackedOut Threat Monitor",
+                          "url":  "choogle://app/hacked.html"
+                      },
+                      {
+                          "id":  "choogle-rhcsa",
+                          "name":  "RHCSA Lab",
+                          "iconId":  "app-rhcsa",
+                          "description":  "RHEL 9 administration drills and CLI readiness console.",
+                          "category":  "labs",
+                          "title":  "RHCSA Linux Practice Lab",
+                          "url":  "choogle://app/rhcsa.html"
+                      },
+                      {
+                          "id":  "choogle-vmware",
+                          "name":  "VMware Prep",
+                          "iconId":  "app-vmware",
+                          "description":  "vSphere, HA/DRS, and virtualization study workbench.",
+                          "category":  "labs",
+                          "title":  "VMware Infrastructure Lab",
+                          "url":  "choogle://app/vmware.html"
+                      },
+                      {
+                          "id":  "choogle-ccna",
+                          "name":  "CCNA Lab",
+                          "iconId":  "app-ccna",
+                          "description":  "Subnetting, routing, and packet switching practice lab.",
+                          "category":  "labs",
+                          "title":  "CCNA Networking Workbench",
+                          "url":  "choogle://app/ccna.html"
+                      },
+                      {
+                          "id":  "choogle-dlm",
+                          "name":  "DLM Storage",
+                          "iconId":  "app-dlm",
+                          "description":  "Enterprise storage tiering and retention simulator.",
+                          "category":  "labs",
+                          "title":  "Data Lifecycle Management Lab",
+                          "url":  "choogle://app/dlm.html"
+                      },
+                      {
+                          "id":  "choogle-powershell",
+                          "name":  "PowerShell",
+                          "iconId":  "app-powershell",
+                          "description":  "Windows automation, cmdlet reference, and scripting studio.",
+                          "category":  "labs",
+                          "title":  "PowerShell Automation Lab",
+                          "url":  "choogle://app/powershell.html"
+                      }
+                  ],
+    "projects":  [
+                     {
+                         "id":  "1st-grade-learning",
+                         "folder":  "1st grade learning",
+                         "name":  "1st Grade",
+                         "title":  "1st Grade Learning \u0026 Typing Trainer",
+                         "category":  "docs",
+                         "categoryLabel":  "Learning \u0026 Docs",
+                         "iconId":  "cat-edu",
+                         "entry":  "../1st grade learning/index.html",
+                         "choogleUrl":  "choogle://projects/1st%20grade%20learning/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "1st grade",
+                                            "typing trainer",
+                                            "phonics",
+                                            "learning",
+                                            "1st grade learning"
+                                        ],
+                         "snippet":  "Interactive educational exercises for young learners including elementary phonics drills and keyboard typing trainer."
+                     },
+                     {
+                         "id":  "3d-images",
+                         "folder":  "3d images",
+                         "name":  "3d images",
+                         "title":  "3d images",
+                         "category":  "games",
+                         "categoryLabel":  "3D \u0026 Spatial",
+                         "iconId":  "cat-vr",
+                         "entry":  "../3d images/index.html",
+                         "choogleUrl":  "choogle://projects/3d%20images/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "3d images"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/3d images."
+                     },
+                     {
+                         "id":  "aac",
+                         "folder":  "AAC",
+                         "name":  "AAC",
+                         "title":  "AAC",
+                         "category":  "media",
+                         "categoryLabel":  "Media \u0026 Audio",
+                         "iconId":  "cat-media",
+                         "entry":  "../AAC/index.html",
+                         "choogleUrl":  "choogle://projects/AAC/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "aac"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/AAC."
+                     },
+                     {
+                         "id":  "agent-365",
+                         "folder":  "agent 365",
+                         "name":  "agent 365",
+                         "title":  "agent 365",
+                         "category":  "ai",
+                         "categoryLabel":  "AI \u0026 Agents",
+                         "iconId":  "cat-ai",
+                         "entry":  "../agent 365/agent365/web/index.html",
+                         "choogleUrl":  "choogle://projects/agent%20365/agent365/web/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "agent 365"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/agent 365."
+                     },
+                     {
+                         "id":  "ai-defense",
+                         "folder":  "ai defense",
+                         "name":  "ai defense",
+                         "title":  "ai defense",
+                         "category":  "security",
+                         "categoryLabel":  "Security \u0026 Defense",
+                         "iconId":  "cat-security",
+                         "entry":  "../ai defense/index.html",
+                         "choogleUrl":  "choogle://projects/ai%20defense/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "ai defense"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/ai defense."
+                     },
+                     {
+                         "id":  "ai-models-tools-from-threads",
+                         "folder":  "ai models tools from threads",
+                         "name":  "ai models tools from threads",
+                         "title":  "ai models tools from threads",
+                         "category":  "games",
+                         "categoryLabel":  "Games \u0026 Sims",
+                         "iconId":  "cat-game",
+                         "entry":  "../ai models tools from threads/index.html",
+                         "choogleUrl":  "choogle://projects/ai%20models%20tools%20from%20threads/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "ai models tools from threads"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/ai models tools from threads."
+                     },
+                     {
+                         "id":  "anime",
+                         "folder":  "anime",
+                         "name":  "anime",
+                         "title":  "anime",
+                         "category":  "media",
+                         "categoryLabel":  "Media \u0026 Audio",
+                         "iconId":  "cat-media",
+                         "entry":  "../anime/index.html",
+                         "choogleUrl":  "choogle://projects/anime/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "anime"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/anime."
+                     },
+                     {
+                         "id":  "architect",
+                         "folder":  "architect",
+                         "name":  "architect",
+                         "title":  "architect",
+                         "category":  "utilities",
+                         "categoryLabel":  "Productivity \u0026 Tools",
+                         "iconId":  "cat-tools",
+                         "entry":  "../architect/index.html",
+                         "choogleUrl":  "choogle://projects/architect/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "architect"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/architect."
+                     },
+                     {
+                         "id":  "automate-my-day",
+                         "folder":  "automate my day",
+                         "name":  "automate my day",
+                         "title":  "automate my day",
+                         "category":  "utilities",
+                         "categoryLabel":  "Productivity \u0026 Tools",
+                         "iconId":  "cat-tools",
+                         "entry":  "../automate my day/README.md",
+                         "choogleUrl":  "choogle://projects/automate%20my%20day/README.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "automate my day"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/automate my day."
+                     },
+                     {
+                         "id":  "aws",
+                         "folder":  "aws",
+                         "name":  "aws",
+                         "title":  "aws",
+                         "category":  "systems",
+                         "categoryLabel":  "Cloud \u0026 Infra",
+                         "iconId":  "cat-cloud",
+                         "entry":  "../aws/index.html",
+                         "choogleUrl":  "choogle://projects/aws/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "aws"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/aws."
+                     },
+                     {
+                         "id":  "backgrounds-for-gaming-apps",
+                         "folder":  "backgrounds for gaming,apps",
+                         "name":  "backgrounds for gaming,apps",
+                         "title":  "backgrounds for gaming,apps",
+                         "category":  "utilities",
+                         "categoryLabel":  "Productivity \u0026 Tools",
+                         "iconId":  "cat-tools",
+                         "entry":  "../backgrounds for gaming,apps/index.html",
+                         "choogleUrl":  "choogle://projects/backgrounds%20for%20gaming%2Capps/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "backgrounds for gaming,apps"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/backgrounds for gaming,apps."
+                     },
+                     {
+                         "id":  "baselines",
+                         "folder":  "baselines",
+                         "name":  "baselines",
+                         "title":  "baselines",
+                         "category":  "systems",
+                         "categoryLabel":  "Developer Tools",
+                         "iconId":  "cat-code",
+                         "entry":  "../baselines/index.html",
+                         "choogleUrl":  "choogle://projects/baselines/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "baselines"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/baselines."
+                     },
+                     {
+                         "id":  "bookmark-favorites",
+                         "folder":  "Bookmark-favorites",
+                         "name":  "Bookmark favorites",
+                         "title":  "Bookmark favorites",
+                         "category":  "docs",
+                         "categoryLabel":  "Learning \u0026 Docs",
+                         "iconId":  "cat-edu",
+                         "entry":  "../Bookmark-favorites/antigravity-all-projects-bookmarks.html",
+                         "choogleUrl":  "choogle://projects/Bookmark-favorites/antigravity-all-projects-bookmarks.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "bookmark favorites",
+                                            "bookmark-favorites"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/Bookmark-favorites."
+                     },
+                     {
+                         "id":  "bot-finder",
+                         "folder":  "bot finder",
+                         "name":  "BotFinder",
+                         "title":  "BotFinder \u0026 RageShield Social Media Intelligence",
+                         "category":  "security",
+                         "categoryLabel":  "Security \u0026 Defense",
+                         "iconId":  "cat-security",
+                         "entry":  "../bot finder/dashboard/index.html",
+                         "choogleUrl":  "choogle://projects/bot%20finder/dashboard/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "bot finder",
+                                            "rageshield",
+                                            "bot detection"
+                                        ],
+                         "snippet":  "Real-time social media bot \u0026 ragebait intelligence platform with live feed monitor, profile deep scan, and Chrome extension."
+                     },
+                     {
+                         "id":  "cert-training-guide",
+                         "folder":  "Cert Training Guide",
+                         "name":  "Cert Training Guide",
+                         "title":  "Cert Training Guide",
+                         "category":  "docs",
+                         "categoryLabel":  "Learning \u0026 Docs",
+                         "iconId":  "cat-edu",
+                         "entry":  "../Cert Training Guide/index.html",
+                         "choogleUrl":  "choogle://projects/Cert%20Training%20Guide/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "cert training guide"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/Cert Training Guide."
+                     },
+                     {
+                         "id":  "chancenvaders",
+                         "folder":  "chancenvaders",
+                         "name":  "chancenvaders",
+                         "title":  "chancenvaders",
+                         "category":  "games",
+                         "categoryLabel":  "Games \u0026 Sims",
+                         "iconId":  "cat-game",
+                         "entry":  "../chancenvaders/index.html",
+                         "choogleUrl":  "choogle://projects/chancenvaders/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "chancenvaders"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/chancenvaders."
+                     },
+                     {
+                         "id":  "chess",
+                         "folder":  "chess",
+                         "name":  "Chess",
+                         "title":  "Interactive Browser Chess Game",
+                         "category":  "games",
+                         "categoryLabel":  "Games \u0026 Sims",
+                         "iconId":  "cat-game",
+                         "entry":  "../chess/index.html",
+                         "choogleUrl":  "choogle://projects/chess/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "chess",
+                                            "chess game",
+                                            "chessboard"
+                                        ],
+                         "snippet":  "Interactive browser chess game with responsive board, piece rule validation, and move history."
+                     },
+                     {
+                         "id":  "chrome-tab-and-bar",
+                         "folder":  "chrome tab and bar",
+                         "name":  "chrome tab and bar",
+                         "title":  "chrome tab and bar",
+                         "category":  "games",
+                         "categoryLabel":  "Games \u0026 Sims",
+                         "iconId":  "cat-game",
+                         "entry":  "../chrome tab and bar/index.html",
+                         "choogleUrl":  "choogle://projects/chrome%20tab%20and%20bar/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "chrome tab and bar"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/chrome tab and bar."
+                     },
+                     {
+                         "id":  "comptia-exam-simulator",
+                         "folder":  "comptia exam simulator",
+                         "name":  "Security+",
+                         "title":  "CompTIA Security+ SY0-701 Exam Simulator",
+                         "category":  "security",
+                         "categoryLabel":  "Security \u0026 Defense",
+                         "iconId":  "cat-security",
+                         "entry":  "../comptia exam simulator/index.html",
+                         "choogleUrl":  "choogle://projects/comptia%20exam%20simulator/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "comptia",
+                                            "security+",
+                                            "exam simulator",
+                                            "pbq",
+                                            "comptia exam simulator"
+                                        ],
+                         "snippet":  "Comprehensive CompTIA Security+ SY0-701 exam simulator with practice engines, PBQ engine, flashcards, and mock exam PDFs."
+                     },
+                     {
+                         "id":  "deploy",
+                         "folder":  "deploy",
+                         "name":  "deploy",
+                         "title":  "deploy",
+                         "category":  "systems",
+                         "categoryLabel":  "Cloud \u0026 Infra",
+                         "iconId":  "cat-cloud",
+                         "entry":  "../deploy/index.html",
+                         "choogleUrl":  "choogle://projects/deploy/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "deploy"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/deploy."
+                     },
+                     {
+                         "id":  "desktopscreensaver",
+                         "folder":  "desktopscreensaver",
+                         "name":  "Screensaver",
+                         "title":  "Cosmic Cityscape Interactive Screensaver",
+                         "category":  "media",
+                         "categoryLabel":  "Media \u0026 Audio",
+                         "iconId":  "cat-media",
+                         "entry":  "../desktopscreensaver/Cosmic_Cityscape.html",
+                         "choogleUrl":  "choogle://projects/desktopscreensaver/Cosmic_Cityscape.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "screensaver",
+                                            "cosmic cityscape",
+                                            "ambient",
+                                            "desktopscreensaver"
+                                        ],
+                         "snippet":  "Atmospheric cosmic cityscape canvas screensavers rendered dynamically across seasons (Spring, Summer, Autumn, Winter, Rain)."
+                     },
+                     {
+                         "id":  "docker",
+                         "folder":  "docker",
+                         "name":  "docker",
+                         "title":  "docker",
+                         "category":  "systems",
+                         "categoryLabel":  "Cloud \u0026 Infra",
+                         "iconId":  "cat-cloud",
+                         "entry":  "../docker/README.md",
+                         "choogleUrl":  "choogle://projects/docker/README.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "docker"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/docker."
+                     },
+                     {
+                         "id":  "email-organizer",
+                         "folder":  "email organizer",
+                         "name":  "email organizer",
+                         "title":  "email organizer",
+                         "category":  "utilities",
+                         "categoryLabel":  "Productivity \u0026 Tools",
+                         "iconId":  "cat-tools",
+                         "entry":  "../email organizer/README.md",
+                         "choogleUrl":  "choogle://projects/email%20organizer/README.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "email organizer"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/email organizer."
+                     },
+                     {
+                         "id":  "foldscape",
+                         "folder":  "foldscape",
+                         "name":  "foldscape",
+                         "title":  "foldscape",
+                         "category":  "games",
+                         "categoryLabel":  "3D \u0026 Spatial",
+                         "iconId":  "cat-vr",
+                         "entry":  "../foldscape/studio/index.html",
+                         "choogleUrl":  "choogle://projects/foldscape/studio/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "foldscape"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/foldscape."
+                     },
+                     {
+                         "id":  "game-library",
+                         "folder":  "Game Library",
+                         "name":  "Game Library",
+                         "title":  "Game Library",
+                         "category":  "games",
+                         "categoryLabel":  "Games \u0026 Sims",
+                         "iconId":  "cat-game",
+                         "entry":  "../Game Library/index.html",
+                         "choogleUrl":  "choogle://projects/Game%20Library/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "game library"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/Game Library."
+                     },
+                     {
+                         "id":  "game-mods",
+                         "folder":  "game mods",
+                         "name":  "game mods",
+                         "title":  "game mods",
+                         "category":  "games",
+                         "categoryLabel":  "Games \u0026 Sims",
+                         "iconId":  "cat-game",
+                         "entry":  "../game mods/air_hockey_arcade.html",
+                         "choogleUrl":  "choogle://projects/game%20mods/air_hockey_arcade.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "game mods"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/game mods."
+                     },
+                     {
+                         "id":  "game-review",
+                         "folder":  "game review",
+                         "name":  "game review",
+                         "title":  "game review",
+                         "category":  "games",
+                         "categoryLabel":  "Games \u0026 Sims",
+                         "iconId":  "cat-game",
+                         "entry":  "../game review/a_plague_tale_resonance_review_script.md",
+                         "choogleUrl":  "choogle://projects/game%20review/a_plague_tale_resonance_review_script.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "game review"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/game review."
+                     },
+                     {
+                         "id":  "game-studio",
+                         "folder":  "game studio",
+                         "name":  "game studio",
+                         "title":  "game studio",
+                         "category":  "games",
+                         "categoryLabel":  "Games \u0026 Sims",
+                         "iconId":  "cat-game",
+                         "entry":  "../game studio/index.html",
+                         "choogleUrl":  "choogle://projects/game%20studio/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "game studio"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/game studio."
+                     },
+                     {
+                         "id":  "github-portfolio",
+                         "folder":  "Github Portfolio",
+                         "name":  "Github Portfolio",
+                         "title":  "Github Portfolio",
+                         "category":  "systems",
+                         "categoryLabel":  "Developer Tools",
+                         "iconId":  "cat-code",
+                         "entry":  "../Github Portfolio/index.html",
+                         "choogleUrl":  "choogle://projects/Github%20Portfolio/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "github portfolio"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/Github Portfolio."
+                     },
+                     {
+                         "id":  "google-drive-organizer",
+                         "folder":  "google drive organizer",
+                         "name":  "google drive organizer",
+                         "title":  "google drive organizer",
+                         "category":  "utilities",
+                         "categoryLabel":  "Productivity \u0026 Tools",
+                         "iconId":  "cat-tools",
+                         "entry":  "../google drive organizer/public/index.html",
+                         "choogleUrl":  "choogle://projects/google%20drive%20organizer/public/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "google drive organizer"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/google drive organizer."
+                     },
+                     {
+                         "id":  "google-flow-movies",
+                         "folder":  "Google Flow- Movies",
+                         "name":  "Google Flow  Movies",
+                         "title":  "Google Flow  Movies",
+                         "category":  "media",
+                         "categoryLabel":  "Media \u0026 Audio",
+                         "iconId":  "cat-media",
+                         "entry":  "../Google Flow- Movies/dead-channel-13/production_bible.md",
+                         "choogleUrl":  "choogle://projects/Google%20Flow-%20Movies/dead-channel-13/production_bible.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "google flow  movies",
+                                            "google flow- movies"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/Google Flow- Movies."
+                     },
+                     {
+                         "id":  "google-flow-music",
+                         "folder":  "Google Flow-music",
+                         "name":  "Google Flow music",
+                         "title":  "Google Flow music",
+                         "category":  "media",
+                         "categoryLabel":  "Media \u0026 Audio",
+                         "iconId":  "cat-media",
+                         "entry":  "../Google Flow-music/dashboard/index.html",
+                         "choogleUrl":  "choogle://projects/Google%20Flow-music/dashboard/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "google flow music",
+                                            "google flow-music"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/Google Flow-music."
+                     },
+                     {
+                         "id":  "how-to-train-your-ai",
+                         "folder":  "How to train your AI",
+                         "name":  "How to train your AI",
+                         "title":  "How to train your AI",
+                         "category":  "ai",
+                         "categoryLabel":  "AI \u0026 Agents",
+                         "iconId":  "cat-ai",
+                         "entry":  "../How to train your AI/README.md",
+                         "choogleUrl":  "choogle://projects/How%20to%20train%20your%20AI/README.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "how to train your ai"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/How to train your AI."
+                     },
+                     {
+                         "id":  "human-motion-inputs",
+                         "folder":  "Human Motion inputs",
+                         "name":  "Human Motion inputs",
+                         "title":  "Human Motion inputs",
+                         "category":  "games",
+                         "categoryLabel":  "3D \u0026 Spatial",
+                         "iconId":  "cat-vr",
+                         "entry":  "../Human Motion inputs/src/motion_inputs/static/game.html",
+                         "choogleUrl":  "choogle://projects/Human%20Motion%20inputs/src/motion_inputs/static/game.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "human motion inputs"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/Human Motion inputs."
+                     },
+                     {
+                         "id":  "increase-my-bing-score",
+                         "folder":  "increase my bing score",
+                         "name":  "increase my bing score",
+                         "title":  "increase my bing score",
+                         "category":  "utilities",
+                         "categoryLabel":  "Productivity \u0026 Tools",
+                         "iconId":  "cat-tools",
+                         "entry":  "../increase my bing score/README.md",
+                         "choogleUrl":  "choogle://projects/increase%20my%20bing%20score/README.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "increase my bing score"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/increase my bing score."
+                     },
+                     {
+                         "id":  "index-folder",
+                         "folder":  "index folder",
+                         "name":  "index folder",
+                         "title":  "index folder",
+                         "category":  "utilities",
+                         "categoryLabel":  "Mobile \u0026 Devices",
+                         "iconId":  "cat-mobile",
+                         "entry":  "../index folder/index.html",
+                         "choogleUrl":  "choogle://projects/index%20folder/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "index folder"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/index folder."
+                     },
+                     {
+                         "id":  "is-this-ai",
+                         "folder":  "is this AI",
+                         "name":  "is this AI",
+                         "title":  "is this AI",
+                         "category":  "ai",
+                         "categoryLabel":  "AI \u0026 Agents",
+                         "iconId":  "cat-ai",
+                         "entry":  "../is this AI/is this ai mobile/index.html",
+                         "choogleUrl":  "choogle://projects/is%20this%20AI/is%20this%20ai%20mobile/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "is this ai"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/is this AI."
+                     },
+                     {
+                         "id":  "maps-and-wikepedia",
+                         "folder":  "Maps and Wikepedia",
+                         "name":  "Maps and Wikepedia",
+                         "title":  "Maps and Wikepedia",
+                         "category":  "docs",
+                         "categoryLabel":  "Learning \u0026 Docs",
+                         "iconId":  "cat-edu",
+                         "entry":  "../Maps and Wikepedia/README.md",
+                         "choogleUrl":  "choogle://projects/Maps%20and%20Wikepedia/README.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "maps and wikepedia"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/Maps and Wikepedia."
+                     },
+                     {
+                         "id":  "mcp",
+                         "folder":  "MCP",
+                         "name":  "MCP",
+                         "title":  "MCP",
+                         "category":  "systems",
+                         "categoryLabel":  "Developer Tools",
+                         "iconId":  "cat-code",
+                         "entry":  "../MCP/README.md",
+                         "choogleUrl":  "choogle://projects/MCP/README.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "mcp"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/MCP."
+                     },
+                     {
+                         "id":  "media-player",
+                         "folder":  "media player",
+                         "name":  "media player",
+                         "title":  "media player",
+                         "category":  "media",
+                         "categoryLabel":  "Media \u0026 Audio",
+                         "iconId":  "cat-media",
+                         "entry":  "../media player/index.html",
+                         "choogleUrl":  "choogle://projects/media%20player/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "media player"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/media player."
+                     },
+                     {
+                         "id":  "mobile-game",
+                         "folder":  "mobile game",
+                         "name":  "mobile game",
+                         "title":  "mobile game",
+                         "category":  "games",
+                         "categoryLabel":  "Games \u0026 Sims",
+                         "iconId":  "cat-game",
+                         "entry":  "../mobile game/AGENTS.md",
+                         "choogleUrl":  "choogle://projects/mobile%20game/AGENTS.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "mobile game"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/mobile game."
+                     },
+                     {
+                         "id":  "monopoly",
+                         "folder":  "monopoly",
+                         "name":  "Monopoly",
+                         "title":  "Interactive Monopoly Board Game",
+                         "category":  "games",
+                         "categoryLabel":  "Games \u0026 Sims",
+                         "iconId":  "cat-game",
+                         "entry":  "../monopoly/index.html",
+                         "choogleUrl":  "choogle://projects/monopoly/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "monopoly",
+                                            "board game",
+                                            "monopoly game"
+                                        ],
+                         "snippet":  "Interactive browser Monopoly board game featuring animated dice rolls, property deeds, bank ledger, player tokens, and real estate trading mechanics."
+                     },
+                     {
+                         "id":  "my-custom-gui",
+                         "folder":  "My Custom Gui",
+                         "name":  "My Custom Gui",
+                         "title":  "My Custom Gui",
+                         "category":  "utilities",
+                         "categoryLabel":  "Productivity \u0026 Tools",
+                         "iconId":  "cat-tools",
+                         "entry":  "../My Custom Gui/index.html",
+                         "choogleUrl":  "choogle://projects/My%20Custom%20Gui/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "my custom gui"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/My Custom Gui."
+                     },
+                     {
+                         "id":  "my-planetarium",
+                         "folder":  "My Planetarium",
+                         "name":  "My Planetarium",
+                         "title":  "My Planetarium",
+                         "category":  "games",
+                         "categoryLabel":  "Games \u0026 Sims",
+                         "iconId":  "cat-game",
+                         "entry":  "../My Planetarium/index.html",
+                         "choogleUrl":  "choogle://projects/My%20Planetarium/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "my planetarium"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/My Planetarium."
+                     },
+                     {
+                         "id":  "my-security",
+                         "folder":  "MY Security",
+                         "name":  "Sentinel",
+                         "title":  "Sentinel PC Security Guard \u0026 Auditor",
+                         "category":  "security",
+                         "categoryLabel":  "Security \u0026 Defense",
+                         "iconId":  "cat-security",
+                         "entry":  "../MY Security/wwwroot/index.html",
+                         "choogleUrl":  "choogle://projects/MY%20Security/wwwroot/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "sentinel",
+                                            "my security",
+                                            "pc security",
+                                            "audit"
+                                        ],
+                         "snippet":  "Sentinel PC Security Guard \u0026 Auditor web dashboard with real-time security score, vulnerability remediation drawer, and PowerShell status collectors."
+                     },
+                     {
+                         "id":  "my-social-media",
+                         "folder":  "My Social Media",
+                         "name":  "My Social Media",
+                         "title":  "My Social Media",
+                         "category":  "media",
+                         "categoryLabel":  "Media \u0026 Audio",
+                         "iconId":  "cat-media",
+                         "entry":  "../My Social Media/index.html",
+                         "choogleUrl":  "choogle://projects/My%20Social%20Media/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "my social media"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/My Social Media."
+                     },
+                     {
+                         "id":  "note-taker",
+                         "folder":  "note taker",
+                         "name":  "Notes Hub",
+                         "title":  "Study Notes Hub \u0026 Cheatsheet Library",
+                         "category":  "security",
+                         "categoryLabel":  "Security \u0026 Defense",
+                         "iconId":  "cat-security",
+                         "entry":  "../note taker/README.md",
+                         "choogleUrl":  "choogle://projects/note%20taker/README.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "note taker",
+                                            "study notes",
+                                            "security+ notes"
+                                        ],
+                         "snippet":  "CompTIA Security+ SY0-701 study notes, cheatsheets, and session documentation."
+                     },
+                     {
+                         "id":  "ollama",
+                         "folder":  "ollama",
+                         "name":  "ollama",
+                         "title":  "ollama",
+                         "category":  "ai",
+                         "categoryLabel":  "AI \u0026 Agents",
+                         "iconId":  "cat-ai",
+                         "entry":  "../ollama/index.html",
+                         "choogleUrl":  "choogle://projects/ollama/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "ollama"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/ollama."
+                     },
+                     {
+                         "id":  "onedrive-cleanup",
+                         "folder":  "onedrive cleanup",
+                         "name":  "onedrive cleanup",
+                         "title":  "onedrive cleanup",
+                         "category":  "utilities",
+                         "categoryLabel":  "Productivity \u0026 Tools",
+                         "iconId":  "cat-tools",
+                         "entry":  "../onedrive cleanup/README.md",
+                         "choogleUrl":  "choogle://projects/onedrive%20cleanup/README.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "onedrive cleanup"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/onedrive cleanup."
+                     },
+                     {
+                         "id":  "onestop",
+                         "folder":  "onestop",
+                         "name":  "OneStop",
+                         "title":  "OneStop Media Player \u0026 Capture Server",
+                         "category":  "media",
+                         "categoryLabel":  "Media \u0026 Audio",
+                         "iconId":  "cat-media",
+                         "entry":  "../onestop/index.html",
+                         "choogleUrl":  "choogle://projects/onestop/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "onestop",
+                                            "media server",
+                                            "video player"
+                                        ],
+                         "snippet":  "PowerShell-backed local HTTP streaming server, screen capture viewer, and video player."
+                     },
+                     {
+                         "id":  "openshift",
+                         "folder":  "openshift",
+                         "name":  "openshift",
+                         "title":  "openshift",
+                         "category":  "systems",
+                         "categoryLabel":  "Cloud \u0026 Infra",
+                         "iconId":  "cat-cloud",
+                         "entry":  "../openshift/README.md",
+                         "choogleUrl":  "choogle://projects/openshift/README.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "openshift"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/openshift."
+                     },
+                     {
+                         "id":  "personal-assistant",
+                         "folder":  "personal assistant",
+                         "name":  "personal assistant",
+                         "title":  "personal assistant",
+                         "category":  "ai",
+                         "categoryLabel":  "AI \u0026 Agents",
+                         "iconId":  "cat-ai",
+                         "entry":  "../personal assistant/ui/index.html",
+                         "choogleUrl":  "choogle://projects/personal%20assistant/ui/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "personal assistant"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/personal assistant."
+                     },
+                     {
+                         "id":  "personal-training",
+                         "folder":  "personal training",
+                         "name":  "personal training",
+                         "title":  "personal training",
+                         "category":  "media",
+                         "categoryLabel":  "Media \u0026 Audio",
+                         "iconId":  "cat-media",
+                         "entry":  "../personal training/README.md",
+                         "choogleUrl":  "choogle://projects/personal%20training/README.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "personal training"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/personal training."
+                     },
+                     {
+                         "id":  "plugins",
+                         "folder":  "Plugins",
+                         "name":  "Plugins",
+                         "title":  "Plugins",
+                         "category":  "systems",
+                         "categoryLabel":  "Developer Tools",
+                         "iconId":  "cat-code",
+                         "entry":  "../Plugins/chrome-pulse-task-manager/popup/popup.html",
+                         "choogleUrl":  "choogle://projects/Plugins/chrome-pulse-task-manager/popup/popup.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "plugins"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/Plugins."
+                     },
+                     {
+                         "id":  "popular-github-projects",
+                         "folder":  "Popular Github Projects",
+                         "name":  "Popular Github Projects",
+                         "title":  "Popular Github Projects",
+                         "category":  "systems",
+                         "categoryLabel":  "Developer Tools",
+                         "iconId":  "cat-code",
+                         "entry":  "../Popular Github Projects/public/index.html",
+                         "choogleUrl":  "choogle://projects/Popular%20Github%20Projects/public/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "popular github projects"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/Popular Github Projects."
+                     },
+                     {
+                         "id":  "portfolio",
+                         "folder":  "portfolio",
+                         "name":  "portfolio",
+                         "title":  "portfolio",
+                         "category":  "utilities",
+                         "categoryLabel":  "Productivity \u0026 Tools",
+                         "iconId":  "cat-tools",
+                         "entry":  "../portfolio/index.html",
+                         "choogleUrl":  "choogle://projects/portfolio/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "portfolio"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/portfolio."
+                     },
+                     {
+                         "id":  "project-refinement",
+                         "folder":  "project refinement",
+                         "name":  "project refinement",
+                         "title":  "project refinement",
+                         "category":  "utilities",
+                         "categoryLabel":  "Productivity \u0026 Tools",
+                         "iconId":  "cat-tools",
+                         "entry":  "../project refinement/README.md",
+                         "choogleUrl":  "choogle://projects/project%20refinement/README.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "project refinement"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/project refinement."
+                     },
+                     {
+                         "id":  "rea",
+                         "folder":  "REA",
+                         "name":  "REA",
+                         "title":  "REA",
+                         "category":  "utilities",
+                         "categoryLabel":  "Finance \u0026 Markets",
+                         "iconId":  "cat-finance",
+                         "entry":  "../REA/README.md",
+                         "choogleUrl":  "choogle://projects/REA/README.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "rea"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/REA."
+                     },
+                     {
+                         "id":  "record-my-gameplay",
+                         "folder":  "Record my Gameplay",
+                         "name":  "Record my Gameplay",
+                         "title":  "Record my Gameplay",
+                         "category":  "games",
+                         "categoryLabel":  "Games \u0026 Sims",
+                         "iconId":  "cat-game",
+                         "entry":  "../Record my Gameplay/README.md",
+                         "choogleUrl":  "choogle://projects/Record%20my%20Gameplay/README.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "record my gameplay"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/Record my Gameplay."
+                     },
+                     {
+                         "id":  "resume",
+                         "folder":  "resume",
+                         "name":  "resume",
+                         "title":  "resume",
+                         "category":  "docs",
+                         "categoryLabel":  "Learning \u0026 Docs",
+                         "iconId":  "cat-edu",
+                         "entry":  "../resume/Chase_Hamilton_Resume.html",
+                         "choogleUrl":  "choogle://projects/resume/Chase_Hamilton_Resume.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "resume"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/resume."
+                     },
+                     {
+                         "id":  "rhcsa-exam200",
+                         "folder":  "RHCSA Exam200",
+                         "name":  "RHCSA Sim",
+                         "title":  "RHCSA Linux Terminal Practice Simulator",
+                         "category":  "systems",
+                         "categoryLabel":  "Systems \u0026 Labs",
+                         "iconId":  "cat-systems",
+                         "entry":  "../RHCSA Exam200/RHCSA_Terminal_Practice.html",
+                         "choogleUrl":  "choogle://projects/RHCSA%20Exam200/RHCSA_Terminal_Practice.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "rhcsa practice",
+                                            "terminal simulator",
+                                            "rhcsa sim",
+                                            "rhcsa exam200"
+                                        ],
+                         "snippet":  "Red Hat Certified System Administrator study suite with interactive browser terminal practice simulator."
+                     },
+                     {
+                         "id":  "sandbox",
+                         "folder":  "sandbox",
+                         "name":  "Sandbox",
+                         "title":  "Antigravity Projects Sandbox Studio",
+                         "category":  "games",
+                         "categoryLabel":  "Games \u0026 Sims",
+                         "iconId":  "cat-game",
+                         "entry":  "../sandbox/index.html",
+                         "choogleUrl":  "choogle://projects/sandbox/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "sandbox",
+                                            "testbed",
+                                            "testing studio"
+                                        ],
+                         "snippet":  "Centralized preview, diagnostic, and staging testbed environment for all Antigravity projects."
+                     },
+                     {
+                         "id":  "scary-water-slides",
+                         "folder":  "Scary Water Slides",
+                         "name":  "Scary Water Slides",
+                         "title":  "Scary Water Slides",
+                         "category":  "games",
+                         "categoryLabel":  "Games \u0026 Sims",
+                         "iconId":  "cat-game",
+                         "entry":  "../Scary Water Slides/simulator/index.html",
+                         "choogleUrl":  "choogle://projects/Scary%20Water%20Slides/simulator/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "scary water slides"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/Scary Water Slides."
+                     },
+                     {
+                         "id":  "screen-reader",
+                         "folder":  "screen reader",
+                         "name":  "ScreenReader",
+                         "title":  "Screen Reader Desktop OCR \u0026 TTS Companion",
+                         "category":  "docs",
+                         "categoryLabel":  "Learning \u0026 Docs",
+                         "iconId":  "cat-edu",
+                         "entry":  "../screen reader/README.md",
+                         "choogleUrl":  "choogle://projects/screen%20reader/README.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "screen reader",
+                                            "ocr",
+                                            "tts",
+                                            "page turner"
+                                        ],
+                         "snippet":  "Desktop OCR, automatic page-turner, and text-to-speech reading companion with bookmark manager."
+                     },
+                     {
+                         "id":  "scripting",
+                         "folder":  "Scripting",
+                         "name":  "Scripting",
+                         "title":  "Scripting",
+                         "category":  "systems",
+                         "categoryLabel":  "Developer Tools",
+                         "iconId":  "cat-code",
+                         "entry":  "../Scripting/webpage/index.html",
+                         "choogleUrl":  "choogle://projects/Scripting/webpage/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "scripting"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/Scripting."
+                     },
+                     {
+                         "id":  "spam-block",
+                         "folder":  "spam block",
+                         "name":  "spam block",
+                         "title":  "spam block",
+                         "category":  "security",
+                         "categoryLabel":  "Security \u0026 Defense",
+                         "iconId":  "cat-security",
+                         "entry":  "../spam block/README.md",
+                         "choogleUrl":  "choogle://projects/spam%20block/README.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "spam block"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/spam block."
+                     },
+                     {
+                         "id":  "stock-bot-traders",
+                         "folder":  "stock Bot traders",
+                         "name":  "stock Bot traders",
+                         "title":  "stock Bot traders",
+                         "category":  "utilities",
+                         "categoryLabel":  "Finance \u0026 Markets",
+                         "iconId":  "cat-finance",
+                         "entry":  "../stock Bot traders/gui/templates/index.html",
+                         "choogleUrl":  "choogle://projects/stock%20Bot%20traders/gui/templates/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "stock bot traders"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/stock Bot traders."
+                     },
+                     {
+                         "id":  "stock-watch",
+                         "folder":  "stock watch",
+                         "name":  "stock watch",
+                         "title":  "stock watch",
+                         "category":  "utilities",
+                         "categoryLabel":  "Finance \u0026 Markets",
+                         "iconId":  "cat-finance",
+                         "entry":  "../stock watch/README.md",
+                         "choogleUrl":  "choogle://projects/stock%20watch/README.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "stock watch"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/stock watch."
+                     },
+                     {
+                         "id":  "synergize-and-pay",
+                         "folder":  "synergize and pay",
+                         "name":  "Synergize",
+                         "title":  "Synergize \u0026 Pay Private Monetization Blueprint",
+                         "category":  "utilities",
+                         "categoryLabel":  "Finance \u0026 Markets",
+                         "iconId":  "cat-finance",
+                         "entry":  "../synergize and pay/index.html",
+                         "choogleUrl":  "choogle://projects/synergize%20and%20pay/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "synergize",
+                                            "monetization",
+                                            "portfolio manifest",
+                                            "synergize and pay"
+                                        ],
+                         "snippet":  "Confidential portfolio manifest and monetization strategy interactive dashboard displaying pricing, tiers, and commercial blueprints."
+                     },
+                     {
+                         "id":  "track-home-value",
+                         "folder":  "Track Home Value",
+                         "name":  "Track Home Value",
+                         "title":  "Track Home Value",
+                         "category":  "utilities",
+                         "categoryLabel":  "Finance \u0026 Markets",
+                         "iconId":  "cat-finance",
+                         "entry":  "../Track Home Value/dashboard.html",
+                         "choogleUrl":  "choogle://projects/Track%20Home%20Value/dashboard.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "track home value"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/Track Home Value."
+                     },
+                     {
+                         "id":  "track-most-wanted",
+                         "folder":  "track most wanted",
+                         "name":  "track most wanted",
+                         "title":  "track most wanted",
+                         "category":  "utilities",
+                         "categoryLabel":  "Productivity \u0026 Tools",
+                         "iconId":  "cat-tools",
+                         "entry":  "../track most wanted/dashboard.html",
+                         "choogleUrl":  "choogle://projects/track%20most%20wanted/dashboard.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "track most wanted"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/track most wanted."
+                     },
+                     {
+                         "id":  "using-ai-agents-for-profit",
+                         "folder":  "using ai agents for profit",
+                         "name":  "AI Ops",
+                         "title":  "B2B AI Operations Engine \u0026 Document Reconciliation",
+                         "category":  "ai",
+                         "categoryLabel":  "AI \u0026 Agents",
+                         "iconId":  "cat-ai",
+                         "entry":  "../using ai agents for profit/static/index.html",
+                         "choogleUrl":  "choogle://projects/using%20ai%20agents%20for%20profit/static/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "ai agents",
+                                            "operations engine",
+                                            "reconciliation",
+                                            "invoice",
+                                            "using ai agents for profit"
+                                        ],
+                         "snippet":  "Autonomous invoice and BOL reconciliation engine with interactive operations dashboard, KPI analytics summary, and demo data generator."
+                     },
+                     {
+                         "id":  "vr-creation-apps",
+                         "folder":  "VR creation apps",
+                         "name":  "VR creation apps",
+                         "title":  "VR creation apps",
+                         "category":  "games",
+                         "categoryLabel":  "3D \u0026 Spatial",
+                         "iconId":  "cat-vr",
+                         "entry":  "../VR creation apps/index.html",
+                         "choogleUrl":  "choogle://projects/VR%20creation%20apps/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "vr creation apps"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/VR creation apps."
+                     },
+                     {
+                         "id":  "vulnerability-management",
+                         "folder":  "vulnerability management",
+                         "name":  "VulnGuard",
+                         "title":  "VulnGuard Vulnerability Management MVC Web App",
+                         "category":  "security",
+                         "categoryLabel":  "Security \u0026 Defense",
+                         "iconId":  "cat-security",
+                         "entry":  "../vulnerability management/README.md",
+                         "choogleUrl":  "choogle://projects/vulnerability%20management/README.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "vulnguard",
+                                            "vulnerability management",
+                                            "vuln"
+                                        ],
+                         "snippet":  "VulnGuard vulnerability management MVC web app with SQLite database, hardening services, and crypto tools."
+                     },
+                     {
+                         "id":  "youtube-channels",
+                         "folder":  "youtube channels",
+                         "name":  "youtube channels",
+                         "title":  "youtube channels",
+                         "category":  "media",
+                         "categoryLabel":  "Media \u0026 Audio",
+                         "iconId":  "cat-media",
+                         "entry":  "../youtube channels/index.html",
+                         "choogleUrl":  "choogle://projects/youtube%20channels/index.html",
+                         "hasHtml":  true,
+                         "searchKeys":  [
+                                            "youtube channels"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/youtube channels."
+                     },
+                     {
+                         "id":  "youtube-shorts-edit-for-gaming",
+                         "folder":  "youtube shorts edit for gaming",
+                         "name":  "youtube shorts edit for gaming",
+                         "title":  "youtube shorts edit for gaming",
+                         "category":  "media",
+                         "categoryLabel":  "Media \u0026 Audio",
+                         "iconId":  "cat-media",
+                         "entry":  "../youtube shorts edit for gaming/SOUNDTRACK_CURATION_GUIDE.md",
+                         "choogleUrl":  "choogle://projects/youtube%20shorts%20edit%20for%20gaming/SOUNDTRACK_CURATION_GUIDE.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "youtube shorts edit for gaming"
+                                        ],
+                         "snippet":  "Local Antigravity workspace project located at projects/youtube shorts edit for gaming."
+                     },
+                     {
+                         "id":  "zfold6-features",
+                         "folder":  "zfold6 features",
+                         "name":  "Z Fold 6",
+                         "title":  "Samsung Galaxy Z Fold 6 Master Guide",
+                         "category":  "games",
+                         "categoryLabel":  "Games \u0026 Sims",
+                         "iconId":  "cat-game",
+                         "entry":  "../zfold6 features/galaxy_z_fold_6_tips_and_tricks_guide.md",
+                         "choogleUrl":  "choogle://projects/zfold6%20features/galaxy_z_fold_6_tips_and_tricks_guide.md",
+                         "hasHtml":  false,
+                         "searchKeys":  [
+                                            "zfold6",
+                                            "galaxy z fold",
+                                            "fold 6",
+                                            "zfold6 features"
+                                        ],
+                         "snippet":  "Comprehensive master power-user guide and tips for Samsung Galaxy Z Fold 6 multitasking, DeX mode, and Galaxy AI tools."
+                     }
+                 ]
+}

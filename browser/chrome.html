@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choogle Browser</title>
+  <link rel="stylesheet" href="chrome.css">
+</head>
+<body class="layout-dual theme-navy-gold">
+  <div id="browser-shell" class="browser-shell">
+    <!-- ==================== TOP CHROME REGION ==================== -->
+    <div id="top-chrome" class="top-chrome">
+      <!-- Titlebar + Horizontal Tab Strip (Draggable) -->
+      <header id="titlebar" class="titlebar">
+        <div class="titlebar-brand">
+          <img src="../assets/icons/choogle-32.png" alt="Choogle" class="brand-logo" width="20" height="20">
+          <span class="brand-name">Choogle</span>
+        </div>
+
+        <!-- Workspace Pill (Visible in Topbar Mode) -->
+        <div id="topbar-workspace-chip" class="topbar-workspace-chip" title="Switch Workspace"></div>
+
+        <!-- Horizontal Tab Strip (Visible in Dual & Topbar Modes) -->
+        <div id="top-tabs-strip" class="top-tabs-strip" role="tablist" aria-label="Open tabs"></div>
+
+        <button id="top-new-tab-btn" class="chrome-btn icon-only no-drag" title="New Tab (Ctrl+T)" aria-label="New Tab"></button>
+
+        <div class="titlebar-spacer"></div>
+
+        <!-- Quick Layout Mode Switcher -->
+        <div class="layout-switcher no-drag" role="group" aria-label="Browser layout mode">
+          <button class="layout-pill" data-layout="dual" title="Dual Mode: Icon Rail + Top Tabs"></button>
+          <button class="layout-pill" data-layout="sidebar" title="Vertical Sidebar Mode (Arc style)"></button>
+          <button class="layout-pill" data-layout="topbar" title="Classic Top Tab Bar Mode"></button>
+        </div>
+
+        <!-- Window Controls -->
+        <div class="window-controls no-drag">
+          <button id="win-min-btn" class="win-btn" title="Minimize" aria-label="Minimize"></button>
+          <button id="win-max-btn" class="win-btn" title="Maximize / Restore" aria-label="Maximize"></button>
+          <button id="win-close-btn" class="win-btn win-close" title="Close Choogle" aria-label="Close"></button>
+        </div>
+      </header>
+
+      <!-- Navigation & Omnibox Toolbar -->
+      <div id="toolbar" class="toolbar">
+        <div class="nav-actions">
+          <button id="sidebar-expand-btn" class="chrome-btn icon-only" title="Toggle Sidebar Width (Ctrl+Shift+S)" aria-label="Toggle Sidebar"></button>
+          <button id="back-btn" class="chrome-btn icon-only" title="Back (Alt+Left)" aria-label="Back"></button>
+          <button id="forward-btn" class="chrome-btn icon-only" title="Forward (Alt+Right)" aria-label="Forward"></button>
+          <button id="reload-btn" class="chrome-btn icon-only" title="Reload (Ctrl+R)" aria-label="Reload"></button>
+          <button id="home-btn" class="chrome-btn icon-only" title="Choogle Home" aria-label="Home"></button>
+        </div>
+
+        <!-- Smart Omnibox -->
+        <div id="omnibox-wrap" class="omnibox-wrap">
+          <button id="security-pill" class="security-pill" title="Connection Info" aria-label="Connection status"></button>
+          <input
+            id="omnibox-input"
+            class="omnibox-input"
+            type="text"
+            spellcheck="false"
+            autocomplete="off"
+            placeholder="Search or enter URL, choogle:// route, or Antigravity project..."
+            aria-label="Address and search bar"
+          >
+          <button id="zoom-pill" class="zoom-pill hidden" title="Reset Zoom (Ctrl+0)">100%</button>
+          <button id="bookmark-star-btn" class="omnibox-action-btn" title="Bookmark this page (Ctrl+D)" aria-label="Bookmark page"></button>
+        </div>
+
+        <!-- Right Toolbar Controls -->
+        <div class="toolbar-right">
+          <button id="shield-btn" class="chrome-btn shield-btn" title="Choogle Ad & Tracker Shield">
+            <span id="shield-icon" class="btn-svg"></span>
+            <span id="shield-count" class="shield-badge">0</span>
+          </button>
+          <button id="apps-drawer-btn" class="chrome-btn icon-only" title="Apps & Projects Launcher" aria-label="Apps Drawer"></button>
+          <button id="bookmarks-bar-toggle-btn" class="chrome-btn icon-only" title="Toggle Bookmarks Bar (Ctrl+Shift+B)" aria-label="Toggle Bookmarks Bar"></button>
+          <button id="downloads-panel-btn" class="chrome-btn icon-only" title="Downloads (Ctrl+J)" aria-label="Downloads"></button>
+          <button id="history-panel-btn" class="chrome-btn icon-only" title="History (Ctrl+H)" aria-label="History"></button>
+          <button id="devtools-btn" class="chrome-btn icon-only" title="Inspect / DevTools (F12)" aria-label="Developer Tools"></button>
+          <button id="settings-btn" class="chrome-btn icon-only" title="Browser Settings" aria-label="Settings"></button>
+        </div>
+      </div>
+
+      <!-- Bookmarks Bar -->
+      <div id="bookmarks-bar" class="bookmarks-bar"></div>
+
+      <!-- Docked Find-in-Page Bar -->
+      <div id="find-bar" class="find-bar hidden">
+        <span id="find-bar-icon" class="find-bar-icon"></span>
+        <input id="find-input" class="find-input" type="text" placeholder="Find in page..." aria-label="Find in page">
+        <button id="find-prev-btn" class="chrome-btn compact" title="Previous match">Prev</button>
+        <button id="find-next-btn" class="chrome-btn compact" title="Next match">Next</button>
+        <button id="find-close-btn" class="chrome-btn icon-only compact" title="Close Find Bar (Esc)" aria-label="Close Find"></button>
+      </div>
+    </div>
+
+    <!-- ==================== LOWER WORKSPACE REGION ==================== -->
+    <div id="lower-shell" class="lower-shell">
+      <!-- Left Rail / Vertical Sidebar -->
+      <aside id="left-sidebar" class="left-sidebar" aria-label="Workspaces, Pinned Apps, and Tabs">
+        <!-- Workspaces Switcher -->
+        <div class="sidebar-block workspaces-block">
+          <div class="sidebar-section-header">
+            <span class="sidebar-label">Workspaces</span>
+            <button id="add-workspace-btn" class="mini-icon-btn" title="New Workspace" aria-label="New Workspace"></button>
+          </div>
+          <div id="workspaces-list" class="workspaces-list"></div>
+          <div id="new-workspace-form" class="inline-form hidden">
+            <input id="new-workspace-name" type="text" maxlength="24" placeholder="Workspace name...">
+            <button id="save-workspace-btn" class="inline-save-btn">Add</button>
+          </div>
+        </div>
+
+        <!-- Pinned Choogle Suite Apps -->
+        <div class="sidebar-block pinned-apps-block">
+          <div class="sidebar-section-header">
+            <span class="sidebar-label">Choogle Suite</span>
+          </div>
+          <div id="pinned-apps-list" class="pinned-apps-list"></div>
+        </div>
+
+        <!-- Vertical Tab List (Expanded in Sidebar Mode or Expanded Dual Mode) -->
+        <div class="sidebar-block vertical-tabs-block">
+          <div class="sidebar-section-header">
+            <span class="sidebar-label">Tabs</span>
+            <button id="sidebar-new-tab-btn" class="mini-icon-btn" title="New Tab (Ctrl+T)" aria-label="New Tab"></button>
+          </div>
+          <div id="vertical-tabs-list" class="vertical-tabs-list"></div>
+        </div>
+
+        <!-- Bottom Sidebar Utilities -->
+        <div class="sidebar-footer">
+          <button id="rail-icons-studio-btn" class="rail-action-btn" title="Custom Icon Studio (choogle://icons)">
+            <span class="rail-icon" id="rail-icons-svg"></span>
+            <span class="rail-text">Icon Studio</span>
+          </button>
+          <button id="rail-hub-btn" class="rail-action-btn" title="App Hub — All Projects (choogle://hub)">
+            <span class="rail-icon" id="rail-hub-svg"></span>
+            <span class="rail-text">App Hub</span>
+          </button>
+          <button id="rail-settings-btn" class="rail-action-btn" title="Choogle Settings (choogle://settings)">
+            <span class="rail-icon" id="rail-settings-svg"></span>
+            <span class="rail-text">Settings</span>
+          </button>
+        </div>
+      </aside>
+
+      <!-- Native WebContentsView Viewport Hole -->
+      <div id="viewport-spacer" class="viewport-spacer"></div>
+
+      <!-- Docked Right Side Panel -->
+      <aside id="side-panel" class="side-panel hidden" aria-label="Browser Side Panel">
+        <div class="side-panel-header">
+          <div class="side-panel-tabs">
+            <button class="panel-tab" data-panel="apps">Apps</button>
+            <button class="panel-tab" data-panel="shield">Shield</button>
+            <button class="panel-tab" data-panel="bookmarks">Bookmarks</button>
+            <button class="panel-tab" data-panel="history">History</button>
+            <button class="panel-tab" data-panel="downloads">Downloads</button>
+          </div>
+          <button id="side-panel-close-btn" class="chrome-btn icon-only compact" title="Close Side Panel" aria-label="Close Side Panel"></button>
+        </div>
+        <div id="side-panel-body" class="side-panel-body"></div>
+      </aside>
+    </div>
+  </div>
+
+  <script src="../assets/icons/icon-library.js"></script>
+  <script src="chrome.js"></script>
+</body>
+</html>

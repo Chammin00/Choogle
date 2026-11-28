@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Choogle Omnibox Suggestions</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      overflow: hidden;
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #f1f5f9;
+    }
+    .popup-shell {
+      width: 100%;
+      height: 100%;
+      padding: 6px;
+      background: #0d1526;
+      border: 1px solid #324363;
+      border-radius: 10px;
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.65);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      overflow-y: auto;
+    }
+    .popup-item {
+      height: 42px;
+      padding: 0 10px;
+      border-radius: 7px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+    }
+    .popup-item:hover,
+    .popup-item.selected {
+      background: #182542;
+      border-color: rgba(223, 186, 115, 0.35);
+    }
+    .popup-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      background: rgba(223, 186, 115, 0.12);
+      color: #dfba73;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .popup-meta {
+      flex: 1;
+      min-width: 0;
+    }
+    .popup-title {
+      font-size: 12.5px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .popup-sub {
+      font-size: 11px;
+      color: #8b9bb5;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .popup-kind {
+      font-size: 10.5px;
+      color: #c8a96e;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(200, 169, 110, 0.12);
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="popup-shell" class="popup-shell"></div>
+  <script src="../assets/icons/icon-library.js"></script>
+  <script>
+    (function () {
+      const shell = document.getElementById('popup-shell');
+      const Icons = window.ChoogleIcons;
+      let currentItems = [];
+
+      function esc(str) {
+        return String(str == null ? '' : str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function render(data) {
+        currentItems = (data && data.items) || [];
+        const sel = typeof (data && data.selectedIndex) === 'number' ? data.selectedIndex : -1;
+        shell.innerHTML = currentItems
+          .map((item, idx) => {
+            const cls = idx === sel ? 'popup-item selected' : 'popup-item';
+            return `
+              <button class="${cls}" data-idx="${idx}">
+                <span class="popup-icon">${Icons.svg(item.iconId || 'search', { size: 15 })}</span>
+                <span class="popup-meta">
+                  <div class="popup-title">${esc(item.title)}</div>
+                  <div class="popup-sub">${esc(item.subtitle)}</div>
+                </span>
+                <span class="popup-kind">${esc(item.kind || 'web')}</span>
+              </button>
+            `;
+          })
+          .join('');
+      }
+
+      shell.addEventListener('mousedown', (ev) => {
+        const btn = ev.target.closest('[data-idx]');
+        if (!btn) return;
+        ev.preventDefault();
+        const item = currentItems[Number(btn.dataset.idx)];
+        if (item) {
+          window.choogleBrowser.selectOmniboxItem(item);
+        }
+      });
+
+      window.choogleBrowser.onPopupData(render);
+    })();
+  </script>
+</body>
+</html>

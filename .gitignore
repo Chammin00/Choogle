@@ -2,6 +2,11 @@
 *.log
 *_log.txt
 
+# Runtime & Build Artifacts
+node_modules/
+dist/
+.electron-cache/
+
 # Editor and OS files
 .vscode/
 .idea/

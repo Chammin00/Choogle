@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choogle Icon Studio — Custom Vector Pack</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/choogle-mark.svg">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .studio-layout {
+      display: grid;
+      grid-template-columns: 1fr 370px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    @media (max-width: 980px) {
+      .studio-layout { grid-template-columns: 1fr; }
+    }
+
+    .brand-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .brand-sizes {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-size-chip {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .icon-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
+      gap: 10px;
+    }
+
+    .icon-cell {
+      padding: 14px 10px;
+      border-radius: 10px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .icon-cell:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-strong);
+      color: var(--text-primary);
+    }
+
+    .icon-cell.selected {
+      background: var(--navy);
+      border-color: var(--gold-bright);
+      color: var(--gold-bright);
+    }
+
+    .icon-cell-label {
+      font-size: 11.5px;
+      line-height: 1.25;
+      word-break: break-word;
+    }
+
+    .inspector-card {
+      position: sticky;
+      top: 76px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .preview-stage {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 20px 12px;
+      border-radius: 10px;
+      background: var(--bg-inset);
+      border: 1px solid var(--border);
+    }
+
+    .preview-size-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--text-muted);
+    }
+
+    .control-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .control-group label {
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+
+    .color-input-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      height: 34px;
+      padding: 0 8px;
+      border-radius: 8px;
+      background: var(--bg-inset);
+      border: 1px solid var(--border);
+    }
+
+    .color-input-row input[type="color"] {
+      width: 24px;
+      height: 22px;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    .color-input-row span {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .svg-editor {
+      width: 100%;
+      min-height: 92px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg-inset);
+      color: var(--gold-bright);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      resize: vertical;
+      outline: none;
+    }
+
+    .svg-editor:focus {
+      border-color: var(--gold);
+    }
+
+    .export-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body class="with-cosmic">
+  <header class="page-topbar">
+    <a class="page-brand" href="choogle://home">
+      <img src="../assets/icons/choogle-32.png" alt="Choogle" width="22" height="22">
+      <span>Choogle Browser</span>
+    </a>
+    <nav class="page-nav" id="icons-topbar-nav"></nav>
+  </header>
+
+  <main class="page-container">
+    <div class="page-header">
+      <div class="page-title-group">
+        <h1>
+          <span class="icon-badge" id="studio-title-icon"></span>
+          <span>Choogle Custom Icon Studio</span>
+          <span class="pill-badge" id="studio-count-badge">70 Vector Icons</span>
+        </h1>
+        <p>Inspect, customize colors, edit SVG geometry, and export crisp SVG or 256px PNG icons for your browser and apps.</p>
+      </div>
+    </div>
+
+    <!-- Brand Emblem Showcase -->
+    <section class="surface-card brand-banner">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <img src="../assets/icons/choogle-mark.svg" alt="Choogle Master Mark" width="52" height="52">
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--gold-bright);">Choogle Master App Emblem (.ico + SVG + PNG)</div>
+          <div style="font-size:12.5px;color:var(--text-muted);">Multi-resolution Windows taskbar &amp; desktop icon generated at 16, 24, 32, 48, 64, 128, and 256 px.</div>
+        </div>
+      </div>
+      <div class="brand-sizes">
+        <div class="brand-size-chip"><img src="../assets/icons/choogle-32.png" width="24" height="24" alt="24px"><span>24px</span></div>
+        <div class="brand-size-chip"><img src="../assets/icons/choogle-32.png" width="32" height="32" alt="32px"><span>32px</span></div>
+        <div class="brand-size-chip"><img src="../assets/icons/choogle-128.png" width="48" height="48" alt="48px"><span>48px</span></div>
+      </div>
+    </section>
+
+    <div class="studio-layout">
+      <!-- Left Icon Catalog -->
+      <div>
+        <div class="icon-toolbar">
+          <input id="icon-search-input" class="input-field" style="flex:1;min-width:210px;" type="text" placeholder="Filter icons by name or keyword...">
+          <button class="btn btn-primary" data-cat="all">All</button>
+          <button class="btn" data-cat="browser">Browser</button>
+          <button class="btn" data-cat="suite">Suite</button>
+          <button class="btn" data-cat="projects">Projects</button>
+        </div>
+        <div id="icons-grid" class="icon-grid"></div>
+      </div>
+
+      <!-- Right Customizer Studio -->
+      <aside class="surface-card inspector-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div>
+            <div id="sel-icon-label" style="font-size:15px;font-weight:700;color:var(--text-primary);">Choogle Emblem</div>
+            <div id="sel-icon-id" style="font-family:var(--font-mono);font-size:11.5px;color:var(--gold);">app-choogle</div>
+          </div>
+          <button id="reset-custom-btn" class="btn" style="height:28px;padding:0 10px;font-size:12px;">Reset</button>
+        </div>
+
+        <div id="preview-stage" class="preview-stage"></div>
+
+        <div class="control-row">
+          <div class="control-group">
+            <label for="ctl-stroke-color">Stroke Color</label>
+            <div class="color-input-row">
+              <input id="ctl-stroke-color" type="color" value="#dfba73">
+              <span id="val-stroke-color">#dfba73</span>
+            </div>
+          </div>
+          <div class="control-group">
+            <label for="ctl-bg-color">Tile Background</label>
+            <div class="color-input-row">
+              <input id="ctl-bg-color" type="color" value="#0d1322">
+              <span id="val-bg-color">#0d1322</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="control-row">
+          <div class="control-group">
+            <label for="ctl-shape">Tile Shape</label>
+            <select id="ctl-shape" class="input-field">
+              <option value="squircle">Squircle Badge</option>
+              <option value="circle">Circle Badge</option>
+              <option value="hex">Hexagon Badge</option>
+              <option value="bare">Bare Vector Icon</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="ctl-stroke-width">Stroke Width (<span id="val-stroke-width">1.75</span>px)</label>
+            <input id="ctl-stroke-width" type="range" min="1.1" max="2.6" step="0.15" value="1.75" style="margin-top:8px;">
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label for="ctl-svg-body">Custom SVG Geometry (24x24 viewBox — edit live)</label>
+          <textarea id="ctl-svg-body" class="svg-editor" spellcheck="false"></textarea>
+        </div>
+
+        <div class="export-actions">
+          <button id="copy-svg-btn" class="btn">Copy SVG</button>
+          <button id="download-svg-btn" class="btn">Save .SVG</button>
+          <button id="download-png-btn" class="btn btn-primary">Save .PNG</button>
+        </div>
+        <div id="studio-status" style="font-size:12px;color:var(--green);min-height:18px;"></div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../assets/icons/icon-library.js"></script>
+  <script src="icons.js"></script>
+</body>
+</html>

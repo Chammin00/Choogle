@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choogle</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/choogle-mark.svg">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .home-main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 46px 24px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .brand-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      text-align: center;
+    }
+
+    .brand-mark-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-wordmark {
+      font-size: 46px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .brand-wordmark .accent {
+      color: var(--gold-bright);
+    }
+
+    .search-shell {
+      width: 100%;
+      max-width: 720px;
+      position: relative;
+    }
+
+    .search-modes {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .mode-group {
+      display: inline-flex;
+      gap: 4px;
+      padding: 3px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+    }
+
+    .mode-btn {
+      height: 28px;
+      padding: 0 12px;
+      border-radius: 6px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 12.5px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .mode-btn.active {
+      background: var(--navy);
+      color: var(--gold-bright);
+      box-shadow: inset 0 0 0 1px rgba(223, 186, 115, 0.35);
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      height: 52px;
+      padding: 0 12px 0 16px;
+      border-radius: 12px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-strong);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    }
+
+    .search-bar:focus-within {
+      border-color: var(--gold-bright);
+      box-shadow: 0 0 0 2px rgba(223, 186, 115, 0.2), 0 10px 30px rgba(0, 0, 0, 0.55);
+    }
+
+    .search-bar-icon {
+      color: var(--gold-bright);
+      display: inline-flex;
+      flex-shrink: 0;
+    }
+
+    .search-bar input {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--text-primary);
+      font-size: 15.5px;
+    }
+
+    .search-bar input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .engine-select {
+      height: 32px;
+      padding: 0 10px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      background: var(--bg-inset);
+      color: var(--text-secondary);
+      font-size: 12px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .local-suggestions {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      background: #0d1526;
+      border: 1px solid var(--border-strong);
+      border-radius: 10px;
+      padding: 6px;
+      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.65);
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .sug-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 7px;
+      border: none;
+      background: transparent;
+      color: var(--text-primary);
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+    }
+
+    .sug-item:hover {
+      background: #182542;
+    }
+
+    .section-wrap {
+      width: 100%;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .section-head h2 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.03em;
+    }
+
+    .suite-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+      gap: 10px;
+    }
+
+    .suite-tile {
+      padding: 13px 14px;
+      border-radius: 10px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      transition: border-color 0.14s ease, background 0.14s ease;
+    }
+
+    .suite-tile:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(223, 186, 115, 0.55);
+      text-decoration: none;
+    }
+
+    .suite-tile-meta {
+      min-width: 0;
+    }
+
+    .suite-tile-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .suite-tile-sub {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .bookmarks-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 8px;
+    }
+
+    .telemetry-strip {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .telemetry-box {
+      padding: 12px 16px;
+      border-radius: 10px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .telemetry-val {
+      font-family: var(--font-mono);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--gold-bright);
+    }
+
+    .telemetry-lbl {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 680px) {
+      .telemetry-strip { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="with-cosmic">
+  <header class="page-topbar">
+    <a class="page-brand" href="choogle://home">
+      <img src="../assets/icons/choogle-32.png" alt="Choogle" width="22" height="22">
+      <span>Choogle Browser</span>
+    </a>
+    <nav class="page-nav" id="home-topbar-nav"></nav>
+  </header>
+
+  <main class="home-main">
+    <section class="brand-hero">
+      <div class="brand-mark-wrap">
+        <img src="../assets/icons/choogle-mark.svg" alt="Choogle Emblem" width="60" height="60">
+        <div class="brand-wordmark">Ch<span class="accent">oo</span>gle</div>
+      </div>
+    </section>
+
+    <section class="search-shell">
+      <div class="search-modes">
+        <div class="mode-group" id="search-mode-group">
+          <button class="mode-btn active" data-mode="all">All</button>
+          <button class="mode-btn" data-mode="web">Web</button>
+          <button class="mode-btn" data-mode="projects">Local Projects</button>
+        </div>
+        <div class="pill-badge" id="workspace-pill">Workspace: Personal</div>
+      </div>
+
+      <form id="home-search-form" class="search-bar">
+        <span class="search-bar-icon" id="home-search-icon"></span>
+        <input id="home-search-input" type="text" autocomplete="off" placeholder="Search the web, URL, or your 77 Antigravity projects..." autofocus>
+        <select id="home-engine-select" class="engine-select" aria-label="Search engine">
+          <option value="google">Google</option>
+          <option value="duckduckgo">DuckDuckGo</option>
+          <option value="bing">Bing</option>
+          <option value="brave">Brave</option>
+          <option value="perplexity">Perplexity</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+
+      <div id="local-suggestions" class="local-suggestions hidden"></div>
+    </section>
+
+    <section class="telemetry-strip">
+      <div class="telemetry-box">
+        <span class="icon-badge" id="tel-proj-icon"></span>
+        <div>
+          <div class="telemetry-val" id="tel-proj-count">0</div>
+          <div class="telemetry-lbl">Antigravity Projects</div>
+        </div>
+      </div>
+      <div class="telemetry-box">
+        <span class="icon-badge" id="tel-shield-icon"></span>
+        <div>
+          <div class="telemetry-val" id="tel-shield-count">0</div>
+          <div class="telemetry-lbl">Trackers Blocked</div>
+        </div>
+      </div>
+      <div class="telemetry-box">
+        <span class="icon-badge" id="tel-suite-icon"></span>
+        <div>
+          <div class="telemetry-val" id="tel-suite-count">14</div>
+          <div class="telemetry-lbl">Choogle Suite Modules</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-wrap">
+      <div class="section-head">
+        <h2>Choogle Suite</h2>
+        <a href="choogle://hub" style="font-size:12.5px;">Open Full App Hub</a>
+      </div>
+      <div id="suite-grid" class="suite-grid"></div>
+    </section>
+
+    <section class="section-wrap">
+      <div class="section-head">
+        <h2>Pinned Bookmarks</h2>
+        <a href="choogle://bookmarks" style="font-size:12.5px;">Manage Bookmarks</a>
+      </div>
+      <div id="bookmarks-strip" class="bookmarks-strip"></div>
+    </section>
+  </main>
+
+  <script src="../assets/icons/icon-library.js"></script>
+  <script src="home.js"></script>
+</body>
+</html>

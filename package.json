@@ -1,0 +1,15 @@
+{
+  "name": "choogle-browser",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Choogle Browser 2.0 — Custom Chromium Desktop Browser with Dual-Mode Chrome, Bespoke Vector Icon Pack, Ad/Tracker Shield, and Antigravity Projects Integration.",
+  "main": "browser/main.cjs",
+  "scripts": {
+    "start": "powershell -NoProfile -ExecutionPolicy Bypass -File ./Launch-Choogle.ps1",
+    "build:icons": "python scripts/build-icons.py",
+    "sync": "powershell -NoProfile -ExecutionPolicy Bypass -File ./Sync-ChoogleProjects.ps1",
+    "shortcut": "powershell -NoProfile -ExecutionPolicy Bypass -File ./Install-ChoogleShortcut.ps1",
+    "smoke": "powershell -NoProfile -ExecutionPolicy Bypass -File ./Launch-Choogle.ps1 -SmokeTest"
+  },
+  "author": "Chase"
+}
